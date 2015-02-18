@@ -68,7 +68,7 @@
       <roleName name="//@role.4"/>
     </authConstraint>
     <userDataConstraint>
-      <transportGuarantee restriction="CONFIDENTIAL"/>
+      <transportGuarantee/>
     </userDataConstraint>
   </constraint>
   <constraint>
@@ -88,6 +88,9 @@
       <httpMethod name="GET"/>
     </webResourceCollection>
     <authConstraint/>
+    <userDataConstraint>
+      <transportGuarantee restriction="CONFIDENTIAL"/>
+    </userDataConstraint>
   </constraint>
   <constraint>
     <webResourceCollection webResourceName="UpdateCartServlet">
@@ -107,6 +110,9 @@
     <authConstraint>
       <roleName name="//@role.0"/>
     </authConstraint>
+    <userDataConstraint>
+      <transportGuarantee restriction="CONFIDENTIAL"/>
+    </userDataConstraint>
   </constraint>
   <constraint>
     <webResourceCollection webResourceName="TestServlet">
