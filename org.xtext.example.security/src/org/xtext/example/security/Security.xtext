@@ -1,0 +1,69 @@
+grammar org.xtext.example.security.Security with org.eclipse.xtext.common.Terminals
+
+generate security "http://www.xtext.org/example/security/Security"
+
+Security:
+	role+=SecurityRole* 
+	constraint+=SecurityConstraint*;
+	
+SecurityRole:
+	'security-role' name=ID
+;
+
+SecurityConstraint:
+	'security-constraint
+    {' 
+		displayName+=DisplayName*
+		webResourceCollection+=WebResourceCollection+
+		authConstraint=AuthConstraint?
+		userDataConstraint=UserDataConstraint?
+		id=Identifier?
+	'}'
+;
+
+Identifier:
+	name=ID
+;
+
+DisplayName:
+	'display-name' value=STRING
+;
+
+WebResourceCollection:
+	'web-resource-collection' 
+	'{' 
+	'web-resource-name' webResourceName=STRING
+	urlPattern+=UrlPattern*
+	httpMethod+=HttpMethod*
+	id=Identifier?
+	'}'
+;
+
+UrlPattern: 
+	'url-pattern' value=STRING
+;
+
+HttpMethod:
+	'http-method' omission?='omission' 
+	name=STRING
+;
+
+AuthConstraint:
+	'auth-constraint' '{' roleName+=RoleName* id=Identifier?'}'
+;
+
+RoleName:
+	'role-name' name=[SecurityRole]
+;
+
+UserDataConstraint:
+	'user-data-constraint' '{' transportGuarantee=TransportGuarantee id=Identifier? '}'
+;
+
+TransportGuarantee: 
+	'transport-guarantee' restriction=RestrictionType	
+;
+
+enum RestrictionType:
+	NONE = 'NONE' | INTEGRAL = 'INTEGRAL' | CONFIDENTIAL = 'CONFIDENTIAL'
+;

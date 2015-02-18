@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<security:Security xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:security="http://www.xtext.org/example/security/Security">
+  <role name="admin"/>
+  <role name="Everyone"/>
+  <role name="R1"/>
+  <role name="Role1"/>
+  <role name="customer"/>
+  <constraint>
+    <webResourceCollection webResourceName="Authenticated Write Access">
+      <urlPattern value="/projects"/>
+      <urlPattern value="/projects/*"/>
+      <urlPattern value="/user/*"/>
+      <httpMethod name="POST"/>
+      <httpMethod name="PUT"/>
+      <httpMethod name="DELETE"/>
+    </webResourceCollection>
+    <authConstraint>
+      <roleName name="//@role.0"/>
+      <roleName name="//@role.1"/>
+    </authConstraint>
+    <userDataConstraint>
+      <transportGuarantee/>
+    </userDataConstraint>
+  </constraint>
+  <constraint>
+    <webResourceCollection webResourceName="Public Read Access">
+      <urlPattern value="/projects"/>
+      <urlPattern value="/projects/*"/>
+      <urlPattern value="/user/*"/>
+      <httpMethod name="GET"/>
+    </webResourceCollection>
+    <userDataConstraint>
+      <transportGuarantee/>
+    </userDataConstraint>
+  </constraint>
+  <constraint>
+    <webResourceCollection webResourceName="Admin Access Only">
+      <urlPattern value="/admin/*"/>
+      <urlPattern value="/config/*"/>
+      <httpMethod name="GET"/>
+      <httpMethod name="POST"/>
+      <httpMethod name="PUT"/>
+      <httpMethod name="DELETE"/>
+    </webResourceCollection>
+    <authConstraint>
+      <roleName name="//@role.0"/>
+      <roleName name="//@role.1"/>
+    </authConstraint>
+    <userDataConstraint>
+      <transportGuarantee/>
+    </userDataConstraint>
+  </constraint>
+  <constraint>
+    <webResourceCollection webResourceName="CartServlet">
+      <urlPattern value="/cart"/>
+      <httpMethod name="GET"/>
+    </webResourceCollection>
+    <authConstraint>
+      <roleName name="//@role.4"/>
+    </authConstraint>
+  </constraint>
+  <constraint>
+    <webResourceCollection webResourceName="CartServlet">
+      <urlPattern value="/cart"/>
+      <httpMethod name="POST"/>
+    </webResourceCollection>
+    <authConstraint>
+      <roleName name="//@role.4"/>
+    </authConstraint>
+    <userDataConstraint>
+      <transportGuarantee restriction="CONFIDENTIAL"/>
+    </userDataConstraint>
+  </constraint>
+  <constraint>
+    <webResourceCollection webResourceName="AddProductToCartServlet">
+      <urlPattern value="/addToCart"/>
+      <urlPattern value="/ajax/addToCart"/>
+      <httpMethod omission="true" name="GET"/>
+    </webResourceCollection>
+    <authConstraint>
+      <roleName name="//@role.2"/>
+    </authConstraint>
+  </constraint>
+  <constraint>
+    <webResourceCollection webResourceName="AddProductToCartServlet">
+      <urlPattern value="/addToCart"/>
+      <urlPattern value="/ajax/addToCart"/>
+      <httpMethod name="GET"/>
+    </webResourceCollection>
+    <authConstraint/>
+  </constraint>
+  <constraint>
+    <webResourceCollection webResourceName="UpdateCartServlet">
+      <urlPattern value="/updateCart"/>
+    </webResourceCollection>
+    <authConstraint>
+      <roleName name="//@role.4"/>
+    </authConstraint>
+    <userDataConstraint>
+      <transportGuarantee restriction="CONFIDENTIAL"/>
+    </userDataConstraint>
+  </constraint>
+  <constraint>
+    <webResourceCollection webResourceName="UploadPictureServlet">
+      <urlPattern value="/picture/upload"/>
+    </webResourceCollection>
+    <authConstraint>
+      <roleName name="//@role.0"/>
+    </authConstraint>
+  </constraint>
+  <constraint>
+    <webResourceCollection webResourceName="TestServlet">
+      <urlPattern value="/picture/upload"/>
+      <httpMethod omission="true" name="TRACE"/>
+    </webResourceCollection>
+    <authConstraint>
+      <roleName name="//@role.3"/>
+    </authConstraint>
+  </constraint>
+  <constraint>
+    <webResourceCollection webResourceName="TestServlet">
+      <urlPattern value="/picture/upload"/>
+      <httpMethod name="TRACE"/>
+    </webResourceCollection>
+    <authConstraint/>
+  </constraint>
+  <constraint>
+    <webResourceCollection webResourceName="AddProductServlet">
+      <urlPattern value="/addProduct"/>
+      <urlPattern value="/ajax/addProduct"/>
+    </webResourceCollection>
+    <authConstraint>
+      <roleName name="//@role.0"/>
+      <roleName name="//@role.4"/>
+    </authConstraint>
+  </constraint>
+</security:Security>
