@@ -1,0 +1,75 @@
+grammar org.xtext.servletSecurity.ServletSecurity with org.eclipse.xtext.common.Terminals
+
+generate servletSecurity "http://www.xtext.org/servletSecurity/ServletSecurity"
+
+Security:
+	role+=SecurityRole* 
+	constraint+=SecurityConstraint*;
+	
+SecurityRole:
+	'security-role' '{' roleName=RoleName '}'
+;
+
+RoleName:
+	'role-name' name=ID
+;
+
+SecurityConstraint:
+	'security-constraint
+    {' 
+		displayName+=DisplayName*
+		webResourceCollection+=WebResourceCollection+
+		authConstraint=AuthConstraint?
+		userDataConstraint=UserDataConstraint?
+		id=Identifier?
+		source=SourceType
+	'}'
+;
+
+enum SourceType:
+	XML = 'XML' | CODE = 'CODE'
+;
+
+Identifier:
+	'id' name=ID
+;
+
+DisplayName:
+	'display-name' value=STRING
+;
+
+WebResourceCollection:
+	'web-resource-collection' 
+	'{' 
+	'web-resource-name' webResourceName=STRING
+	urlPattern+=UrlPattern*
+	httpMethod+=HttpMethod*
+	id=Identifier?
+	'}'
+;
+
+UrlPattern: 
+	'url-pattern' value=STRING
+;
+
+HttpMethod:
+	'http-method' omission?='omission' 
+	name=STRING
+;
+
+AuthConstraint:
+	'auth-constraint' '{' roleName+=[RoleName]* id=Identifier?'}'
+;
+
+
+UserDataConstraint:
+	'user-data-constraint' '{' transportGuarantee=TransportGuarantee id=Identifier? '}'
+;
+
+TransportGuarantee: 
+	'transport-guarantee' restriction=RestrictionType	
+;
+
+enum RestrictionType:
+	NONE = 'NONE' | INTEGRAL = 'INTEGRAL' | CONFIDENTIAL = 'CONFIDENTIAL'
+;

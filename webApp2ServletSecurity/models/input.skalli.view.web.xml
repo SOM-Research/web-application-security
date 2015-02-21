@@ -1,0 +1,533 @@
+<?xml version="1.0" encoding="UTF-8"?><!--
+    Copyright (c) 2010-2014 SAP AG and others.
+    All rights reserved. This program and the accompanying materials
+    are made available under the terms of the Eclipse Public License v1.0
+    which accompanies this distribution, and is available at
+    http://www.eclipse.org/legal/epl-v10.html
+
+    Contributors:
+        SAP AG - initial API and implementation
+ -->
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="http://java.sun.com/xml/ns/javaee"
+    xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+    id="WebApp_ID" version="2.5">
+
+    <display-name>org.eclipse.skalli.view</display-name>
+
+    <mime-mapping>
+        <extension>ico</extension>
+        <mime-type>image/x-icon</mime-type>
+    </mime-mapping>
+
+    <context-param>
+      <param-name>useNaming</param-name>
+      <param-value>osgi</param-value>
+    </context-param>
+
+    <!--  switch off Vaadin debug mode -->
+    <context-param>
+        <param-name>productionMode</param-name>
+        <param-value>true</param-value>
+    </context-param>
+
+    <!--
+    *****************
+    jsp configuration
+    *****************
+    -->
+
+    <servlet id="jsp">
+        <servlet-name>jsp</servlet-name>
+        <servlet-class>org.apache.jasper.servlet.JspServlet</servlet-class>
+        <!-- check JSP files for recompilation on every request -->
+        <!--
+        <init-param>
+            <param-name>development</param-name>
+            <param-value>true</param-value>
+        </init-param>
+        -->
+        <!-- check JSP files for recompilation every N seconds -->
+        <!--
+        <init-param>
+            <param-name>development</param-name>
+            <param-value>true</param-value>
+        </init-param>
+        <init-param>
+            <param-name>modificationTestInterval</param-name>
+            <param-value>N</param-value>
+        </init-param>
+        -->
+        <!-- compile JSP files on first hit -->
+        <init-param>
+            <param-name>reload-interval</param-name>
+            <param-value>-1</param-value>
+        </init-param>
+        <!-- check JSP files for recompilation every N seconds in a background thread -->
+        <!--
+        <init-param>
+            <param-name>development</param-name>
+            <param-value>false</param-value>
+        </init-param>
+        <init-param>
+            <param-name>checkInterval</param-name>
+            <param-value>N</param-value>
+        </init-param>
+        -->
+        <load-on-startup>0</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>jsp</servlet-name>
+        <url-pattern>*.jsp</url-pattern>
+        <url-pattern>*.jspf</url-pattern>
+        <url-pattern>*.jspx</url-pattern>
+        <url-pattern>*.xsp</url-pattern>
+        <url-pattern>*.JSP</url-pattern>
+        <url-pattern>*.JSPF</url-pattern>
+        <url-pattern>*.JSPX</url-pattern>
+        <url-pattern>*.XSP</url-pattern>
+    </servlet-mapping>
+
+    <!--
+    *******************
+    servlet definitions
+    *******************
+    -->
+
+    <servlet>
+        <description>Authentication</description>
+        <display-name>Authentication</display-name>
+        <servlet-name>AuthenticationServlet</servlet-name>
+        <servlet-class>org.eclipse.skalli.view.internal.servlet.AuthenticationServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <description>Logout</description>
+        <display-name>Logout</display-name>
+        <servlet-name>Logout</servlet-name>
+        <jsp-file>/search/logout.jsp</jsp-file>
+    </servlet>
+    <servlet>
+        <description>Welcome</description>
+        <display-name>Welcome</display-name>
+        <servlet-name>Welcome</servlet-name>
+        <jsp-file>/search/welcome.jsp</jsp-file>
+    </servlet>
+    <servlet>
+        <description></description>
+        <display-name>Skalli</display-name>
+        <servlet-name>ProjectServlet</servlet-name>
+        <servlet-class>org.eclipse.skalli.view.internal.servlet.ProjectServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <description></description>
+        <display-name>SkalliResources</display-name>
+        <servlet-name>SkalliResources</servlet-name>
+        <servlet-class>org.eclipse.skalli.view.internal.servlet.ResourceServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <description></description>
+        <display-name>StaticContent</display-name>
+        <servlet-name>StaticContent</servlet-name>
+        <servlet-class>org.eclipse.skalli.view.internal.servlet.StaticContentServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <description>DispatcherServlet</description>
+        <display-name>DispatcherServlet</display-name>
+        <servlet-name>DispatcherServlet</servlet-name>
+        <servlet-class>org.eclipse.skalli.view.internal.servlet.Servlet</servlet-class>
+    </servlet>
+    <servlet>
+        <description>Search Result</description>
+        <display-name>Search Result</display-name>
+        <servlet-name>SearchResult</servlet-name>
+        <jsp-file>/search/searchresult.jsp</jsp-file>
+    </servlet>
+    <servlet>
+        <description>TagCloud</description>
+        <display-name>TagCloud</display-name>
+        <servlet-name>TagCloud</servlet-name>
+        <jsp-file>/search/tagcloud.jsp</jsp-file>
+    </servlet>
+    <servlet>
+        <description>Project Page</description>
+        <display-name>Project Portal</display-name>
+        <servlet-name>ProjectPage</servlet-name>
+        <jsp-file>/search/project.jsp</jsp-file>
+    </servlet>
+    <servlet>
+        <description>Project Hierarchy</description>
+        <display-name>ProjectHierarchy</display-name>
+        <servlet-name>ProjectHierarchy</servlet-name>
+        <jsp-file>/search/hierarchy.jsp</jsp-file>
+    </servlet>
+    <servlet>
+        <description>SearchFrame</description>
+        <display-name>SearchFrame</display-name>
+        <servlet-name>SearchFrame</servlet-name>
+        <jsp-file>/search/searchframe.jsp</jsp-file>
+    </servlet>
+    <servlet>
+        <description>MyFavorites</description>
+        <display-name>MyFavorites</display-name>
+        <servlet-name>MyFavorites</servlet-name>
+        <jsp-file>/search/searchresult.jsp</jsp-file>
+    </servlet>
+    <servlet>
+        <description>FavoritesServlet</description>
+        <display-name>FavoritesServlet</display-name>
+        <servlet-name>FavoritesServlet</servlet-name>
+        <servlet-class>org.eclipse.skalli.view.internal.servlet.FavoritesServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <description>DeletedProjects</description>
+        <display-name>DeletedProjects</display-name>
+        <servlet-name>DeletedProjects</servlet-name>
+        <jsp-file>/search/deleted.jsp</jsp-file>
+    </servlet>
+    <servlet>
+        <description>DevInfInherited</description>
+        <display-name>DevInfInherited</display-name>
+        <servlet-name>DevInfInherited</servlet-name>
+        <jsp-file>/search/devinfinherited.jsp</jsp-file>
+    </servlet>
+    <servlet>
+        <description>Error Page</description>
+        <display-name>Error</display-name>
+        <servlet-name>ErrorPage</servlet-name>
+        <jsp-file>/search/error.jsp</jsp-file>
+    </servlet>
+        <servlet>
+        <description>Unauthorized Page</description>
+        <display-name>Unauthorized</display-name>
+        <servlet-name>UnauthorizedPage</servlet-name>
+        <jsp-file>/search/unauthorized.jsp</jsp-file>
+    </servlet>
+    <servlet>
+        <description>CreateGitGerrit</description>
+        <display-name>CreateGitGerrit</display-name>
+        <servlet-name>CreateGitGerrit</servlet-name>
+        <jsp-file>/search/gitgerrit.jsp</jsp-file>
+    </servlet>
+    <servlet>
+        <description>Create GitGerrit Error</description>
+        <display-name>CreateGitGerritError</display-name>
+        <servlet-name>CreateGitGerritError</servlet-name>
+        <jsp-file>/search/gitgerrit_error.jsp</jsp-file>
+    </servlet>
+
+    <!--
+     **************************
+     servlet filter definitions
+     **************************
+     -->
+
+    <filter>
+        <filter-name>CacheFilter</filter-name>
+        <filter-class>org.eclipse.skalli.view.internal.filter.CacheFilter</filter-class>
+        <init-param>
+            <param-name>maxAge</param-name>
+            <param-value>86400</param-value>
+        </init-param>
+        <init-param>
+            <param-name>cachedResources</param-name>
+            <param-value>css,js,png,gif,jpg,jpeg,ico,swf,xsd,tif,bmp</param-value>
+        </init-param>
+    </filter>
+    <filter>
+       <filter-name>LoginFilter</filter-name>
+       <filter-class>org.eclipse.skalli.view.internal.filter.LoginFilter</filter-class>
+    </filter>
+    <filter>
+       <filter-name>RestFilter</filter-name>
+       <filter-class>org.eclipse.skalli.view.internal.filter.RestFilter</filter-class>
+    </filter>
+    <filter>
+       <filter-name>ProjectPermitsFilter</filter-name>
+       <filter-class>org.eclipse.skalli.view.internal.filter.ProjectPermitsFilter</filter-class>
+    </filter>
+    <filter>
+       <filter-name>ProjectDetailsFilter</filter-name>
+       <filter-class>org.eclipse.skalli.view.internal.filter.ProjectDetailsFilter</filter-class>
+    </filter>
+    <filter>
+       <filter-name>SearchFilter</filter-name>
+       <filter-class>org.eclipse.skalli.view.internal.filter.SearchFilter</filter-class>
+    </filter>
+    <filter>
+       <filter-name>FavoritesFilter</filter-name>
+       <filter-class>org.eclipse.skalli.view.internal.filter.FavoritesFilter</filter-class>
+    </filter>
+        <filter>
+       <filter-name>CssCachingFilter</filter-name>
+       <filter-class>org.eclipse.skalli.view.internal.servlet.CssCachingFilter</filter-class>
+    </filter>
+    <filter>
+       <filter-name>ConfigFilter</filter-name>
+       <filter-class>org.eclipse.skalli.view.internal.filter.ConfigFilter</filter-class>
+    </filter>
+    <filter>
+        <filter-name>GitGerritFilter</filter-name>
+        <filter-class>org.eclipse.skalli.view.internal.filter.ext.GitGerritFilter</filter-class>
+    </filter>
+
+    <!--
+     ****************
+     servlet mappings
+     ****************
+     -->
+
+    <servlet-mapping>
+        <servlet-name>default</servlet-name>
+        <url-pattern>*.css</url-pattern>
+        <url-pattern>*.js</url-pattern>
+        <url-pattern>*.png</url-pattern>
+        <url-pattern>*.ico</url-pattern>
+        <url-pattern>*.xml</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+    <servlet-name>AuthenticationServlet</servlet-name>
+    <url-pattern>/authenticate</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Logout</servlet-name>
+        <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProjectServlet</servlet-name>
+        <url-pattern>/vprojects/*</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SkalliResources</servlet-name>
+        <url-pattern>/VAADIN/*</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>StaticContent</servlet-name>
+        <url-pattern>/content/*</url-pattern>
+        <url-pattern>/schemas/*</url-pattern>
+        <url-pattern>/search-plugin.xml</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DispatcherServlet</servlet-name>
+        <url-pattern>/</url-pattern>
+        <url-pattern>/news</url-pattern>
+        <url-pattern>/subprojects</url-pattern>
+        <url-pattern>/relatedprojects</url-pattern>
+        <url-pattern>/reindex</url-pattern>
+        <url-pattern>/create</url-pattern>
+        <url-pattern>/favicon.ico</url-pattern>
+        <url-pattern>/myprojects</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchResult</servlet-name>
+        <url-pattern>/projects</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProjectPage</servlet-name>
+        <url-pattern>/projects/*</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TagCloud</servlet-name>
+        <url-pattern>/tags</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProjectHierarchy</servlet-name>
+        <url-pattern>/hierarchy</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchFrame</servlet-name>
+        <url-pattern>/searchframe</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MyFavorites</servlet-name>
+        <url-pattern>/myfavorites</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FavoritesServlet</servlet-name>
+        <url-pattern>/favorites</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeletedProjects</servlet-name>
+        <url-pattern>/deletedprojects</url-pattern>
+    </servlet-mapping>
+        <servlet-mapping>
+        <servlet-name>DevInfInherited</servlet-name>
+        <url-pattern>/error/devinfinherited</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Welcome</servlet-name>
+        <url-pattern>/search/welcome</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ErrorPage</servlet-name>
+        <url-pattern>/error</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UnauthorizedPage</servlet-name>
+        <url-pattern>/unauthorized</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CreateGitGerrit</servlet-name>
+        <url-pattern>/create/gitgerrit</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CreateGitGerritError</servlet-name>
+        <url-pattern>/create/gitgerriterror</url-pattern>
+    </servlet-mapping>
+
+    <!--
+     ***************
+     filter mappings
+     ***************
+     -->
+
+    <filter-mapping>
+        <filter-name>CacheFilter</filter-name>
+        <url-pattern>/VAADIN/themes/*</url-pattern>
+        <url-pattern>/schemas/*</url-pattern>
+        <url-pattern>/js/*</url-pattern>
+        <url-pattern>/favicon.ico</url-pattern>
+        <url-pattern>/search-plugin.xml</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+       <filter-name>LoginFilter</filter-name>
+       <url-pattern>/</url-pattern>
+       <url-pattern>/projects</url-pattern>
+       <url-pattern>/projects/*</url-pattern>
+       <url-pattern>/tags</url-pattern>
+       <url-pattern>/hierarchy</url-pattern>
+       <url-pattern>/favorites</url-pattern>
+       <url-pattern>/myfavorites</url-pattern>
+       <url-pattern>/myprojects</url-pattern>
+       <url-pattern>/create/*</url-pattern>
+       <url-pattern>/reindex</url-pattern>
+       <dispatcher>REQUEST</dispatcher>
+       <dispatcher>FORWARD</dispatcher>
+    </filter-mapping>
+    <filter-mapping>
+       <filter-name>ConfigFilter</filter-name>
+       <url-pattern>/</url-pattern>
+       <url-pattern>/projects</url-pattern>
+       <url-pattern>/projects/*</url-pattern>
+       <url-pattern>/tags</url-pattern>
+       <url-pattern>/hierarchy</url-pattern>
+       <url-pattern>/favorites</url-pattern>
+       <url-pattern>/myfavorites</url-pattern>
+       <url-pattern>/myprojects</url-pattern>
+       <url-pattern>/create/*</url-pattern>
+       <url-pattern>/reindex</url-pattern>
+       <url-pattern>/search-plugin.xml</url-pattern>
+       <dispatcher>REQUEST</dispatcher>
+       <dispatcher>FORWARD</dispatcher>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>RestFilter</filter-name>
+        <url-pattern>/projects/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>ProjectPermitsFilter</filter-name>
+        <url-pattern>/projects/*</url-pattern>
+        <url-pattern>/create/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>ProjectDetailsFilter</filter-name>
+        <url-pattern>/projects/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+    </filter-mapping>
+    <filter-mapping>
+       <filter-name>SearchFilter</filter-name>
+       <url-pattern>/projects</url-pattern>
+       <dispatcher>REQUEST</dispatcher>
+       <dispatcher>FORWARD</dispatcher>
+    </filter-mapping>
+    <filter-mapping>
+       <filter-name>FavoritesFilter</filter-name>
+       <url-pattern>/myfavorites</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+       <filter-name>CssCachingFilter</filter-name>
+       <url-pattern>*.css</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>GitGerritFilter</filter-name>
+        <url-pattern>/create/gitgerrit</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+    </filter-mapping>
+
+    <!--
+     **********
+     error page
+     **********
+     -->
+
+    <error-page>
+        <error-code>500</error-code>
+        <location>/error</location>
+    </error-page>
+
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>All Access</web-resource-name>
+            <url-pattern>/search/style.css</url-pattern>
+            <url-pattern>/js/*</url-pattern>
+            <url-pattern>/error</url-pattern>
+            <url-pattern>/unauthorized</url-pattern>
+            <url-pattern>/VAADIN/*</url-pattern>
+            <url-pattern>/schemas/*</url-pattern>
+            <url-pattern>/favicon.ico</url-pattern>
+            <url-pattern>/search-plugin.xml</url-pattern>
+            <url-pattern>/logout</url-pattern>
+            <url-pattern>/</url-pattern>
+            <url-pattern>/tags</url-pattern>
+            <url-pattern>/hierarchy</url-pattern>
+            <url-pattern>/news</url-pattern>
+            <url-pattern>/projects</url-pattern>
+            <url-pattern>/projects/*</url-pattern>
+            <url-pattern>/vprojects/*</url-pattern>
+            <http-method>GET</http-method>
+            <http-method>POST</http-method>
+        </web-resource-collection>
+        <user-data-constraint>
+            <transport-guarantee>NONE</transport-guarantee>
+        </user-data-constraint>
+    </security-constraint>
+
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>all</web-resource-name>
+            <url-pattern>/*</url-pattern>
+            <http-method>GET</http-method>
+            <http-method>POST</http-method>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>admin</role-name>
+            <role-name>Everyone</role-name>
+        </auth-constraint>
+    </security-constraint>
+
+    <login-config>
+        <auth-method>FORM</auth-method>
+        <realm-name>Skalli</realm-name>
+        <form-login-config>
+            <form-login-page>/search/login.jsp</form-login-page>
+            <form-error-page>/search/login_fail.jsp</form-error-page>
+        </form-login-config>
+    </login-config>
+
+    <security-role>
+        <description>Assigned to all users in the server</description>
+        <role-name>admin</role-name>
+    </security-role>
+
+    <security-role>
+        <description>Everyone</description>
+        <role-name>Everyone</role-name>
+    </security-role>
+</web-app>

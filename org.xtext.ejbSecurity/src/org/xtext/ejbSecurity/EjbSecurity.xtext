@@ -1,0 +1,57 @@
+grammar org.xtext.ejbSecurity.EjbSecurity with org.eclipse.xtext.common.Terminals
+
+generate ejbSecurity "http://www.xtext.org/ejbSecurity/EjbSecurity"
+
+Security:
+	securityRole+=SecurityRole+ methodPermission+=MethodPermission
+;
+
+SecurityRole:
+	'security-role' '{' roleName=RoleName '}'
+;
+
+RoleName:
+	'role-name' name=ID
+;
+
+MethodPermission:
+	'method-permission' '{' roleName+=[RoleName]+ unchecked=Unchecked? method+=Method+ excludeList=ExcludeList?'}'
+;
+
+Unchecked:
+	'unchecked'
+;
+
+ExcludeList:
+	'exclude-list' '{'
+		method+=Method+
+	'}'
+;
+
+Method:
+	'method' '{' 
+		ejbName=EbjName
+		methodInf=MethodInf?
+		methodName=STRING
+		methodParams=MethodParams?
+	'}'
+;
+
+EbjName:
+	'ebj-name' name=STRING
+;
+
+MethodInf:
+	'method-inf' name=STRING
+;
+
+MethodParams:
+	'method-params' '{' 
+		methodParam+=MethodParam*
+	'}'
+;
+	
+MethodParam:
+	'method-param' param=STRING
+;
+
