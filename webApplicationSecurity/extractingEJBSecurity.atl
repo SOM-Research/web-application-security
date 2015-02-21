@@ -1,0 +1,7 @@
+-- @path SEC=/webApplicationSecurity/metamodels/EjbSecurity.ecore
+-- @nsURI XML=http://www.eclipse.org/MoDisco/Xml/0.1.incubation/XML
+-- @nsURI JAVA=http://www.eclipse.org/MoDisco/Java/0.2.incubation/java
+
+module extractingEJBSecurity;
+create OUT : SEC from IN : XML, IN2 : JAVA;
+

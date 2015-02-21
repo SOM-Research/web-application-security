@@ -2,7 +2,7 @@
 -- @nsURI XML=http://www.eclipse.org/MoDisco/Xml/0.1.incubation/XML
 -- @nsURI JAVA=http://www.eclipse.org/MoDisco/Java/0.2.incubation/java
 
-module webApp2SerlvetSecurity;
+module extractingServletSecurity;
 create OUT : SEC from IN : XML, IN2 : JAVA;
 
 helper def : Counter : Integer = 1;
