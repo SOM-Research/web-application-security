@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="ASCII"?>
+<modisco.xml:Root xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:modisco.xml="http://www.eclipse.org/MoDisco/Xml/0.1.incubation/XML" name="ejb-jar">
+  <children xsi:type="modisco.xml:Text" name="&#xA;&#xA;    "/>
+  <children xsi:type="modisco.xml:Element" name="display-name">
+    <children xsi:type="modisco.xml:Text" name="Partner Component"/>
+  </children>
+  <children xsi:type="modisco.xml:Text" name="&#xA;&#xA;    "/>
+  <children xsi:type="modisco.xml:Element" name="enterprise-beans">
+    <children xsi:type="modisco.xml:Text" name="&#xA;&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="session">
+      <children xsi:type="modisco.xml:Text" name="&#xA;            "/>
+      <children xsi:type="modisco.xml:Element" name="ejb-name">
+        <children xsi:type="modisco.xml:Text" name="PartnerComponentEJB"/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;            "/>
+      <children xsi:type="modisco.xml:Element" name="home">
+        <children xsi:type="modisco.xml:Text" name="org.josso.samples.ejb.PartnerComponentHome"/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;            "/>
+      <children xsi:type="modisco.xml:Element" name="remote">
+        <children xsi:type="modisco.xml:Text" name="org.josso.samples.ejb.PartnerComponent"/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;            "/>
+      <children xsi:type="modisco.xml:Element" name="ejb-class">
+        <children xsi:type="modisco.xml:Text" name="org.josso.samples.ejb.PartnerComponentEJB"/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;            "/>
+      <children xsi:type="modisco.xml:Element" name="session-type">
+        <children xsi:type="modisco.xml:Text" name="Stateless"/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;            "/>
+      <children xsi:type="modisco.xml:Element" name="transaction-type">
+        <children xsi:type="modisco.xml:Text" name="Container"/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;            "/>
+      <children xsi:type="modisco.xml:Comment" name="&#xA;            &lt;security-identity>&#xA;                &lt;use-caller-identity/>&#xA;            &lt;/security-identity>&#xA;            &lt;security-role-ref>&#xA;                &lt;role-name>role1&lt;/role-name>&#xA;                &lt;role-link>role1&lt;/role-link>&#xA;            &lt;/security-role-ref>&#xA;            "/>
+      <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;&#xA;&#xA;    "/>
+  </children>
+  <children xsi:type="modisco.xml:Text" name="&#xA;&#xA;    "/>
+  <children xsi:type="modisco.xml:Element" name="assembly-descriptor">
+    <children xsi:type="modisco.xml:Text" name="&#xA;&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="security-role">
+      <children xsi:type="modisco.xml:Text" name="&#xA;            "/>
+      <children xsi:type="modisco.xml:Element" name="description">
+        <children xsi:type="modisco.xml:Text" name="Sample role 1"/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;            "/>
+      <children xsi:type="modisco.xml:Element" name="role-name">
+        <children xsi:type="modisco.xml:Text" name="role1"/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="security-role">
+      <children xsi:type="modisco.xml:Text" name="&#xA;            "/>
+      <children xsi:type="modisco.xml:Element" name="description">
+        <children xsi:type="modisco.xml:Text" name="Sample role 2"/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;            "/>
+      <children xsi:type="modisco.xml:Element" name="role-name">
+        <children xsi:type="modisco.xml:Text" name="role2"/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="method-permission">
+      <children xsi:type="modisco.xml:Text" name="&#xA;            "/>
+      <children xsi:type="modisco.xml:Element" name="description">
+        <children xsi:type="modisco.xml:Text" name="Security attributes for 'PartnerComponenttEJB' methods"/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;            "/>
+      <children xsi:type="modisco.xml:Element" name="unchecked"/>
+      <children xsi:type="modisco.xml:Text" name="&#xA;            "/>
+      <children xsi:type="modisco.xml:Element" name="method">
+        <children xsi:type="modisco.xml:Text" name="&#xA;                "/>
+        <children xsi:type="modisco.xml:Element" name="ejb-name">
+          <children xsi:type="modisco.xml:Text" name="PartnerComponentEJB"/>
+        </children>
+        <children xsi:type="modisco.xml:Text" name="&#xA;                "/>
+        <children xsi:type="modisco.xml:Element" name="method-name">
+          <children xsi:type="modisco.xml:Text" name="*"/>
+        </children>
+        <children xsi:type="modisco.xml:Text" name="&#xA;            "/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;            "/>
+      <children xsi:type="modisco.xml:Element" name="method">
+        <children xsi:type="modisco.xml:Text" name="&#xA;                "/>
+        <children xsi:type="modisco.xml:Element" name="ejb-name">
+          <children xsi:type="modisco.xml:Text" name="PartnerComponentEJB"/>
+        </children>
+        <children xsi:type="modisco.xml:Text" name="&#xA;                "/>
+        <children xsi:type="modisco.xml:Element" name="method-intf">
+          <children xsi:type="modisco.xml:Text" name="Home"/>
+        </children>
+        <children xsi:type="modisco.xml:Text" name="&#xA;                "/>
+        <children xsi:type="modisco.xml:Element" name="method-name">
+          <children xsi:type="modisco.xml:Text" name="*"/>
+        </children>
+        <children xsi:type="modisco.xml:Text" name="&#xA;            "/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;&#xA;        "/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;&#xA;        "/>
+    <children xsi:type="modisco.xml:Comment" name=" Transaction Attributes "/>
+    <children xsi:type="modisco.xml:Text" name="&#xA;&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="container-transaction">
+      <children xsi:type="modisco.xml:Text" name="&#xA;            "/>
+      <children xsi:type="modisco.xml:Element" name="method">
+        <children xsi:type="modisco.xml:Text" name="&#xA;                "/>
+        <children xsi:type="modisco.xml:Element" name="ejb-name">
+          <children xsi:type="modisco.xml:Text" name="PartnerComponentEJB"/>
+        </children>
+        <children xsi:type="modisco.xml:Text" name="&#xA;                "/>
+        <children xsi:type="modisco.xml:Element" name="method-name">
+          <children xsi:type="modisco.xml:Text" name="*"/>
+        </children>
+        <children xsi:type="modisco.xml:Text" name="&#xA;            "/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;            "/>
+      <children xsi:type="modisco.xml:Element" name="trans-attribute">
+        <children xsi:type="modisco.xml:Text" name="Required"/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;&#xA;    "/>
+  </children>
+  <children xsi:type="modisco.xml:Text" name="&#xA;&#xA;&#xA;"/>
+  <dtd name="ejb-jar" publicID="-//Sun Microsystems, Inc.//DTD Enterprise JavaBeans 2.0//EN" systemID="http://java.sun.com/dtd/ejb-jar_2_0.dtd"/>
+</modisco.xml:Root>

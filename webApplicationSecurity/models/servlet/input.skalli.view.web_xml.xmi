@@ -1,0 +1,1449 @@
+<?xml version="1.0" encoding="ASCII"?>
+<modisco.xml:Root xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:modisco.xml="http://www.eclipse.org/MoDisco/Xml/0.1.incubation/XML" name="web-app">
+  <children xsi:type="modisco.xml:Attribute" name="xsi:schemaLocation" value="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"/>
+  <children xsi:type="modisco.xml:Attribute" name="id" value="WebApp_ID"/>
+  <children xsi:type="modisco.xml:Attribute" name="version" value="2.5"/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;&#xA;    "/>
+  <children xsi:type="modisco.xml:Element" name="display-name">
+    <children xsi:type="modisco.xml:Text" name="org.eclipse.skalli.view"/>
+  </children>
+  <children xsi:type="modisco.xml:Text" name="&#xA;&#xA;    "/>
+  <children xsi:type="modisco.xml:Element" name="mime-mapping">
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="extension">
+      <children xsi:type="modisco.xml:Text" name="ico"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="mime-type">
+      <children xsi:type="modisco.xml:Text" name="image/x-icon"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  </children>
+  <children xsi:type="modisco.xml:Text" name="&#xA;&#xA;    "/>
+  <children xsi:type="modisco.xml:Element" name="context-param">
+    <children xsi:type="modisco.xml:Text" name="&#xA;      "/>
+    <children xsi:type="modisco.xml:Element" name="param-name">
+      <children xsi:type="modisco.xml:Text" name="useNaming"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;      "/>
+    <children xsi:type="modisco.xml:Element" name="param-value">
+      <children xsi:type="modisco.xml:Text" name="osgi"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  </children>
+  <children xsi:type="modisco.xml:Text" name="&#xA;&#xA;    "/>
+  <children xsi:type="modisco.xml:Comment" name="  switch off Vaadin debug mode "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  <children xsi:type="modisco.xml:Element" name="context-param">
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="param-name">
+      <children xsi:type="modisco.xml:Text" name="productionMode"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="param-value">
+      <children xsi:type="modisco.xml:Text" name="true"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  </children>
+  <children xsi:type="modisco.xml:Text" name="&#xA;&#xA;    "/>
+  <children xsi:type="modisco.xml:Comment" name="&#xA;    *****************&#xA;    jsp configuration&#xA;    *****************&#xA;    "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;&#xA;    "/>
+  <children xsi:type="modisco.xml:Element" name="servlet">
+    <children xsi:type="modisco.xml:Attribute" name="id" value="jsp"/>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="servlet-name">
+      <children xsi:type="modisco.xml:Text" name="jsp"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="servlet-class">
+      <children xsi:type="modisco.xml:Text" name="org.apache.jasper.servlet.JspServlet"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Comment" name=" check JSP files for recompilation on every request "/>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Comment" name="&#xA;        &lt;init-param>&#xA;            &lt;param-name>development&lt;/param-name>&#xA;            &lt;param-value>true&lt;/param-value>&#xA;        &lt;/init-param>&#xA;        "/>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Comment" name=" check JSP files for recompilation every N seconds "/>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Comment" name="&#xA;        &lt;init-param>&#xA;            &lt;param-name>development&lt;/param-name>&#xA;            &lt;param-value>true&lt;/param-value>&#xA;        &lt;/init-param>&#xA;        &lt;init-param>&#xA;            &lt;param-name>modificationTestInterval&lt;/param-name>&#xA;            &lt;param-value>N&lt;/param-value>&#xA;        &lt;/init-param>&#xA;        "/>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Comment" name=" compile JSP files on first hit "/>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="init-param">
+      <children xsi:type="modisco.xml:Text" name="&#xA;            "/>
+      <children xsi:type="modisco.xml:Element" name="param-name">
+        <children xsi:type="modisco.xml:Text" name="reload-interval"/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;            "/>
+      <children xsi:type="modisco.xml:Element" name="param-value">
+        <children xsi:type="modisco.xml:Text" name="-1"/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Comment" name=" check JSP files for recompilation every N seconds in a background thread "/>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Comment" name="&#xA;        &lt;init-param>&#xA;            &lt;param-name>development&lt;/param-name>&#xA;            &lt;param-value>false&lt;/param-value>&#xA;        &lt;/init-param>&#xA;        &lt;init-param>&#xA;            &lt;param-name>checkInterval&lt;/param-name>&#xA;            &lt;param-value>N&lt;/param-value>&#xA;        &lt;/init-param>&#xA;        "/>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="load-on-startup">
+      <children xsi:type="modisco.xml:Text" name="0"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  </children>
+  <children xsi:type="modisco.xml:Text" name="&#xA;&#xA;    "/>
+  <children xsi:type="modisco.xml:Element" name="servlet-mapping">
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="servlet-name">
+      <children xsi:type="modisco.xml:Text" name="jsp"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="url-pattern">
+      <children xsi:type="modisco.xml:Text" name="*.jsp"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="url-pattern">
+      <children xsi:type="modisco.xml:Text" name="*.jspf"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="url-pattern">
+      <children xsi:type="modisco.xml:Text" name="*.jspx"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="url-pattern">
+      <children xsi:type="modisco.xml:Text" name="*.xsp"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="url-pattern">
+      <children xsi:type="modisco.xml:Text" name="*.JSP"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="url-pattern">
+      <children xsi:type="modisco.xml:Text" name="*.JSPF"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="url-pattern">
+      <children xsi:type="modisco.xml:Text" name="*.JSPX"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="url-pattern">
+      <children xsi:type="modisco.xml:Text" name="*.XSP"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  </children>
+  <children xsi:type="modisco.xml:Text" name="&#xA;&#xA;    "/>
+  <children xsi:type="modisco.xml:Comment" name="&#xA;    *******************&#xA;    servlet definitions&#xA;    *******************&#xA;    "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;&#xA;    "/>
+  <children xsi:type="modisco.xml:Element" name="servlet">
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="description">
+      <children xsi:type="modisco.xml:Text" name="Authentication"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="display-name">
+      <children xsi:type="modisco.xml:Text" name="Authentication"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="servlet-name">
+      <children xsi:type="modisco.xml:Text" name="AuthenticationServlet"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="servlet-class">
+      <children xsi:type="modisco.xml:Text" name="org.eclipse.skalli.view.internal.servlet.AuthenticationServlet"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  </children>
+  <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  <children xsi:type="modisco.xml:Element" name="servlet">
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="description">
+      <children xsi:type="modisco.xml:Text" name="Logout"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="display-name">
+      <children xsi:type="modisco.xml:Text" name="Logout"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="servlet-name">
+      <children xsi:type="modisco.xml:Text" name="Logout"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="jsp-file">
+      <children xsi:type="modisco.xml:Text" name="/search/logout.jsp"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  </children>
+  <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  <children xsi:type="modisco.xml:Element" name="servlet">
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="description">
+      <children xsi:type="modisco.xml:Text" name="Welcome"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="display-name">
+      <children xsi:type="modisco.xml:Text" name="Welcome"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="servlet-name">
+      <children xsi:type="modisco.xml:Text" name="Welcome"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="jsp-file">
+      <children xsi:type="modisco.xml:Text" name="/search/welcome.jsp"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  </children>
+  <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  <children xsi:type="modisco.xml:Element" name="servlet">
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="description"/>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="display-name">
+      <children xsi:type="modisco.xml:Text" name="Skalli"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="servlet-name">
+      <children xsi:type="modisco.xml:Text" name="ProjectServlet"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="servlet-class">
+      <children xsi:type="modisco.xml:Text" name="org.eclipse.skalli.view.internal.servlet.ProjectServlet"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  </children>
+  <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  <children xsi:type="modisco.xml:Element" name="servlet">
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="description"/>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="display-name">
+      <children xsi:type="modisco.xml:Text" name="SkalliResources"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="servlet-name">
+      <children xsi:type="modisco.xml:Text" name="SkalliResources"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="servlet-class">
+      <children xsi:type="modisco.xml:Text" name="org.eclipse.skalli.view.internal.servlet.ResourceServlet"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  </children>
+  <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  <children xsi:type="modisco.xml:Element" name="servlet">
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="description"/>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="display-name">
+      <children xsi:type="modisco.xml:Text" name="StaticContent"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="servlet-name">
+      <children xsi:type="modisco.xml:Text" name="StaticContent"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="servlet-class">
+      <children xsi:type="modisco.xml:Text" name="org.eclipse.skalli.view.internal.servlet.StaticContentServlet"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  </children>
+  <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  <children xsi:type="modisco.xml:Element" name="servlet">
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="description">
+      <children xsi:type="modisco.xml:Text" name="DispatcherServlet"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="display-name">
+      <children xsi:type="modisco.xml:Text" name="DispatcherServlet"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="servlet-name">
+      <children xsi:type="modisco.xml:Text" name="DispatcherServlet"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="servlet-class">
+      <children xsi:type="modisco.xml:Text" name="org.eclipse.skalli.view.internal.servlet.Servlet"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  </children>
+  <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  <children xsi:type="modisco.xml:Element" name="servlet">
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="description">
+      <children xsi:type="modisco.xml:Text" name="Search Result"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="display-name">
+      <children xsi:type="modisco.xml:Text" name="Search Result"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="servlet-name">
+      <children xsi:type="modisco.xml:Text" name="SearchResult"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="jsp-file">
+      <children xsi:type="modisco.xml:Text" name="/search/searchresult.jsp"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  </children>
+  <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  <children xsi:type="modisco.xml:Element" name="servlet">
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="description">
+      <children xsi:type="modisco.xml:Text" name="TagCloud"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="display-name">
+      <children xsi:type="modisco.xml:Text" name="TagCloud"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="servlet-name">
+      <children xsi:type="modisco.xml:Text" name="TagCloud"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="jsp-file">
+      <children xsi:type="modisco.xml:Text" name="/search/tagcloud.jsp"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  </children>
+  <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  <children xsi:type="modisco.xml:Element" name="servlet">
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="description">
+      <children xsi:type="modisco.xml:Text" name="Project Page"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="display-name">
+      <children xsi:type="modisco.xml:Text" name="Project Portal"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="servlet-name">
+      <children xsi:type="modisco.xml:Text" name="ProjectPage"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="jsp-file">
+      <children xsi:type="modisco.xml:Text" name="/search/project.jsp"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  </children>
+  <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  <children xsi:type="modisco.xml:Element" name="servlet">
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="description">
+      <children xsi:type="modisco.xml:Text" name="Project Hierarchy"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="display-name">
+      <children xsi:type="modisco.xml:Text" name="ProjectHierarchy"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="servlet-name">
+      <children xsi:type="modisco.xml:Text" name="ProjectHierarchy"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="jsp-file">
+      <children xsi:type="modisco.xml:Text" name="/search/hierarchy.jsp"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  </children>
+  <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  <children xsi:type="modisco.xml:Element" name="servlet">
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="description">
+      <children xsi:type="modisco.xml:Text" name="SearchFrame"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="display-name">
+      <children xsi:type="modisco.xml:Text" name="SearchFrame"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="servlet-name">
+      <children xsi:type="modisco.xml:Text" name="SearchFrame"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="jsp-file">
+      <children xsi:type="modisco.xml:Text" name="/search/searchframe.jsp"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  </children>
+  <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  <children xsi:type="modisco.xml:Element" name="servlet">
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="description">
+      <children xsi:type="modisco.xml:Text" name="MyFavorites"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="display-name">
+      <children xsi:type="modisco.xml:Text" name="MyFavorites"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="servlet-name">
+      <children xsi:type="modisco.xml:Text" name="MyFavorites"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="jsp-file">
+      <children xsi:type="modisco.xml:Text" name="/search/searchresult.jsp"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  </children>
+  <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  <children xsi:type="modisco.xml:Element" name="servlet">
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="description">
+      <children xsi:type="modisco.xml:Text" name="FavoritesServlet"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="display-name">
+      <children xsi:type="modisco.xml:Text" name="FavoritesServlet"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="servlet-name">
+      <children xsi:type="modisco.xml:Text" name="FavoritesServlet"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="servlet-class">
+      <children xsi:type="modisco.xml:Text" name="org.eclipse.skalli.view.internal.servlet.FavoritesServlet"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  </children>
+  <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  <children xsi:type="modisco.xml:Element" name="servlet">
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="description">
+      <children xsi:type="modisco.xml:Text" name="DeletedProjects"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="display-name">
+      <children xsi:type="modisco.xml:Text" name="DeletedProjects"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="servlet-name">
+      <children xsi:type="modisco.xml:Text" name="DeletedProjects"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="jsp-file">
+      <children xsi:type="modisco.xml:Text" name="/search/deleted.jsp"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  </children>
+  <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  <children xsi:type="modisco.xml:Element" name="servlet">
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="description">
+      <children xsi:type="modisco.xml:Text" name="DevInfInherited"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="display-name">
+      <children xsi:type="modisco.xml:Text" name="DevInfInherited"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="servlet-name">
+      <children xsi:type="modisco.xml:Text" name="DevInfInherited"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="jsp-file">
+      <children xsi:type="modisco.xml:Text" name="/search/devinfinherited.jsp"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  </children>
+  <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  <children xsi:type="modisco.xml:Element" name="servlet">
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="description">
+      <children xsi:type="modisco.xml:Text" name="Error Page"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="display-name">
+      <children xsi:type="modisco.xml:Text" name="Error"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="servlet-name">
+      <children xsi:type="modisco.xml:Text" name="ErrorPage"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="jsp-file">
+      <children xsi:type="modisco.xml:Text" name="/search/error.jsp"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  </children>
+  <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+  <children xsi:type="modisco.xml:Element" name="servlet">
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="description">
+      <children xsi:type="modisco.xml:Text" name="Unauthorized Page"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="display-name">
+      <children xsi:type="modisco.xml:Text" name="Unauthorized"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="servlet-name">
+      <children xsi:type="modisco.xml:Text" name="UnauthorizedPage"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="jsp-file">
+      <children xsi:type="modisco.xml:Text" name="/search/unauthorized.jsp"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  </children>
+  <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  <children xsi:type="modisco.xml:Element" name="servlet">
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="description">
+      <children xsi:type="modisco.xml:Text" name="CreateGitGerrit"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="display-name">
+      <children xsi:type="modisco.xml:Text" name="CreateGitGerrit"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="servlet-name">
+      <children xsi:type="modisco.xml:Text" name="CreateGitGerrit"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="jsp-file">
+      <children xsi:type="modisco.xml:Text" name="/search/gitgerrit.jsp"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  </children>
+  <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  <children xsi:type="modisco.xml:Element" name="servlet">
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="description">
+      <children xsi:type="modisco.xml:Text" name="Create GitGerrit Error"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="display-name">
+      <children xsi:type="modisco.xml:Text" name="CreateGitGerritError"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="servlet-name">
+      <children xsi:type="modisco.xml:Text" name="CreateGitGerritError"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="jsp-file">
+      <children xsi:type="modisco.xml:Text" name="/search/gitgerrit_error.jsp"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  </children>
+  <children xsi:type="modisco.xml:Text" name="&#xA;&#xA;    "/>
+  <children xsi:type="modisco.xml:Comment" name="&#xA;     **************************&#xA;     servlet filter definitions&#xA;     **************************&#xA;     "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;&#xA;    "/>
+  <children xsi:type="modisco.xml:Element" name="filter">
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="filter-name">
+      <children xsi:type="modisco.xml:Text" name="CacheFilter"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="filter-class">
+      <children xsi:type="modisco.xml:Text" name="org.eclipse.skalli.view.internal.filter.CacheFilter"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="init-param">
+      <children xsi:type="modisco.xml:Text" name="&#xA;            "/>
+      <children xsi:type="modisco.xml:Element" name="param-name">
+        <children xsi:type="modisco.xml:Text" name="maxAge"/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;            "/>
+      <children xsi:type="modisco.xml:Element" name="param-value">
+        <children xsi:type="modisco.xml:Text" name="86400"/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="init-param">
+      <children xsi:type="modisco.xml:Text" name="&#xA;            "/>
+      <children xsi:type="modisco.xml:Element" name="param-name">
+        <children xsi:type="modisco.xml:Text" name="cachedResources"/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;            "/>
+      <children xsi:type="modisco.xml:Element" name="param-value">
+        <children xsi:type="modisco.xml:Text" name="css,js,png,gif,jpg,jpeg,ico,swf,xsd,tif,bmp"/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  </children>
+  <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  <children xsi:type="modisco.xml:Element" name="filter">
+    <children xsi:type="modisco.xml:Text" name="&#xA;       "/>
+    <children xsi:type="modisco.xml:Element" name="filter-name">
+      <children xsi:type="modisco.xml:Text" name="LoginFilter"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;       "/>
+    <children xsi:type="modisco.xml:Element" name="filter-class">
+      <children xsi:type="modisco.xml:Text" name="org.eclipse.skalli.view.internal.filter.LoginFilter"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  </children>
+  <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  <children xsi:type="modisco.xml:Element" name="filter">
+    <children xsi:type="modisco.xml:Text" name="&#xA;       "/>
+    <children xsi:type="modisco.xml:Element" name="filter-name">
+      <children xsi:type="modisco.xml:Text" name="RestFilter"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;       "/>
+    <children xsi:type="modisco.xml:Element" name="filter-class">
+      <children xsi:type="modisco.xml:Text" name="org.eclipse.skalli.view.internal.filter.RestFilter"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  </children>
+  <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  <children xsi:type="modisco.xml:Element" name="filter">
+    <children xsi:type="modisco.xml:Text" name="&#xA;       "/>
+    <children xsi:type="modisco.xml:Element" name="filter-name">
+      <children xsi:type="modisco.xml:Text" name="ProjectPermitsFilter"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;       "/>
+    <children xsi:type="modisco.xml:Element" name="filter-class">
+      <children xsi:type="modisco.xml:Text" name="org.eclipse.skalli.view.internal.filter.ProjectPermitsFilter"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  </children>
+  <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  <children xsi:type="modisco.xml:Element" name="filter">
+    <children xsi:type="modisco.xml:Text" name="&#xA;       "/>
+    <children xsi:type="modisco.xml:Element" name="filter-name">
+      <children xsi:type="modisco.xml:Text" name="ProjectDetailsFilter"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;       "/>
+    <children xsi:type="modisco.xml:Element" name="filter-class">
+      <children xsi:type="modisco.xml:Text" name="org.eclipse.skalli.view.internal.filter.ProjectDetailsFilter"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  </children>
+  <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  <children xsi:type="modisco.xml:Element" name="filter">
+    <children xsi:type="modisco.xml:Text" name="&#xA;       "/>
+    <children xsi:type="modisco.xml:Element" name="filter-name">
+      <children xsi:type="modisco.xml:Text" name="SearchFilter"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;       "/>
+    <children xsi:type="modisco.xml:Element" name="filter-class">
+      <children xsi:type="modisco.xml:Text" name="org.eclipse.skalli.view.internal.filter.SearchFilter"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  </children>
+  <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  <children xsi:type="modisco.xml:Element" name="filter">
+    <children xsi:type="modisco.xml:Text" name="&#xA;       "/>
+    <children xsi:type="modisco.xml:Element" name="filter-name">
+      <children xsi:type="modisco.xml:Text" name="FavoritesFilter"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;       "/>
+    <children xsi:type="modisco.xml:Element" name="filter-class">
+      <children xsi:type="modisco.xml:Text" name="org.eclipse.skalli.view.internal.filter.FavoritesFilter"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  </children>
+  <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+  <children xsi:type="modisco.xml:Element" name="filter">
+    <children xsi:type="modisco.xml:Text" name="&#xA;       "/>
+    <children xsi:type="modisco.xml:Element" name="filter-name">
+      <children xsi:type="modisco.xml:Text" name="CssCachingFilter"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;       "/>
+    <children xsi:type="modisco.xml:Element" name="filter-class">
+      <children xsi:type="modisco.xml:Text" name="org.eclipse.skalli.view.internal.servlet.CssCachingFilter"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  </children>
+  <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  <children xsi:type="modisco.xml:Element" name="filter">
+    <children xsi:type="modisco.xml:Text" name="&#xA;       "/>
+    <children xsi:type="modisco.xml:Element" name="filter-name">
+      <children xsi:type="modisco.xml:Text" name="ConfigFilter"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;       "/>
+    <children xsi:type="modisco.xml:Element" name="filter-class">
+      <children xsi:type="modisco.xml:Text" name="org.eclipse.skalli.view.internal.filter.ConfigFilter"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  </children>
+  <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  <children xsi:type="modisco.xml:Element" name="filter">
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="filter-name">
+      <children xsi:type="modisco.xml:Text" name="GitGerritFilter"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="filter-class">
+      <children xsi:type="modisco.xml:Text" name="org.eclipse.skalli.view.internal.filter.ext.GitGerritFilter"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  </children>
+  <children xsi:type="modisco.xml:Text" name="&#xA;&#xA;    "/>
+  <children xsi:type="modisco.xml:Comment" name="&#xA;     ****************&#xA;     servlet mappings&#xA;     ****************&#xA;     "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;&#xA;    "/>
+  <children xsi:type="modisco.xml:Element" name="servlet-mapping">
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="servlet-name">
+      <children xsi:type="modisco.xml:Text" name="default"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="url-pattern">
+      <children xsi:type="modisco.xml:Text" name="*.css"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="url-pattern">
+      <children xsi:type="modisco.xml:Text" name="*.js"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="url-pattern">
+      <children xsi:type="modisco.xml:Text" name="*.png"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="url-pattern">
+      <children xsi:type="modisco.xml:Text" name="*.ico"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="url-pattern">
+      <children xsi:type="modisco.xml:Text" name="*.xml"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  </children>
+  <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  <children xsi:type="modisco.xml:Element" name="servlet-mapping">
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+    <children xsi:type="modisco.xml:Element" name="servlet-name">
+      <children xsi:type="modisco.xml:Text" name="AuthenticationServlet"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+    <children xsi:type="modisco.xml:Element" name="url-pattern">
+      <children xsi:type="modisco.xml:Text" name="/authenticate"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  </children>
+  <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  <children xsi:type="modisco.xml:Element" name="servlet-mapping">
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="servlet-name">
+      <children xsi:type="modisco.xml:Text" name="Logout"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="url-pattern">
+      <children xsi:type="modisco.xml:Text" name="/logout"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  </children>
+  <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  <children xsi:type="modisco.xml:Element" name="servlet-mapping">
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="servlet-name">
+      <children xsi:type="modisco.xml:Text" name="ProjectServlet"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="url-pattern">
+      <children xsi:type="modisco.xml:Text" name="/vprojects/*"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  </children>
+  <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  <children xsi:type="modisco.xml:Element" name="servlet-mapping">
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="servlet-name">
+      <children xsi:type="modisco.xml:Text" name="SkalliResources"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="url-pattern">
+      <children xsi:type="modisco.xml:Text" name="/VAADIN/*"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  </children>
+  <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  <children xsi:type="modisco.xml:Element" name="servlet-mapping">
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="servlet-name">
+      <children xsi:type="modisco.xml:Text" name="StaticContent"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="url-pattern">
+      <children xsi:type="modisco.xml:Text" name="/content/*"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="url-pattern">
+      <children xsi:type="modisco.xml:Text" name="/schemas/*"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="url-pattern">
+      <children xsi:type="modisco.xml:Text" name="/search-plugin.xml"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  </children>
+  <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  <children xsi:type="modisco.xml:Element" name="servlet-mapping">
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="servlet-name">
+      <children xsi:type="modisco.xml:Text" name="DispatcherServlet"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="url-pattern">
+      <children xsi:type="modisco.xml:Text" name="/"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="url-pattern">
+      <children xsi:type="modisco.xml:Text" name="/news"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="url-pattern">
+      <children xsi:type="modisco.xml:Text" name="/subprojects"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="url-pattern">
+      <children xsi:type="modisco.xml:Text" name="/relatedprojects"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="url-pattern">
+      <children xsi:type="modisco.xml:Text" name="/reindex"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="url-pattern">
+      <children xsi:type="modisco.xml:Text" name="/create"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="url-pattern">
+      <children xsi:type="modisco.xml:Text" name="/favicon.ico"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="url-pattern">
+      <children xsi:type="modisco.xml:Text" name="/myprojects"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  </children>
+  <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  <children xsi:type="modisco.xml:Element" name="servlet-mapping">
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="servlet-name">
+      <children xsi:type="modisco.xml:Text" name="SearchResult"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="url-pattern">
+      <children xsi:type="modisco.xml:Text" name="/projects"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  </children>
+  <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  <children xsi:type="modisco.xml:Element" name="servlet-mapping">
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="servlet-name">
+      <children xsi:type="modisco.xml:Text" name="ProjectPage"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="url-pattern">
+      <children xsi:type="modisco.xml:Text" name="/projects/*"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  </children>
+  <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  <children xsi:type="modisco.xml:Element" name="servlet-mapping">
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="servlet-name">
+      <children xsi:type="modisco.xml:Text" name="TagCloud"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="url-pattern">
+      <children xsi:type="modisco.xml:Text" name="/tags"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  </children>
+  <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  <children xsi:type="modisco.xml:Element" name="servlet-mapping">
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="servlet-name">
+      <children xsi:type="modisco.xml:Text" name="ProjectHierarchy"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="url-pattern">
+      <children xsi:type="modisco.xml:Text" name="/hierarchy"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  </children>
+  <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  <children xsi:type="modisco.xml:Element" name="servlet-mapping">
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="servlet-name">
+      <children xsi:type="modisco.xml:Text" name="SearchFrame"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="url-pattern">
+      <children xsi:type="modisco.xml:Text" name="/searchframe"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  </children>
+  <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  <children xsi:type="modisco.xml:Element" name="servlet-mapping">
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="servlet-name">
+      <children xsi:type="modisco.xml:Text" name="MyFavorites"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="url-pattern">
+      <children xsi:type="modisco.xml:Text" name="/myfavorites"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  </children>
+  <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  <children xsi:type="modisco.xml:Element" name="servlet-mapping">
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="servlet-name">
+      <children xsi:type="modisco.xml:Text" name="FavoritesServlet"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="url-pattern">
+      <children xsi:type="modisco.xml:Text" name="/favorites"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  </children>
+  <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  <children xsi:type="modisco.xml:Element" name="servlet-mapping">
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="servlet-name">
+      <children xsi:type="modisco.xml:Text" name="DeletedProjects"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="url-pattern">
+      <children xsi:type="modisco.xml:Text" name="/deletedprojects"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  </children>
+  <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+  <children xsi:type="modisco.xml:Element" name="servlet-mapping">
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="servlet-name">
+      <children xsi:type="modisco.xml:Text" name="DevInfInherited"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="url-pattern">
+      <children xsi:type="modisco.xml:Text" name="/error/devinfinherited"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  </children>
+  <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  <children xsi:type="modisco.xml:Element" name="servlet-mapping">
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="servlet-name">
+      <children xsi:type="modisco.xml:Text" name="Welcome"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="url-pattern">
+      <children xsi:type="modisco.xml:Text" name="/search/welcome"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  </children>
+  <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  <children xsi:type="modisco.xml:Element" name="servlet-mapping">
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="servlet-name">
+      <children xsi:type="modisco.xml:Text" name="ErrorPage"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="url-pattern">
+      <children xsi:type="modisco.xml:Text" name="/error"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  </children>
+  <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  <children xsi:type="modisco.xml:Element" name="servlet-mapping">
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="servlet-name">
+      <children xsi:type="modisco.xml:Text" name="UnauthorizedPage"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="url-pattern">
+      <children xsi:type="modisco.xml:Text" name="/unauthorized"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  </children>
+  <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  <children xsi:type="modisco.xml:Element" name="servlet-mapping">
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="servlet-name">
+      <children xsi:type="modisco.xml:Text" name="CreateGitGerrit"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="url-pattern">
+      <children xsi:type="modisco.xml:Text" name="/create/gitgerrit"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  </children>
+  <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  <children xsi:type="modisco.xml:Element" name="servlet-mapping">
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="servlet-name">
+      <children xsi:type="modisco.xml:Text" name="CreateGitGerritError"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="url-pattern">
+      <children xsi:type="modisco.xml:Text" name="/create/gitgerriterror"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  </children>
+  <children xsi:type="modisco.xml:Text" name="&#xA;&#xA;    "/>
+  <children xsi:type="modisco.xml:Comment" name="&#xA;     ***************&#xA;     filter mappings&#xA;     ***************&#xA;     "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;&#xA;    "/>
+  <children xsi:type="modisco.xml:Element" name="filter-mapping">
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="filter-name">
+      <children xsi:type="modisco.xml:Text" name="CacheFilter"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="url-pattern">
+      <children xsi:type="modisco.xml:Text" name="/VAADIN/themes/*"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="url-pattern">
+      <children xsi:type="modisco.xml:Text" name="/schemas/*"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="url-pattern">
+      <children xsi:type="modisco.xml:Text" name="/js/*"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="url-pattern">
+      <children xsi:type="modisco.xml:Text" name="/favicon.ico"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="url-pattern">
+      <children xsi:type="modisco.xml:Text" name="/search-plugin.xml"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  </children>
+  <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  <children xsi:type="modisco.xml:Element" name="filter-mapping">
+    <children xsi:type="modisco.xml:Text" name="&#xA;       "/>
+    <children xsi:type="modisco.xml:Element" name="filter-name">
+      <children xsi:type="modisco.xml:Text" name="LoginFilter"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;       "/>
+    <children xsi:type="modisco.xml:Element" name="url-pattern">
+      <children xsi:type="modisco.xml:Text" name="/"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;       "/>
+    <children xsi:type="modisco.xml:Element" name="url-pattern">
+      <children xsi:type="modisco.xml:Text" name="/projects"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;       "/>
+    <children xsi:type="modisco.xml:Element" name="url-pattern">
+      <children xsi:type="modisco.xml:Text" name="/projects/*"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;       "/>
+    <children xsi:type="modisco.xml:Element" name="url-pattern">
+      <children xsi:type="modisco.xml:Text" name="/tags"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;       "/>
+    <children xsi:type="modisco.xml:Element" name="url-pattern">
+      <children xsi:type="modisco.xml:Text" name="/hierarchy"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;       "/>
+    <children xsi:type="modisco.xml:Element" name="url-pattern">
+      <children xsi:type="modisco.xml:Text" name="/favorites"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;       "/>
+    <children xsi:type="modisco.xml:Element" name="url-pattern">
+      <children xsi:type="modisco.xml:Text" name="/myfavorites"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;       "/>
+    <children xsi:type="modisco.xml:Element" name="url-pattern">
+      <children xsi:type="modisco.xml:Text" name="/myprojects"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;       "/>
+    <children xsi:type="modisco.xml:Element" name="url-pattern">
+      <children xsi:type="modisco.xml:Text" name="/create/*"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;       "/>
+    <children xsi:type="modisco.xml:Element" name="url-pattern">
+      <children xsi:type="modisco.xml:Text" name="/reindex"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;       "/>
+    <children xsi:type="modisco.xml:Element" name="dispatcher">
+      <children xsi:type="modisco.xml:Text" name="REQUEST"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;       "/>
+    <children xsi:type="modisco.xml:Element" name="dispatcher">
+      <children xsi:type="modisco.xml:Text" name="FORWARD"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  </children>
+  <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  <children xsi:type="modisco.xml:Element" name="filter-mapping">
+    <children xsi:type="modisco.xml:Text" name="&#xA;       "/>
+    <children xsi:type="modisco.xml:Element" name="filter-name">
+      <children xsi:type="modisco.xml:Text" name="ConfigFilter"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;       "/>
+    <children xsi:type="modisco.xml:Element" name="url-pattern">
+      <children xsi:type="modisco.xml:Text" name="/"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;       "/>
+    <children xsi:type="modisco.xml:Element" name="url-pattern">
+      <children xsi:type="modisco.xml:Text" name="/projects"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;       "/>
+    <children xsi:type="modisco.xml:Element" name="url-pattern">
+      <children xsi:type="modisco.xml:Text" name="/projects/*"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;       "/>
+    <children xsi:type="modisco.xml:Element" name="url-pattern">
+      <children xsi:type="modisco.xml:Text" name="/tags"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;       "/>
+    <children xsi:type="modisco.xml:Element" name="url-pattern">
+      <children xsi:type="modisco.xml:Text" name="/hierarchy"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;       "/>
+    <children xsi:type="modisco.xml:Element" name="url-pattern">
+      <children xsi:type="modisco.xml:Text" name="/favorites"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;       "/>
+    <children xsi:type="modisco.xml:Element" name="url-pattern">
+      <children xsi:type="modisco.xml:Text" name="/myfavorites"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;       "/>
+    <children xsi:type="modisco.xml:Element" name="url-pattern">
+      <children xsi:type="modisco.xml:Text" name="/myprojects"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;       "/>
+    <children xsi:type="modisco.xml:Element" name="url-pattern">
+      <children xsi:type="modisco.xml:Text" name="/create/*"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;       "/>
+    <children xsi:type="modisco.xml:Element" name="url-pattern">
+      <children xsi:type="modisco.xml:Text" name="/reindex"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;       "/>
+    <children xsi:type="modisco.xml:Element" name="url-pattern">
+      <children xsi:type="modisco.xml:Text" name="/search-plugin.xml"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;       "/>
+    <children xsi:type="modisco.xml:Element" name="dispatcher">
+      <children xsi:type="modisco.xml:Text" name="REQUEST"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;       "/>
+    <children xsi:type="modisco.xml:Element" name="dispatcher">
+      <children xsi:type="modisco.xml:Text" name="FORWARD"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  </children>
+  <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  <children xsi:type="modisco.xml:Element" name="filter-mapping">
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="filter-name">
+      <children xsi:type="modisco.xml:Text" name="RestFilter"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="url-pattern">
+      <children xsi:type="modisco.xml:Text" name="/projects/*"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="dispatcher">
+      <children xsi:type="modisco.xml:Text" name="REQUEST"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="dispatcher">
+      <children xsi:type="modisco.xml:Text" name="FORWARD"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  </children>
+  <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  <children xsi:type="modisco.xml:Element" name="filter-mapping">
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="filter-name">
+      <children xsi:type="modisco.xml:Text" name="ProjectPermitsFilter"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="url-pattern">
+      <children xsi:type="modisco.xml:Text" name="/projects/*"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="url-pattern">
+      <children xsi:type="modisco.xml:Text" name="/create/*"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="dispatcher">
+      <children xsi:type="modisco.xml:Text" name="REQUEST"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="dispatcher">
+      <children xsi:type="modisco.xml:Text" name="FORWARD"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  </children>
+  <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  <children xsi:type="modisco.xml:Element" name="filter-mapping">
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="filter-name">
+      <children xsi:type="modisco.xml:Text" name="ProjectDetailsFilter"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="url-pattern">
+      <children xsi:type="modisco.xml:Text" name="/projects/*"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="dispatcher">
+      <children xsi:type="modisco.xml:Text" name="REQUEST"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="dispatcher">
+      <children xsi:type="modisco.xml:Text" name="FORWARD"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  </children>
+  <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  <children xsi:type="modisco.xml:Element" name="filter-mapping">
+    <children xsi:type="modisco.xml:Text" name="&#xA;       "/>
+    <children xsi:type="modisco.xml:Element" name="filter-name">
+      <children xsi:type="modisco.xml:Text" name="SearchFilter"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;       "/>
+    <children xsi:type="modisco.xml:Element" name="url-pattern">
+      <children xsi:type="modisco.xml:Text" name="/projects"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;       "/>
+    <children xsi:type="modisco.xml:Element" name="dispatcher">
+      <children xsi:type="modisco.xml:Text" name="REQUEST"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;       "/>
+    <children xsi:type="modisco.xml:Element" name="dispatcher">
+      <children xsi:type="modisco.xml:Text" name="FORWARD"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  </children>
+  <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  <children xsi:type="modisco.xml:Element" name="filter-mapping">
+    <children xsi:type="modisco.xml:Text" name="&#xA;       "/>
+    <children xsi:type="modisco.xml:Element" name="filter-name">
+      <children xsi:type="modisco.xml:Text" name="FavoritesFilter"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;       "/>
+    <children xsi:type="modisco.xml:Element" name="url-pattern">
+      <children xsi:type="modisco.xml:Text" name="/myfavorites"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  </children>
+  <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  <children xsi:type="modisco.xml:Element" name="filter-mapping">
+    <children xsi:type="modisco.xml:Text" name="&#xA;       "/>
+    <children xsi:type="modisco.xml:Element" name="filter-name">
+      <children xsi:type="modisco.xml:Text" name="CssCachingFilter"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;       "/>
+    <children xsi:type="modisco.xml:Element" name="url-pattern">
+      <children xsi:type="modisco.xml:Text" name="*.css"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  </children>
+  <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  <children xsi:type="modisco.xml:Element" name="filter-mapping">
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="filter-name">
+      <children xsi:type="modisco.xml:Text" name="GitGerritFilter"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="url-pattern">
+      <children xsi:type="modisco.xml:Text" name="/create/gitgerrit"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="dispatcher">
+      <children xsi:type="modisco.xml:Text" name="REQUEST"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="dispatcher">
+      <children xsi:type="modisco.xml:Text" name="FORWARD"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  </children>
+  <children xsi:type="modisco.xml:Text" name="&#xA;&#xA;    "/>
+  <children xsi:type="modisco.xml:Comment" name="&#xA;     **********&#xA;     error page&#xA;     **********&#xA;     "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;&#xA;    "/>
+  <children xsi:type="modisco.xml:Element" name="error-page">
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="error-code">
+      <children xsi:type="modisco.xml:Text" name="500"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="location">
+      <children xsi:type="modisco.xml:Text" name="/error"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  </children>
+  <children xsi:type="modisco.xml:Text" name="&#xA;&#xA;    "/>
+  <children xsi:type="modisco.xml:Element" name="security-constraint">
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="web-resource-collection">
+      <children xsi:type="modisco.xml:Text" name="&#xA;            "/>
+      <children xsi:type="modisco.xml:Element" name="web-resource-name">
+        <children xsi:type="modisco.xml:Text" name="All Access"/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;            "/>
+      <children xsi:type="modisco.xml:Element" name="url-pattern">
+        <children xsi:type="modisco.xml:Text" name="/search/style.css"/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;            "/>
+      <children xsi:type="modisco.xml:Element" name="url-pattern">
+        <children xsi:type="modisco.xml:Text" name="/js/*"/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;            "/>
+      <children xsi:type="modisco.xml:Element" name="url-pattern">
+        <children xsi:type="modisco.xml:Text" name="/error"/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;            "/>
+      <children xsi:type="modisco.xml:Element" name="url-pattern">
+        <children xsi:type="modisco.xml:Text" name="/unauthorized"/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;            "/>
+      <children xsi:type="modisco.xml:Element" name="url-pattern">
+        <children xsi:type="modisco.xml:Text" name="/VAADIN/*"/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;            "/>
+      <children xsi:type="modisco.xml:Element" name="url-pattern">
+        <children xsi:type="modisco.xml:Text" name="/schemas/*"/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;            "/>
+      <children xsi:type="modisco.xml:Element" name="url-pattern">
+        <children xsi:type="modisco.xml:Text" name="/favicon.ico"/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;            "/>
+      <children xsi:type="modisco.xml:Element" name="url-pattern">
+        <children xsi:type="modisco.xml:Text" name="/search-plugin.xml"/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;            "/>
+      <children xsi:type="modisco.xml:Element" name="url-pattern">
+        <children xsi:type="modisco.xml:Text" name="/logout"/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;            "/>
+      <children xsi:type="modisco.xml:Element" name="url-pattern">
+        <children xsi:type="modisco.xml:Text" name="/"/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;            "/>
+      <children xsi:type="modisco.xml:Element" name="url-pattern">
+        <children xsi:type="modisco.xml:Text" name="/tags"/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;            "/>
+      <children xsi:type="modisco.xml:Element" name="url-pattern">
+        <children xsi:type="modisco.xml:Text" name="/hierarchy"/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;            "/>
+      <children xsi:type="modisco.xml:Element" name="url-pattern">
+        <children xsi:type="modisco.xml:Text" name="/news"/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;            "/>
+      <children xsi:type="modisco.xml:Element" name="url-pattern">
+        <children xsi:type="modisco.xml:Text" name="/projects"/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;            "/>
+      <children xsi:type="modisco.xml:Element" name="url-pattern">
+        <children xsi:type="modisco.xml:Text" name="/projects/*"/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;            "/>
+      <children xsi:type="modisco.xml:Element" name="url-pattern">
+        <children xsi:type="modisco.xml:Text" name="/vprojects/*"/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;            "/>
+      <children xsi:type="modisco.xml:Element" name="http-method">
+        <children xsi:type="modisco.xml:Text" name="GET"/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;            "/>
+      <children xsi:type="modisco.xml:Element" name="http-method">
+        <children xsi:type="modisco.xml:Text" name="POST"/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="user-data-constraint">
+      <children xsi:type="modisco.xml:Text" name="&#xA;            "/>
+      <children xsi:type="modisco.xml:Element" name="transport-guarantee">
+        <children xsi:type="modisco.xml:Text" name="NONE"/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  </children>
+  <children xsi:type="modisco.xml:Text" name="&#xA;&#xA;    "/>
+  <children xsi:type="modisco.xml:Element" name="security-constraint">
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="web-resource-collection">
+      <children xsi:type="modisco.xml:Text" name="&#xA;            "/>
+      <children xsi:type="modisco.xml:Element" name="web-resource-name">
+        <children xsi:type="modisco.xml:Text" name="all"/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;            "/>
+      <children xsi:type="modisco.xml:Element" name="url-pattern">
+        <children xsi:type="modisco.xml:Text" name="/*"/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;            "/>
+      <children xsi:type="modisco.xml:Element" name="http-method">
+        <children xsi:type="modisco.xml:Text" name="GET"/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;            "/>
+      <children xsi:type="modisco.xml:Element" name="http-method">
+        <children xsi:type="modisco.xml:Text" name="POST"/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="auth-constraint">
+      <children xsi:type="modisco.xml:Text" name="&#xA;            "/>
+      <children xsi:type="modisco.xml:Element" name="role-name">
+        <children xsi:type="modisco.xml:Text" name="admin"/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;            "/>
+      <children xsi:type="modisco.xml:Element" name="role-name">
+        <children xsi:type="modisco.xml:Text" name="Everyone"/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  </children>
+  <children xsi:type="modisco.xml:Text" name="&#xA;&#xA;    "/>
+  <children xsi:type="modisco.xml:Element" name="login-config">
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="auth-method">
+      <children xsi:type="modisco.xml:Text" name="FORM"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="realm-name">
+      <children xsi:type="modisco.xml:Text" name="Skalli"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="form-login-config">
+      <children xsi:type="modisco.xml:Text" name="&#xA;            "/>
+      <children xsi:type="modisco.xml:Element" name="form-login-page">
+        <children xsi:type="modisco.xml:Text" name="/search/login.jsp"/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;            "/>
+      <children xsi:type="modisco.xml:Element" name="form-error-page">
+        <children xsi:type="modisco.xml:Text" name="/search/login_fail.jsp"/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  </children>
+  <children xsi:type="modisco.xml:Text" name="&#xA;&#xA;    "/>
+  <children xsi:type="modisco.xml:Element" name="security-role">
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="description">
+      <children xsi:type="modisco.xml:Text" name="Assigned to all users in the server"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="role-name">
+      <children xsi:type="modisco.xml:Text" name="admin"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  </children>
+  <children xsi:type="modisco.xml:Text" name="&#xA;&#xA;    "/>
+  <children xsi:type="modisco.xml:Element" name="security-role">
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="description">
+      <children xsi:type="modisco.xml:Text" name="Everyone"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="role-name">
+      <children xsi:type="modisco.xml:Text" name="Everyone"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  </children>
+  <children xsi:type="modisco.xml:Text" name="&#xA;"/>
+  <namespaces name="xsi" value="http://www.w3.org/2001/XMLSchema-instance"/>
+  <namespaces name="" value="http://java.sun.com/xml/ns/javaee"/>
+  <namespaces name="web" value="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"/>
+</modisco.xml:Root>

@@ -5,3 +5,132 @@
 module extractingEJBSecurity;
 create OUT : SEC from IN : XML, IN2 : JAVA;
 
+------------------------------------
+-------------EJB JAR XML------------
+------------------------------------
+helper context XML!Element def : getAttributes(element_name : String) :  Sequence(XML!Element) =
+	self.children->select(c | c.name = element_name);
+
+helper context XML!Element def : getAttribute(element_name : String) : XML!Element =
+	self.getAttributes(element_name)->first();
+		
+helper context XML!Element def : getText : String =
+	self.children->select(c | c.oclIsTypeOf(XML!Text))->first().name;
+
+helper context XML!Element def : isIn(element_name : String) : Boolean =
+	if self.name = element_name then
+		true
+	else
+		if self.name = 'ejb-jar' then
+			false
+		else
+			self.refImmediateComposite().isIn(element_name)
+		endif
+	endif;
+
+			
+--retrieve the roles allowed in the xml
+helper def : getAllDistinctRolesAllowedInXML : Sequence(OclAny) =
+	XML!Element.allInstances()->select(e | e.name = 'assembly-descriptor')->first().children
+								->select(c | c.name = 'security-role')
+									->collect(c | c.getAttribute('role-name'));
+
+helper def : getDistinctRole(name : String) : OclAny =
+	thisModule.getAllDistinctRolesAllowedInXML->select(ra | ra.getText = name)->first();
+
+rule Element2Security {
+	from
+		s: XML!Element (s.name = 'assembly-descriptor')
+	to
+		t: SEC!Security (
+			securityRole <- s.getAttributes('security-role'),
+			methodPermission <- s.getAttributes('method-permission'),
+			excludeList <- s.getAttribute('exclude-list')
+		)
+}
+
+rule Element2SecurityRole {
+	from
+		s: XML!Element (s.name = 'security-role')
+	to
+		t: SEC!SecurityRole (
+			roleName <- s.getAttribute('role-name')
+		)
+}
+
+rule ElementInSecRole2RoleName {
+	from
+		s: XML!Element (s.name = 'role-name' and s.isIn('security-role'))
+	to
+		t: SEC!RoleName (
+			name <- s.getText
+		)
+}
+
+rule Element2MethodPermission {
+	from
+		s: XML!Element (s.name = 'method-permission')
+	to
+		t: SEC!MethodPermission (
+			method <- s.getAttributes('method'),
+			unchecked <- not s.getAttribute('unchecked').oclIsUndefined(),
+			roleName <- s.getAttributes('role-name')->collect(rn | thisModule.getDistinctRole(rn.getText))->flatten()
+		)
+}
+
+rule Element2Method {
+	from
+		s: XML!Element (s.name = 'method' and (s.isIn('method-permission') or s.isIn('exclude-list')))
+	to
+		t: SEC!Method (
+			ejbName <- s.getAttribute('ejb-name'),
+			methodName <- s.getAttribute('method-name').getText,
+			methodInf <- s.getAttribute('method-inf'),
+			methodParams <- s.getAttribute('method-params')
+		)
+}
+
+rule Element2EjbName {
+	from
+		s: XML!Element (s.name = 'ejb-name' and (s.isIn('method-permission') or s.isIn('exclude-list')))
+	to
+		t: SEC!EbjName (
+			name <- s.getText	
+		)
+}
+
+rule Element2ExcludeList {
+	from
+		s: XML!Element (s.name = 'exclude-list' and s.isIn('assembly-descriptor'))
+	to
+		t: SEC!ExcludeList (
+			method <- s.getAttributes('method')	
+		)
+}
+
+rule Element2MethodInf {
+	from
+		s: XML!Element (s.name = 'method-inf' and (s.isIn('method-permission') or s.isIn('exclude-list')))
+	to
+		t: SEC!MethodInf (
+			name <- s.getText	
+		)
+}
+
+rule Element2MethodParams {
+	from
+		s: XML!Element (s.name = 'method-params' and (s.isIn('method-permission') or s.isIn('exclude-list')))
+	to
+		t: SEC!MethodParams (
+			methodParam <- s.getAttributes('method-param')
+		)
+}
+
+rule Element2MethodParam {
+	from
+		s: XML!Element (s.name = 'method-param' and (s.isIn('method-permission') or s.isIn('exclude-list')))
+	to
+		t: SEC!MethodParam (
+			param <- s.getText	
+		)
+}

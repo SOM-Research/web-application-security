@@ -3,7 +3,7 @@ grammar org.xtext.ejbSecurity.EjbSecurity with org.eclipse.xtext.common.Terminal
 generate ejbSecurity "http://www.xtext.org/ejbSecurity/EjbSecurity"
 
 Security:
-	securityRole+=SecurityRole+ methodPermission+=MethodPermission
+	securityRole+=SecurityRole+ methodPermission+=MethodPermission excludeList=ExcludeList?
 ;
 
 SecurityRole:
@@ -15,7 +15,7 @@ RoleName:
 ;
 
 MethodPermission:
-	'method-permission' '{' roleName+=[RoleName]+ unchecked=Unchecked? method+=Method+ excludeList=ExcludeList?'}'
+	'method-permission' '{' roleName+=[RoleName]+ unchecked?=Unchecked method+=Method+'}'
 ;
 
 Unchecked:

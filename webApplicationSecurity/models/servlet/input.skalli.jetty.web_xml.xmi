@@ -1,0 +1,1004 @@
+<?xml version="1.0" encoding="ASCII"?>
+<modisco.xml:Root xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:modisco.xml="http://www.eclipse.org/MoDisco/Xml/0.1.incubation/XML" name="web-app">
+  <children xsi:type="modisco.xml:Attribute" name="xsi:schemaLocation" value="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"/>
+  <children xsi:type="modisco.xml:Attribute" name="metadata-complete" value="true"/>
+  <children xsi:type="modisco.xml:Attribute" name="version" value="2.5"/>
+  <children xsi:type="modisco.xml:Text" name=" &#xA;&#xA;  "/>
+  <children xsi:type="modisco.xml:Element" name="description">
+    <children xsi:type="modisco.xml:Text" name="&#xA;    Default web.xml file.  &#xA;    This file is applied to a Web application before it's own WEB_INF/web.xml file"/>
+    <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  </children>
+  <children xsi:type="modisco.xml:Text" name="&#xA;&#xA;&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name=" ==================================================================== "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name=" Context params to control Session Cookies                            "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name=" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name=" UNCOMMENT TO ACTIVATE&#xA;  &lt;context-param>&#xA;    &lt;param-name>org.eclipse.jetty.servlet.SessionDomain&lt;/param-name>&#xA;    &lt;param-value>127.0.0.1&lt;/param-value>&#xA;  &lt;/context-param>&#xA;&#xA;  &lt;context-param>&#xA;    &lt;param-name>org.eclipse.jetty.servlet.SessionPath&lt;/param-name>&#xA;    &lt;param-value>/&lt;/param-value>&#xA;  &lt;/context-param>&#xA;&#xA;  &lt;context-param>&#xA;    &lt;param-name>org.eclipse.jetty.servlet.MaxAge&lt;/param-name>&#xA;    &lt;param-value>-1&lt;/param-value>&#xA;  &lt;/context-param>&#xA;  "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;&#xA;&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name=" ==================================================================== "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name=" The default servlet.                                                 "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name=" This servlet, normally mapped to /, provides the handling for static "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name=" content, OPTIONS and TRACE methods for the context.                  "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name=" The following initParameters are supported:                          "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="                                                                      "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="   acceptRanges     If true, range requests and responses are         "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="                    supported                                         "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="                                                                      "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="   dirAllowed       If true, directory listings are returned if no    "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="                    welcome file is found. Else 403 Forbidden.        "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="                                                                      "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="   welcomeServlets  If true, attempt to dispatch to welcome files     "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="                    that are servlets, if no matching static          "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="                    resources can be found.                           "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="                                                                      "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="   redirectWelcome  If true, redirect welcome file requests           "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="                    else use request dispatcher forwards              "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="                                                                      "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="   gzip             If set to true, then static content will be served"/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="                    as gzip content encoded if a matching resource is "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="                    found ending with &quot;.gz&quot;                           "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="                                                                      "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="   resoureBase      Can be set to replace the context resource base   "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="                                                                      "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="   relativeResourceBase                                               "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="                    Set with a pathname relative to the base of the   "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="                    servlet context root. Useful for only serving     "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="                    static content from only specific subdirectories. "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="                                                                      "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="   useFileMappedBuffer                                                "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="                    If set to true (the default), a  memory mapped    "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="                    file buffer will be used to serve static content  "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="                    when using an NIO connector. Setting this value   "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="                    to false means that a direct buffer will be used  "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="                    instead. If you are having trouble with Windows   "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="                    file locking, set this to false.                  "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="                                                                      "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="  cacheControl      If set, all static content will have this value   "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="                    set as the cache-control header.                  "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="                                                                      "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="  maxCacheSize      Maximum size of the static resource cache         "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="                                                                      "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="  maxCachedFileSize Maximum size of any single file in the cache      "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="                                                                      "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="  maxCachedFiles    Maximum number of files in the cache              "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="                                                                      "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="  cacheType         &quot;nio&quot;, &quot;bio&quot; or &quot;both&quot; to determine the type(s)   "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="                    of resource cache. A bio cached buffer may be used"/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="                    by nio but is not as efficient as a nio buffer.   "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="                    An nio cached buffer may not be used by bio.      "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="                                                                      "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name=" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Element" name="servlet">
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+    <children xsi:type="modisco.xml:Element" name="servlet-name">
+      <children xsi:type="modisco.xml:Text" name="default"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+    <children xsi:type="modisco.xml:Element" name="servlet-class">
+      <children xsi:type="modisco.xml:Text" name="org.eclipse.jetty.servlet.DefaultServlet"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+    <children xsi:type="modisco.xml:Element" name="init-param">
+      <children xsi:type="modisco.xml:Text" name="&#xA;      "/>
+      <children xsi:type="modisco.xml:Element" name="param-name">
+        <children xsi:type="modisco.xml:Text" name="acceptRanges"/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;      "/>
+      <children xsi:type="modisco.xml:Element" name="param-value">
+        <children xsi:type="modisco.xml:Text" name="true"/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+    <children xsi:type="modisco.xml:Element" name="init-param">
+      <children xsi:type="modisco.xml:Text" name="&#xA;      "/>
+      <children xsi:type="modisco.xml:Element" name="param-name">
+        <children xsi:type="modisco.xml:Text" name="dirAllowed"/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;      "/>
+      <children xsi:type="modisco.xml:Element" name="param-value">
+        <children xsi:type="modisco.xml:Text" name="true"/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+    <children xsi:type="modisco.xml:Element" name="init-param">
+      <children xsi:type="modisco.xml:Text" name="&#xA;      "/>
+      <children xsi:type="modisco.xml:Element" name="param-name">
+        <children xsi:type="modisco.xml:Text" name="welcomeServlets"/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+      <children xsi:type="modisco.xml:Element" name="param-value">
+        <children xsi:type="modisco.xml:Text" name="false"/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;      "/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+    <children xsi:type="modisco.xml:Element" name="init-param">
+      <children xsi:type="modisco.xml:Text" name="&#xA;      "/>
+      <children xsi:type="modisco.xml:Element" name="param-name">
+        <children xsi:type="modisco.xml:Text" name="redirectWelcome"/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;      "/>
+      <children xsi:type="modisco.xml:Element" name="param-value">
+        <children xsi:type="modisco.xml:Text" name="false"/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+    <children xsi:type="modisco.xml:Element" name="init-param">
+      <children xsi:type="modisco.xml:Text" name="&#xA;      "/>
+      <children xsi:type="modisco.xml:Element" name="param-name">
+        <children xsi:type="modisco.xml:Text" name="maxCacheSize"/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;      "/>
+      <children xsi:type="modisco.xml:Element" name="param-value">
+        <children xsi:type="modisco.xml:Text" name="256000000"/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+    <children xsi:type="modisco.xml:Element" name="init-param">
+      <children xsi:type="modisco.xml:Text" name="&#xA;      "/>
+      <children xsi:type="modisco.xml:Element" name="param-name">
+        <children xsi:type="modisco.xml:Text" name="maxCachedFileSize"/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;      "/>
+      <children xsi:type="modisco.xml:Element" name="param-value">
+        <children xsi:type="modisco.xml:Text" name="10000000"/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+    <children xsi:type="modisco.xml:Element" name="init-param">
+      <children xsi:type="modisco.xml:Text" name="&#xA;      "/>
+      <children xsi:type="modisco.xml:Element" name="param-name">
+        <children xsi:type="modisco.xml:Text" name="maxCachedFiles"/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;      "/>
+      <children xsi:type="modisco.xml:Element" name="param-value">
+        <children xsi:type="modisco.xml:Text" name="1000"/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+    <children xsi:type="modisco.xml:Element" name="init-param">
+      <children xsi:type="modisco.xml:Text" name="&#xA;      "/>
+      <children xsi:type="modisco.xml:Element" name="param-name">
+        <children xsi:type="modisco.xml:Text" name="cacheType"/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;      "/>
+      <children xsi:type="modisco.xml:Element" name="param-value">
+        <children xsi:type="modisco.xml:Text" name="both"/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+    <children xsi:type="modisco.xml:Element" name="init-param">
+      <children xsi:type="modisco.xml:Text" name="&#xA;      "/>
+      <children xsi:type="modisco.xml:Element" name="param-name">
+        <children xsi:type="modisco.xml:Text" name="gzip"/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;      "/>
+      <children xsi:type="modisco.xml:Element" name="param-value">
+        <children xsi:type="modisco.xml:Text" name="true"/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+    <children xsi:type="modisco.xml:Element" name="init-param">
+      <children xsi:type="modisco.xml:Text" name="&#xA;      "/>
+      <children xsi:type="modisco.xml:Element" name="param-name">
+        <children xsi:type="modisco.xml:Text" name="useFileMappedBuffer"/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;      "/>
+      <children xsi:type="modisco.xml:Element" name="param-value">
+        <children xsi:type="modisco.xml:Text" name="true"/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+    <children xsi:type="modisco.xml:Comment" name="&#xA;    &lt;init-param>&#xA;      &lt;param-name>cacheControl&lt;/param-name>&#xA;      &lt;param-value>max-age=3600,public&lt;/param-value>&#xA;    &lt;/init-param>&#xA;    "/>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+    <children xsi:type="modisco.xml:Element" name="load-on-startup">
+      <children xsi:type="modisco.xml:Text" name="0"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  </children>
+  <children xsi:type="modisco.xml:Text" name=" &#xA;&#xA;  "/>
+  <children xsi:type="modisco.xml:Element" name="servlet-mapping">
+    <children xsi:type="modisco.xml:Text" name=" "/>
+    <children xsi:type="modisco.xml:Element" name="servlet-name">
+      <children xsi:type="modisco.xml:Text" name="default"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name=" "/>
+    <children xsi:type="modisco.xml:Element" name="url-pattern">
+      <children xsi:type="modisco.xml:Text" name="/"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name=" "/>
+  </children>
+  <children xsi:type="modisco.xml:Text" name="&#xA;&#xA;&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name=" ==================================================================== "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name=" JSP Servlet                                                          "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name=" This is the jasper JSP servlet from the jakarta project              "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name=" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name=" The JSP page compiler and execution servlet, which is the mechanism  "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name=" used by Glassfish to support JSP pages.  Traditionally, this servlet "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name=" is mapped to URL patterh &quot;*.jsp&quot;.  This servlet supports the         "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name=" following initialization parameters (default values are in square    "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name=" brackets):                                                           "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="                                                                      "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="   checkInterval       If development is false and reloading is true, "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="                       background compiles are enabled. checkInterval "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="                       is the time in seconds between checks to see   "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="                       if a JSP page needs to be recompiled. [300]    "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="                                                                      "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="   compiler            Which compiler Ant should use to compile JSP   "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="                       pages.  See the Ant documenation for more      "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="                       information. [javac]                           "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="                                                                      "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="   classdebuginfo      Should the class file be compiled with         "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="                       debugging information?  [true]                 "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="                                                                      "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="   classpath           What class path should I use while compiling   "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="                       generated servlets?  [Created dynamically      "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="                       based on the current web application]          "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="                       Set to ? to make the container explicitly set  "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="                       this parameter.                                "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="                                                                      "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="   development         Is Jasper used in development mode (will check "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="                       for JSP modification on every access)?  [true] "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="                                                                      "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="   enablePooling       Determines whether tag handler pooling is      "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="                       enabled  [true]                                "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="                                                                      "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="   fork                Tell Ant to fork compiles of JSP pages so that "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="                       a separate JVM is used for JSP page compiles   "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="                       from the one Tomcat is running in. [true]      "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="                                                                      "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="   ieClassId           The class-id value to be sent to Internet      "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="                       Explorer when using &lt;jsp:plugin> tags.         "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="                       [clsid:8AD9C840-044E-11D1-B3E9-00805F499D93]   "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="                                                                      "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="   javaEncoding        Java file encoding to use for generating java  "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="                       source files. [UTF-8]                          "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="                                                                      "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="   keepgenerated       Should we keep the generated Java source code  "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="                       for each page instead of deleting it? [true]   "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="                                                                      "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="   logVerbosityLevel   The level of detailed messages to be produced  "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="                       by this servlet.  Increasing levels cause the  "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="                       generation of more messages.  Valid values are "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="                       FATAL, ERROR, WARNING, INFORMATION, and DEBUG. "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="                       [WARNING]                                      "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="                                                                      "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="   mappedfile          Should we generate static content with one     "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="                       print statement per input line, to ease        "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="                       debugging?  [false]                            "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="                                                                      "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="                                                                      "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="   reloading           Should Jasper check for modified JSPs?  [true] "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="                                                                      "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="   suppressSmap        Should the generation of SMAP info for JSR45   "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="                       debugging be suppressed?  [false]              "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="                                                                      "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="   dumpSmap            Should the SMAP info for JSR45 debugging be    "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="                       dumped to a file? [false]                      "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="                       False if suppressSmap is true                  "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="                                                                      "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="   scratchdir          What scratch directory should we use when      "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="                       compiling JSP pages?  [default work directory  "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="                       for the current web application]               "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="                                                                      "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="   tagpoolMaxSize      The maximum tag handler pool size  [5]         "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="                                                                      "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="   xpoweredBy          Determines whether X-Powered-By response       "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="                       header is added by generated servlet  [false]  "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="                                                                      "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name=" If you wish to use Jikes to compile JSP pages:                       "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="   Set the init parameter &quot;compiler&quot; to &quot;jikes&quot;.  Define              "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="   the property &quot;-Dbuild.compiler.emacs=true&quot; when starting Jetty     "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="   to cause Jikes to emit error messages in a format compatible with  "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="   Jasper.                                                            "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="   If you get an error reporting that jikes can't use UTF-8 encoding, "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="   try setting the init parameter &quot;javaEncoding&quot; to &quot;ISO-8859-1&quot;.     "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name=" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Element" name="servlet">
+    <children xsi:type="modisco.xml:Attribute" name="id" value="jsp"/>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+    <children xsi:type="modisco.xml:Element" name="servlet-name">
+      <children xsi:type="modisco.xml:Text" name="jsp"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+    <children xsi:type="modisco.xml:Element" name="servlet-class">
+      <children xsi:type="modisco.xml:Text" name="org.apache.jasper.servlet.JspServlet"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+    <children xsi:type="modisco.xml:Element" name="init-param">
+      <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+      <children xsi:type="modisco.xml:Element" name="param-name">
+        <children xsi:type="modisco.xml:Text" name="logVerbosityLevel"/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+      <children xsi:type="modisco.xml:Element" name="param-value">
+        <children xsi:type="modisco.xml:Text" name="DEBUG"/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+    <children xsi:type="modisco.xml:Element" name="init-param">
+      <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+      <children xsi:type="modisco.xml:Element" name="param-name">
+        <children xsi:type="modisco.xml:Text" name="fork"/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+      <children xsi:type="modisco.xml:Element" name="param-value">
+        <children xsi:type="modisco.xml:Text" name="false"/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+    <children xsi:type="modisco.xml:Element" name="init-param">
+      <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+      <children xsi:type="modisco.xml:Element" name="param-name">
+        <children xsi:type="modisco.xml:Text" name="xpoweredBy"/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+      <children xsi:type="modisco.xml:Element" name="param-value">
+        <children xsi:type="modisco.xml:Text" name="false"/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+    <children xsi:type="modisco.xml:Comment" name="&#xA;    &lt;init-param>&#xA;        &lt;param-name>classpath&lt;/param-name>&#xA;        &lt;param-value>?&lt;/param-value>&#xA;    &lt;/init-param>&#xA;    "/>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+    <children xsi:type="modisco.xml:Element" name="load-on-startup">
+      <children xsi:type="modisco.xml:Text" name="0"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  </children>
+  <children xsi:type="modisco.xml:Text" name="&#xA;&#xA;  "/>
+  <children xsi:type="modisco.xml:Element" name="servlet-mapping">
+    <children xsi:type="modisco.xml:Text" name=" &#xA;    "/>
+    <children xsi:type="modisco.xml:Element" name="servlet-name">
+      <children xsi:type="modisco.xml:Text" name="jsp"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+    <children xsi:type="modisco.xml:Element" name="url-pattern">
+      <children xsi:type="modisco.xml:Text" name="*.jsp"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+    <children xsi:type="modisco.xml:Element" name="url-pattern">
+      <children xsi:type="modisco.xml:Text" name="*.jspf"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+    <children xsi:type="modisco.xml:Element" name="url-pattern">
+      <children xsi:type="modisco.xml:Text" name="*.jspx"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+    <children xsi:type="modisco.xml:Element" name="url-pattern">
+      <children xsi:type="modisco.xml:Text" name="*.xsp"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+    <children xsi:type="modisco.xml:Element" name="url-pattern">
+      <children xsi:type="modisco.xml:Text" name="*.JSP"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+    <children xsi:type="modisco.xml:Element" name="url-pattern">
+      <children xsi:type="modisco.xml:Text" name="*.JSPF"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+    <children xsi:type="modisco.xml:Element" name="url-pattern">
+      <children xsi:type="modisco.xml:Text" name="*.JSPX"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+    <children xsi:type="modisco.xml:Element" name="url-pattern">
+      <children xsi:type="modisco.xml:Text" name="*.XSP"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  </children>
+  <children xsi:type="modisco.xml:Text" name="&#xA;&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name=" ==================================================================== "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name=" Dynamic Servlet Invoker.                                             "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name=" This servlet invokes anonymous servlets that have not been defined   "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name=" in the web.xml or by other means. The first element of the pathInfo  "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name=" of a request passed to the envoker is treated as a servlet name for  "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name=" an existing servlet, or as a class name of a new servlet.            "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name=" This servlet is normally mapped to /servlet/*                        "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name=" This servlet support the following initParams:                       "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="                                                                      "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="  nonContextServlets       If false, the invoker can only load        "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="                           servlets from the contexts classloader.    "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="                           This is false by default and setting this  "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="                           to true may have security implications.    "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="                                                                      "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="  verbose                  If true, log dynamic loads                 "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="                                                                      "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="  *                        All other parameters are copied to the     "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name="                           each dynamic servlet as init parameters    "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name=" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name=" Uncomment for dynamic invocation&#xA;  &lt;servlet>&#xA;    &lt;servlet-name>invoker&lt;/servlet-name>&#xA;    &lt;servlet-class>org.eclipse.jetty.servlet.Invoker&lt;/servlet-class>&#xA;    &lt;init-param>&#xA;      &lt;param-name>verbose&lt;/param-name>&#xA;      &lt;param-value>false&lt;/param-value>&#xA;    &lt;/init-param>&#xA;    &lt;init-param>&#xA;      &lt;param-name>nonContextServlets&lt;/param-name>&#xA;      &lt;param-value>false&lt;/param-value>&#xA;    &lt;/init-param>&#xA;    &lt;init-param>&#xA;      &lt;param-name>dynamicParam&lt;/param-name>&#xA;      &lt;param-value>anyValue&lt;/param-value>&#xA;    &lt;/init-param>&#xA;    &lt;load-on-startup>0&lt;/load-on-startup>&#xA;  &lt;/servlet>&#xA;&#xA;  &lt;servlet-mapping> &lt;servlet-name>invoker&lt;/servlet-name> &lt;url-pattern>/servlet/*&lt;/url-pattern> &lt;/servlet-mapping>&#xA;  "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;&#xA;&#xA;&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name=" ==================================================================== "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Element" name="session-config">
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+    <children xsi:type="modisco.xml:Element" name="session-timeout">
+      <children xsi:type="modisco.xml:Text" name="30"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  </children>
+  <children xsi:type="modisco.xml:Text" name="&#xA;&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name=" ==================================================================== "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name=" Default MIME mappings                                                "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name=" The default MIME mappings are provided by the mime.properties        "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name=" resource in the org.eclipse.jetty.server.jar file.  Additional or modified  "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name=" mappings may be specified here                                       "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name=" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name=" UNCOMMENT TO ACTIVATE&#xA;  &lt;mime-mapping>&#xA;    &lt;extension>mysuffix&lt;/extension>&#xA;    &lt;mime-type>mymime/type&lt;/mime-type>&#xA;  &lt;/mime-mapping>&#xA;  "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name=" ==================================================================== "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Element" name="welcome-file-list">
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+    <children xsi:type="modisco.xml:Element" name="welcome-file">
+      <children xsi:type="modisco.xml:Text" name="index.html"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+    <children xsi:type="modisco.xml:Element" name="welcome-file">
+      <children xsi:type="modisco.xml:Text" name="index.htm"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+    <children xsi:type="modisco.xml:Element" name="welcome-file">
+      <children xsi:type="modisco.xml:Text" name="index.jsp"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  </children>
+  <children xsi:type="modisco.xml:Text" name="&#xA;&#xA;  "/>
+  <children xsi:type="modisco.xml:Comment" name=" ==================================================================== "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Element" name="locale-encoding-mapping-list">
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+    <children xsi:type="modisco.xml:Element" name="locale-encoding-mapping">
+      <children xsi:type="modisco.xml:Element" name="locale">
+        <children xsi:type="modisco.xml:Text" name="ar"/>
+      </children>
+      <children xsi:type="modisco.xml:Element" name="encoding">
+        <children xsi:type="modisco.xml:Text" name="ISO-8859-6"/>
+      </children>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+    <children xsi:type="modisco.xml:Element" name="locale-encoding-mapping">
+      <children xsi:type="modisco.xml:Element" name="locale">
+        <children xsi:type="modisco.xml:Text" name="be"/>
+      </children>
+      <children xsi:type="modisco.xml:Element" name="encoding">
+        <children xsi:type="modisco.xml:Text" name="ISO-8859-5"/>
+      </children>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+    <children xsi:type="modisco.xml:Element" name="locale-encoding-mapping">
+      <children xsi:type="modisco.xml:Element" name="locale">
+        <children xsi:type="modisco.xml:Text" name="bg"/>
+      </children>
+      <children xsi:type="modisco.xml:Element" name="encoding">
+        <children xsi:type="modisco.xml:Text" name="ISO-8859-5"/>
+      </children>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+    <children xsi:type="modisco.xml:Element" name="locale-encoding-mapping">
+      <children xsi:type="modisco.xml:Element" name="locale">
+        <children xsi:type="modisco.xml:Text" name="ca"/>
+      </children>
+      <children xsi:type="modisco.xml:Element" name="encoding">
+        <children xsi:type="modisco.xml:Text" name="ISO-8859-1"/>
+      </children>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+    <children xsi:type="modisco.xml:Element" name="locale-encoding-mapping">
+      <children xsi:type="modisco.xml:Element" name="locale">
+        <children xsi:type="modisco.xml:Text" name="cs"/>
+      </children>
+      <children xsi:type="modisco.xml:Element" name="encoding">
+        <children xsi:type="modisco.xml:Text" name="ISO-8859-2"/>
+      </children>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+    <children xsi:type="modisco.xml:Element" name="locale-encoding-mapping">
+      <children xsi:type="modisco.xml:Element" name="locale">
+        <children xsi:type="modisco.xml:Text" name="da"/>
+      </children>
+      <children xsi:type="modisco.xml:Element" name="encoding">
+        <children xsi:type="modisco.xml:Text" name="ISO-8859-1"/>
+      </children>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+    <children xsi:type="modisco.xml:Element" name="locale-encoding-mapping">
+      <children xsi:type="modisco.xml:Element" name="locale">
+        <children xsi:type="modisco.xml:Text" name="de"/>
+      </children>
+      <children xsi:type="modisco.xml:Element" name="encoding">
+        <children xsi:type="modisco.xml:Text" name="ISO-8859-1"/>
+      </children>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+    <children xsi:type="modisco.xml:Element" name="locale-encoding-mapping">
+      <children xsi:type="modisco.xml:Element" name="locale">
+        <children xsi:type="modisco.xml:Text" name="el"/>
+      </children>
+      <children xsi:type="modisco.xml:Element" name="encoding">
+        <children xsi:type="modisco.xml:Text" name="ISO-8859-7"/>
+      </children>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+    <children xsi:type="modisco.xml:Element" name="locale-encoding-mapping">
+      <children xsi:type="modisco.xml:Element" name="locale">
+        <children xsi:type="modisco.xml:Text" name="en"/>
+      </children>
+      <children xsi:type="modisco.xml:Element" name="encoding">
+        <children xsi:type="modisco.xml:Text" name="ISO-8859-1"/>
+      </children>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+    <children xsi:type="modisco.xml:Element" name="locale-encoding-mapping">
+      <children xsi:type="modisco.xml:Element" name="locale">
+        <children xsi:type="modisco.xml:Text" name="es"/>
+      </children>
+      <children xsi:type="modisco.xml:Element" name="encoding">
+        <children xsi:type="modisco.xml:Text" name="ISO-8859-1"/>
+      </children>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+    <children xsi:type="modisco.xml:Element" name="locale-encoding-mapping">
+      <children xsi:type="modisco.xml:Element" name="locale">
+        <children xsi:type="modisco.xml:Text" name="et"/>
+      </children>
+      <children xsi:type="modisco.xml:Element" name="encoding">
+        <children xsi:type="modisco.xml:Text" name="ISO-8859-1"/>
+      </children>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+    <children xsi:type="modisco.xml:Element" name="locale-encoding-mapping">
+      <children xsi:type="modisco.xml:Element" name="locale">
+        <children xsi:type="modisco.xml:Text" name="fi"/>
+      </children>
+      <children xsi:type="modisco.xml:Element" name="encoding">
+        <children xsi:type="modisco.xml:Text" name="ISO-8859-1"/>
+      </children>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+    <children xsi:type="modisco.xml:Element" name="locale-encoding-mapping">
+      <children xsi:type="modisco.xml:Element" name="locale">
+        <children xsi:type="modisco.xml:Text" name="fr"/>
+      </children>
+      <children xsi:type="modisco.xml:Element" name="encoding">
+        <children xsi:type="modisco.xml:Text" name="ISO-8859-1"/>
+      </children>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+    <children xsi:type="modisco.xml:Element" name="locale-encoding-mapping">
+      <children xsi:type="modisco.xml:Element" name="locale">
+        <children xsi:type="modisco.xml:Text" name="hr"/>
+      </children>
+      <children xsi:type="modisco.xml:Element" name="encoding">
+        <children xsi:type="modisco.xml:Text" name="ISO-8859-2"/>
+      </children>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+    <children xsi:type="modisco.xml:Element" name="locale-encoding-mapping">
+      <children xsi:type="modisco.xml:Element" name="locale">
+        <children xsi:type="modisco.xml:Text" name="hu"/>
+      </children>
+      <children xsi:type="modisco.xml:Element" name="encoding">
+        <children xsi:type="modisco.xml:Text" name="ISO-8859-2"/>
+      </children>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+    <children xsi:type="modisco.xml:Element" name="locale-encoding-mapping">
+      <children xsi:type="modisco.xml:Element" name="locale">
+        <children xsi:type="modisco.xml:Text" name="is"/>
+      </children>
+      <children xsi:type="modisco.xml:Element" name="encoding">
+        <children xsi:type="modisco.xml:Text" name="ISO-8859-1"/>
+      </children>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+    <children xsi:type="modisco.xml:Element" name="locale-encoding-mapping">
+      <children xsi:type="modisco.xml:Element" name="locale">
+        <children xsi:type="modisco.xml:Text" name="it"/>
+      </children>
+      <children xsi:type="modisco.xml:Element" name="encoding">
+        <children xsi:type="modisco.xml:Text" name="ISO-8859-1"/>
+      </children>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+    <children xsi:type="modisco.xml:Element" name="locale-encoding-mapping">
+      <children xsi:type="modisco.xml:Element" name="locale">
+        <children xsi:type="modisco.xml:Text" name="iw"/>
+      </children>
+      <children xsi:type="modisco.xml:Element" name="encoding">
+        <children xsi:type="modisco.xml:Text" name="ISO-8859-8"/>
+      </children>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+    <children xsi:type="modisco.xml:Element" name="locale-encoding-mapping">
+      <children xsi:type="modisco.xml:Element" name="locale">
+        <children xsi:type="modisco.xml:Text" name="ja"/>
+      </children>
+      <children xsi:type="modisco.xml:Element" name="encoding">
+        <children xsi:type="modisco.xml:Text" name="Shift_JIS"/>
+      </children>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+    <children xsi:type="modisco.xml:Element" name="locale-encoding-mapping">
+      <children xsi:type="modisco.xml:Element" name="locale">
+        <children xsi:type="modisco.xml:Text" name="ko"/>
+      </children>
+      <children xsi:type="modisco.xml:Element" name="encoding">
+        <children xsi:type="modisco.xml:Text" name="EUC-KR"/>
+      </children>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+    <children xsi:type="modisco.xml:Element" name="locale-encoding-mapping">
+      <children xsi:type="modisco.xml:Element" name="locale">
+        <children xsi:type="modisco.xml:Text" name="lt"/>
+      </children>
+      <children xsi:type="modisco.xml:Element" name="encoding">
+        <children xsi:type="modisco.xml:Text" name="ISO-8859-2"/>
+      </children>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+    <children xsi:type="modisco.xml:Element" name="locale-encoding-mapping">
+      <children xsi:type="modisco.xml:Element" name="locale">
+        <children xsi:type="modisco.xml:Text" name="lv"/>
+      </children>
+      <children xsi:type="modisco.xml:Element" name="encoding">
+        <children xsi:type="modisco.xml:Text" name="ISO-8859-2"/>
+      </children>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+    <children xsi:type="modisco.xml:Element" name="locale-encoding-mapping">
+      <children xsi:type="modisco.xml:Element" name="locale">
+        <children xsi:type="modisco.xml:Text" name="mk"/>
+      </children>
+      <children xsi:type="modisco.xml:Element" name="encoding">
+        <children xsi:type="modisco.xml:Text" name="ISO-8859-5"/>
+      </children>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+    <children xsi:type="modisco.xml:Element" name="locale-encoding-mapping">
+      <children xsi:type="modisco.xml:Element" name="locale">
+        <children xsi:type="modisco.xml:Text" name="nl"/>
+      </children>
+      <children xsi:type="modisco.xml:Element" name="encoding">
+        <children xsi:type="modisco.xml:Text" name="ISO-8859-1"/>
+      </children>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+    <children xsi:type="modisco.xml:Element" name="locale-encoding-mapping">
+      <children xsi:type="modisco.xml:Element" name="locale">
+        <children xsi:type="modisco.xml:Text" name="no"/>
+      </children>
+      <children xsi:type="modisco.xml:Element" name="encoding">
+        <children xsi:type="modisco.xml:Text" name="ISO-8859-1"/>
+      </children>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+    <children xsi:type="modisco.xml:Element" name="locale-encoding-mapping">
+      <children xsi:type="modisco.xml:Element" name="locale">
+        <children xsi:type="modisco.xml:Text" name="pl"/>
+      </children>
+      <children xsi:type="modisco.xml:Element" name="encoding">
+        <children xsi:type="modisco.xml:Text" name="ISO-8859-2"/>
+      </children>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+    <children xsi:type="modisco.xml:Element" name="locale-encoding-mapping">
+      <children xsi:type="modisco.xml:Element" name="locale">
+        <children xsi:type="modisco.xml:Text" name="pt"/>
+      </children>
+      <children xsi:type="modisco.xml:Element" name="encoding">
+        <children xsi:type="modisco.xml:Text" name="ISO-8859-1"/>
+      </children>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+    <children xsi:type="modisco.xml:Element" name="locale-encoding-mapping">
+      <children xsi:type="modisco.xml:Element" name="locale">
+        <children xsi:type="modisco.xml:Text" name="ro"/>
+      </children>
+      <children xsi:type="modisco.xml:Element" name="encoding">
+        <children xsi:type="modisco.xml:Text" name="ISO-8859-2"/>
+      </children>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+    <children xsi:type="modisco.xml:Element" name="locale-encoding-mapping">
+      <children xsi:type="modisco.xml:Element" name="locale">
+        <children xsi:type="modisco.xml:Text" name="ru"/>
+      </children>
+      <children xsi:type="modisco.xml:Element" name="encoding">
+        <children xsi:type="modisco.xml:Text" name="ISO-8859-5"/>
+      </children>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+    <children xsi:type="modisco.xml:Element" name="locale-encoding-mapping">
+      <children xsi:type="modisco.xml:Element" name="locale">
+        <children xsi:type="modisco.xml:Text" name="sh"/>
+      </children>
+      <children xsi:type="modisco.xml:Element" name="encoding">
+        <children xsi:type="modisco.xml:Text" name="ISO-8859-5"/>
+      </children>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+    <children xsi:type="modisco.xml:Element" name="locale-encoding-mapping">
+      <children xsi:type="modisco.xml:Element" name="locale">
+        <children xsi:type="modisco.xml:Text" name="sk"/>
+      </children>
+      <children xsi:type="modisco.xml:Element" name="encoding">
+        <children xsi:type="modisco.xml:Text" name="ISO-8859-2"/>
+      </children>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+    <children xsi:type="modisco.xml:Element" name="locale-encoding-mapping">
+      <children xsi:type="modisco.xml:Element" name="locale">
+        <children xsi:type="modisco.xml:Text" name="sl"/>
+      </children>
+      <children xsi:type="modisco.xml:Element" name="encoding">
+        <children xsi:type="modisco.xml:Text" name="ISO-8859-2"/>
+      </children>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+    <children xsi:type="modisco.xml:Element" name="locale-encoding-mapping">
+      <children xsi:type="modisco.xml:Element" name="locale">
+        <children xsi:type="modisco.xml:Text" name="sq"/>
+      </children>
+      <children xsi:type="modisco.xml:Element" name="encoding">
+        <children xsi:type="modisco.xml:Text" name="ISO-8859-2"/>
+      </children>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+    <children xsi:type="modisco.xml:Element" name="locale-encoding-mapping">
+      <children xsi:type="modisco.xml:Element" name="locale">
+        <children xsi:type="modisco.xml:Text" name="sr"/>
+      </children>
+      <children xsi:type="modisco.xml:Element" name="encoding">
+        <children xsi:type="modisco.xml:Text" name="ISO-8859-5"/>
+      </children>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+    <children xsi:type="modisco.xml:Element" name="locale-encoding-mapping">
+      <children xsi:type="modisco.xml:Element" name="locale">
+        <children xsi:type="modisco.xml:Text" name="sv"/>
+      </children>
+      <children xsi:type="modisco.xml:Element" name="encoding">
+        <children xsi:type="modisco.xml:Text" name="ISO-8859-1"/>
+      </children>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+    <children xsi:type="modisco.xml:Element" name="locale-encoding-mapping">
+      <children xsi:type="modisco.xml:Element" name="locale">
+        <children xsi:type="modisco.xml:Text" name="tr"/>
+      </children>
+      <children xsi:type="modisco.xml:Element" name="encoding">
+        <children xsi:type="modisco.xml:Text" name="ISO-8859-9"/>
+      </children>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+    <children xsi:type="modisco.xml:Element" name="locale-encoding-mapping">
+      <children xsi:type="modisco.xml:Element" name="locale">
+        <children xsi:type="modisco.xml:Text" name="uk"/>
+      </children>
+      <children xsi:type="modisco.xml:Element" name="encoding">
+        <children xsi:type="modisco.xml:Text" name="ISO-8859-5"/>
+      </children>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+    <children xsi:type="modisco.xml:Element" name="locale-encoding-mapping">
+      <children xsi:type="modisco.xml:Element" name="locale">
+        <children xsi:type="modisco.xml:Text" name="zh"/>
+      </children>
+      <children xsi:type="modisco.xml:Element" name="encoding">
+        <children xsi:type="modisco.xml:Text" name="GB2312"/>
+      </children>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+    <children xsi:type="modisco.xml:Element" name="locale-encoding-mapping">
+      <children xsi:type="modisco.xml:Element" name="locale">
+        <children xsi:type="modisco.xml:Text" name="zh_TW"/>
+      </children>
+      <children xsi:type="modisco.xml:Element" name="encoding">
+        <children xsi:type="modisco.xml:Text" name="Big5"/>
+      </children>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  </children>
+  <children xsi:type="modisco.xml:Text" name="&#xA;&#xA;  "/>
+  <children xsi:type="modisco.xml:Element" name="security-constraint">
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+    <children xsi:type="modisco.xml:Element" name="web-resource-collection">
+      <children xsi:type="modisco.xml:Text" name="&#xA;      "/>
+      <children xsi:type="modisco.xml:Element" name="web-resource-name">
+        <children xsi:type="modisco.xml:Text" name="Disable TRACE"/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;      "/>
+      <children xsi:type="modisco.xml:Element" name="url-pattern">
+        <children xsi:type="modisco.xml:Text" name="/"/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;      "/>
+      <children xsi:type="modisco.xml:Element" name="http-method">
+        <children xsi:type="modisco.xml:Text" name="TRACE"/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+    <children xsi:type="modisco.xml:Element" name="auth-constraint"/>
+    <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  </children>
+  <children xsi:type="modisco.xml:Text" name="&#xA;&#xA;"/>
+  <namespaces name="" value="http://java.sun.com/xml/ns/javaee"/>
+  <namespaces name="xsi" value="http://www.w3.org/2001/XMLSchema-instance"/>
+</modisco.xml:Root>

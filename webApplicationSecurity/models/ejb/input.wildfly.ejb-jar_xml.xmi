@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="ASCII"?>
+<modisco.xml:Root xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:modisco.xml="http://www.eclipse.org/MoDisco/Xml/0.1.incubation/XML" name="ejb-jar">
+  <children xsi:type="modisco.xml:Attribute" name="xsi:schemaLocation" value="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/ejb-jar_3_1.xsd"/>
+  <children xsi:type="modisco.xml:Attribute" name="version" value="3.1"/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  <children xsi:type="modisco.xml:Element" name="enterprise-beans">
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="session">
+      <children xsi:type="modisco.xml:Text" name="&#xA;            "/>
+      <children xsi:type="modisco.xml:Element" name="ejb-name">
+        <children xsi:type="modisco.xml:Text" name="DDBasedSLSB"/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;            "/>
+      <children xsi:type="modisco.xml:Element" name="business-local">
+        <children xsi:type="modisco.xml:Text" name="org.jboss.as.test.integration.ejb.security.FullAccess"/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;            "/>
+      <children xsi:type="modisco.xml:Element" name="local-bean"/>
+      <children xsi:type="modisco.xml:Text" name="&#xA;            "/>
+      <children xsi:type="modisco.xml:Element" name="ejb-class">
+        <children xsi:type="modisco.xml:Text" name="org.jboss.as.test.integration.ejb.security.DDBasedSLSB"/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;            "/>
+      <children xsi:type="modisco.xml:Element" name="session-type">
+        <children xsi:type="modisco.xml:Text" name="Stateless"/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;            "/>
+      <children xsi:type="modisco.xml:Element" name="security-role-ref">
+        <children xsi:type="modisco.xml:Text" name="&#xA;                "/>
+        <children xsi:type="modisco.xml:Element" name="role-name">
+          <children xsi:type="modisco.xml:Text" name="DDRole1"/>
+        </children>
+        <children xsi:type="modisco.xml:Text" name="&#xA;            "/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;            "/>
+      <children xsi:type="modisco.xml:Element" name="security-role-ref">
+        <children xsi:type="modisco.xml:Text" name="&#xA;                "/>
+        <children xsi:type="modisco.xml:Element" name="role-name">
+          <children xsi:type="modisco.xml:Text" name="DDRole2"/>
+        </children>
+        <children xsi:type="modisco.xml:Text" name="&#xA;            "/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;            "/>
+      <children xsi:type="modisco.xml:Element" name="security-role-ref">
+        <children xsi:type="modisco.xml:Text" name="&#xA;                "/>
+        <children xsi:type="modisco.xml:Element" name="role-name">
+          <children xsi:type="modisco.xml:Text" name="DDRole3"/>
+        </children>
+        <children xsi:type="modisco.xml:Text" name="&#xA;            "/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;            "/>
+      <children xsi:type="modisco.xml:Element" name="security-identity">
+        <children xsi:type="modisco.xml:Text" name="&#xA;                "/>
+        <children xsi:type="modisco.xml:Element" name="use-caller-identity"/>
+        <children xsi:type="modisco.xml:Text" name="&#xA;            "/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  </children>
+  <children xsi:type="modisco.xml:Text" name="&#xA;&#xA;    "/>
+  <children xsi:type="modisco.xml:Element" name="assembly-descriptor">
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="method-permission">
+      <children xsi:type="modisco.xml:Text" name="&#xA;            "/>
+      <children xsi:type="modisco.xml:Element" name="role-name">
+        <children xsi:type="modisco.xml:Text" name="TestRole"/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;            "/>
+      <children xsi:type="modisco.xml:Element" name="method">
+        <children xsi:type="modisco.xml:Text" name="&#xA;                "/>
+        <children xsi:type="modisco.xml:Element" name="ejb-name">
+          <children xsi:type="modisco.xml:Text" name="DDBasedSLSB"/>
+        </children>
+        <children xsi:type="modisco.xml:Text" name="&#xA;                "/>
+        <children xsi:type="modisco.xml:Element" name="method-name">
+          <children xsi:type="modisco.xml:Text" name="onlyTestRoleCanAccess"/>
+        </children>
+        <children xsi:type="modisco.xml:Text" name="&#xA;            "/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="exclude-list">
+      <children xsi:type="modisco.xml:Text" name="&#xA;            "/>
+      <children xsi:type="modisco.xml:Element" name="method">
+        <children xsi:type="modisco.xml:Text" name="&#xA;                "/>
+        <children xsi:type="modisco.xml:Element" name="ejb-name">
+          <children xsi:type="modisco.xml:Text" name="DDBasedSLSB"/>
+        </children>
+        <children xsi:type="modisco.xml:Text" name="&#xA;                "/>
+        <children xsi:type="modisco.xml:Element" name="method-name">
+          <children xsi:type="modisco.xml:Text" name="accessDenied"/>
+        </children>
+        <children xsi:type="modisco.xml:Text" name="&#xA;            "/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;&#xA;&#xA;    "/>
+  </children>
+  <children xsi:type="modisco.xml:Text" name="&#xA;"/>
+  <namespaces name="" value="http://java.sun.com/xml/ns/javaee"/>
+  <namespaces name="xsi" value="http://www.w3.org/2001/XMLSchema-instance"/>
+</modisco.xml:Root>
