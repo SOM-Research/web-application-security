@@ -33,7 +33,23 @@
         <children xsi:type="modisco.xml:Text" name="Container"/>
       </children>
       <children xsi:type="modisco.xml:Text" name="&#xA;            "/>
-      <children xsi:type="modisco.xml:Comment" name="&#xA;            &lt;security-identity>&#xA;                &lt;use-caller-identity/>&#xA;            &lt;/security-identity>&#xA;            &lt;security-role-ref>&#xA;                &lt;role-name>role1&lt;/role-name>&#xA;                &lt;role-link>role1&lt;/role-link>&#xA;            &lt;/security-role-ref>&#xA;            "/>
+      <children xsi:type="modisco.xml:Element" name="security-identity">
+        <children xsi:type="modisco.xml:Text" name="&#xA;                "/>
+        <children xsi:type="modisco.xml:Element" name="use-caller-identity"/>
+        <children xsi:type="modisco.xml:Text" name="&#xA;            "/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;            "/>
+      <children xsi:type="modisco.xml:Element" name="security-role-ref">
+        <children xsi:type="modisco.xml:Text" name="&#xA;                "/>
+        <children xsi:type="modisco.xml:Element" name="role-name">
+          <children xsi:type="modisco.xml:Text" name="role1"/>
+        </children>
+        <children xsi:type="modisco.xml:Text" name="&#xA;                "/>
+        <children xsi:type="modisco.xml:Element" name="role-link">
+          <children xsi:type="modisco.xml:Text" name="role1"/>
+        </children>
+        <children xsi:type="modisco.xml:Text" name="&#xA;            "/>
+      </children>
       <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
     </children>
     <children xsi:type="modisco.xml:Text" name="&#xA;&#xA;&#xA;    "/>

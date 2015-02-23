@@ -3,7 +3,53 @@ grammar org.xtext.ejbSecurity.EjbSecurity with org.eclipse.xtext.common.Terminal
 generate ejbSecurity "http://www.xtext.org/ejbSecurity/EjbSecurity"
 
 Security:
-	securityRole+=SecurityRole+ methodPermission+=MethodPermission excludeList=ExcludeList?
+	enterpriseBeans=EnterpriseBeans? assemblyDescriptor=AssemblyDescriptor?
+;
+
+EnterpriseBeans:
+	'enterprise-beans' '{' session+=Session+ '}'
+;
+
+Session:
+	'session' '{'
+	ejbName=EjbName
+	ejbClass=EjbClass
+	securityRoleRef+=SecurityRoleRef*
+	securityIdentity=SecurityIdentity? '}'
+;
+
+SecurityRoleRef:
+	'security-role-ref' '{'
+		(roleNameLink=RoleName roleLink=RoleLink | roleName=[RoleName])
+	'}' 
+;
+
+RoleLink:
+	'role-link' roleName=[RoleName]
+;
+
+SecurityIdentity:
+	'security-identity' '{'
+		(runAs=RunAs | userCallerIdentity=UserCallerIdentity)
+	'}'
+;
+
+RunAs:
+	'run-as' '{' roleName=[RoleName] '}'
+;
+
+UserCallerIdentity:
+	name='user-caller-identity'  
+;
+
+EjbClass:
+	'ejb-class' name=STRING
+;
+
+AssemblyDescriptor:
+	'assembly-descriptor' '{' 
+		securityRole+=SecurityRole+ methodPermission+=MethodPermission excludeList=ExcludeList?	
+	'}'
 ;
 
 SecurityRole:
@@ -30,15 +76,15 @@ ExcludeList:
 
 Method:
 	'method' '{' 
-		ejbName=EbjName
+		ejbName=[EjbName]
 		methodInf=MethodInf?
 		methodName=STRING
 		methodParams=MethodParams?
 	'}'
 ;
 
-EbjName:
-	'ebj-name' name=STRING
+EjbName:
+	'ebj-name' name=ID
 ;
 
 MethodInf:

@@ -41,7 +41,6 @@
             <ejb-class>org.josso.samples.ejb.PartnerComponentEJB</ejb-class>
             <session-type>Stateless</session-type>
             <transaction-type>Container</transaction-type>
-            <!--
             <security-identity>
                 <use-caller-identity/>
             </security-identity>
@@ -49,7 +48,6 @@
                 <role-name>role1</role-name>
                 <role-link>role1</role-link>
             </security-role-ref>
-            -->
         </session>
 
 

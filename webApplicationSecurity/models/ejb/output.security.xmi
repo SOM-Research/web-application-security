@@ -1,32 +1,29 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <ejbSecurity:Security xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ejbSecurity="http://www.xtext.org/ejbSecurity/EjbSecurity">
-  <securityRole>
-    <roleName name="admin"/>
-  </securityRole>
-  <securityRole>
-    <roleName name="normal"/>
-  </securityRole>
-  <methodPermission roleName="//@securityRole.1/@roleName">
-    <method methodName="sayHello">
-      <ejbName name="CompleteXMLDD"/>
-    </method>
-  </methodPermission>
-  <methodPermission unchecked="true">
-    <method methodName="sayBye">
-      <ejbName name="CompleteXMLDD"/>
-    </method>
-  </methodPermission>
-  <methodPermission roleName="//@securityRole.0/@roleName">
-    <method methodName="echoMessage">
-      <ejbName name="PartialXMLDD"/>
-    </method>
-    <method methodName="changeMessage">
-      <ejbName name="PartialXMLDD"/>
-    </method>
-  </methodPermission>
-  <excludeList>
-    <method methodName="uncallableMethod">
-      <ejbName name="CompleteXMLDD"/>
-    </method>
-  </excludeList>
+  <enterpriseBeans>
+    <session>
+      <ejbName name="DDBasedSLSB"/>
+      <ejbClass name="org.jboss.as.test.integration.ejb.security.DDBasedSLSB"/>
+      <securityRoleRef>
+        <roleNameLink name="DDRole1"/>
+      </securityRoleRef>
+      <securityRoleRef>
+        <roleNameLink name="DDRole2"/>
+      </securityRoleRef>
+      <securityRoleRef>
+        <roleNameLink name="DDRole3"/>
+      </securityRoleRef>
+      <securityIdentity>
+        <userCallerIdentity/>
+      </securityIdentity>
+    </session>
+  </enterpriseBeans>
+  <assemblyDescriptor>
+    <methodPermission>
+      <method ejbName="//@enterpriseBeans/@session.0/@ejbName" methodName="onlyTestRoleCanAccess"/>
+    </methodPermission>
+    <excludeList>
+      <method ejbName="//@enterpriseBeans/@session.0/@ejbName" methodName="accessDenied"/>
+    </excludeList>
+  </assemblyDescriptor>
 </ejbSecurity:Security>

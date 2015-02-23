@@ -28,6 +28,23 @@ helper context XML!Element def : isIn(element_name : String) : Boolean =
 		endif
 	endif;
 
+helper context XML!Element def : get(element_name : String) : XML!Element =
+	if self.name = element_name then
+		self
+	else
+		if self.name = 'ejb-jar' then
+			OclUndefined
+		else
+			self.refImmediateComposite().get(element_name)
+		endif
+	endif;
+
+helper def : getEjbNames : Sequence(XML!Element) =
+	XML!Element.allInstances()->select(e | e.name = 'ejb-name')
+								->select(e | e.isIn('enterprise-beans'));
+
+helper def : getDistinctEjbName(name : String) : XML!Element =
+	thisModule.getEjbNames->select(e | e.getText = name)->first();
 			
 --retrieve the roles allowed in the xml
 helper def : getAllDistinctRolesAllowedInXML : Sequence(OclAny) =
@@ -38,11 +55,99 @@ helper def : getAllDistinctRolesAllowedInXML : Sequence(OclAny) =
 helper def : getDistinctRole(name : String) : OclAny =
 	thisModule.getAllDistinctRolesAllowedInXML->select(ra | ra.getText = name)->first();
 
+helper def : getSessionsWithSecurityInfo : Sequence(XML!Element) =
+	XML!Element.allInstances()->select(e | e.name = 'role-name')
+								->select(e | e.isIn('session'))
+									->collect(e | e.get('session'));
+
+helper context XML!Element def: isInSessionWithSecurityInfo : Boolean =
+	thisModule.getSessionsWithSecurityInfo->exists(session | self.get('session') = session);
+
+helper context XML!Element def : isSessionWithSecurityInfo : Boolean =
+	thisModule.getSessionsWithSecurityInfo->exists(session | self = session);
+
 rule Element2Security {
+	from
+		s: XML!Element (s.name = 'ejb-jar')
+	to
+		t: SEC!Security (
+			assemblyDescriptor <- s.getAttribute('assembly-descriptor'),
+			enterpriseBeans <- s.getAttribute('enterprise-beans')
+		)
+}
+
+rule Element2EnterpriseBeans {
+	from
+		s: XML!Element (s.name = 'enterprise-beans')
+	to
+		t: SEC!EnterpriseBeans (
+			session <- s.getAttributes('session')
+		)
+}
+
+rule Element2Session {
+	from
+		s: XML!Element (s.name = 'session')
+	to
+		t: SEC!Session (
+			ejbClass <- s.getAttribute('ejb-class'),
+			ejbName <- s.getAttribute('ejb-name'),
+			securityIdentity <- s.getAttribute('security-identity'),
+			securityRoleRef <- s.getAttributes('security-role-ref')
+		)
+}
+
+rule Element2SecurityRoleRef {
+	from
+		s : XML!Element (s.name = 'security-role-ref')
+	to
+		t: SEC!SecurityRoleRef (
+			roleName <- thisModule.getDistinctRole(s.getAttribute('role-name').getText),
+			roleNameLink <- s.getAttribute('role-name'),
+			roleLink <- s.getAttribute('role-link')
+		)
+}
+
+rule Element2RoleLink {
+	from
+		s: XML!Element (s.name = 'role-link')
+	to
+		t: SEC!RoleLink (
+			roleName <- thisModule.getDistinctRole(s.getText)
+		)
+}
+
+rule Element2SecurityIdentity {
+	from
+		s: XML!Element (s.name = 'security-identity')
+	to
+		t: SEC!SecurityIdentity (
+			runAs <- s.getAttribute('run-as'),
+			userCallerIdentity <- s.getAttribute('use-caller-identity')
+		)
+}
+
+rule Element2UserCallerIdentity {
+	from
+		s: XML!Element (s.name = 'use-caller-identity')
+	to
+		t: SEC!UserCallerIdentity ()
+}
+
+rule Element2RunAs {
+	from
+		s: XML!Element (s.name = 'run-as')
+	to
+		t: SEC!RunAs (
+			roleName <- thisModule.getDistinctRole(s.getAttribute('role-name').getText)	
+		)
+}
+
+rule ElementAssemblyDescriptor {
 	from
 		s: XML!Element (s.name = 'assembly-descriptor')
 	to
-		t: SEC!Security (
+		t: SEC!AssemblyDescriptor (
 			securityRole <- s.getAttributes('security-role'),
 			methodPermission <- s.getAttributes('method-permission'),
 			excludeList <- s.getAttribute('exclude-list')
@@ -55,6 +160,15 @@ rule Element2SecurityRole {
 	to
 		t: SEC!SecurityRole (
 			roleName <- s.getAttribute('role-name')
+		)
+}
+
+rule ElementInSecRoleRef2RoleName {
+	from
+		s: XML!Element (s.name = 'role-name' and s.isIn('security-role-ref'))
+	to
+		t: SEC!RoleName (
+			name <- s.getText
 		)
 }
 
@@ -83,18 +197,27 @@ rule Element2Method {
 		s: XML!Element (s.name = 'method' and (s.isIn('method-permission') or s.isIn('exclude-list')))
 	to
 		t: SEC!Method (
-			ejbName <- s.getAttribute('ejb-name'),
+			ejbName <- thisModule.getDistinctEjbName(s.getAttribute('ejb-name').getText),
 			methodName <- s.getAttribute('method-name').getText,
 			methodInf <- s.getAttribute('method-inf'),
 			methodParams <- s.getAttribute('method-params')
 		)
 }
 
+rule Element2EjbClass {
+	from
+		s: XML!Element (s.name = 'ejb-class' and s.isIn('session'))
+	to
+		t: SEC!EjbClass (
+			name <- s.getText	
+		)
+}
+
 rule Element2EjbName {
 	from
-		s: XML!Element (s.name = 'ejb-name' and (s.isIn('method-permission') or s.isIn('exclude-list')))
+		s: XML!Element (s.name = 'ejb-name' and s.isIn('session'))
 	to
-		t: SEC!EbjName (
+		t: SEC!EjbName (
 			name <- s.getText	
 		)
 }
