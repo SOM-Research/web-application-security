@@ -3,7 +3,7 @@ grammar org.xtext.ejbSecurity.EjbSecurity with org.eclipse.xtext.common.Terminal
 generate ejbSecurity "http://www.xtext.org/ejbSecurity/EjbSecurity"
 
 Security:
-	enterpriseBeans=EnterpriseBeans? assemblyDescriptor=AssemblyDescriptor?
+	enterpriseBeans=EnterpriseBeans assemblyDescriptor=AssemblyDescriptor?
 ;
 
 EnterpriseBeans:
@@ -61,11 +61,11 @@ RoleName:
 ;
 
 MethodPermission:
-	'method-permission' '{' roleName+=[RoleName]+ unchecked?=Unchecked method+=Method+'}'
+	'method-permission' '{' (roleName+=[RoleName]+ | unchecked=Unchecked) method+=Method+'}'
 ;
 
 Unchecked:
-	'unchecked'
+	name='unchecked'
 ;
 
 ExcludeList:
@@ -77,7 +77,7 @@ ExcludeList:
 Method:
 	'method' '{' 
 		ejbName=[EjbName]
-		methodInf=MethodInf?
+		methodIntf=MethodIntf?
 		methodName=STRING
 		methodParams=MethodParams?
 	'}'
@@ -87,8 +87,12 @@ EjbName:
 	'ebj-name' name=ID
 ;
 
-MethodInf:
-	'method-inf' name=STRING
+MethodIntf:
+	'method-intf' type=MethodInfType
+;
+
+enum MethodInfType:
+	HOME = 'HOME' | REMOTE = 'REMOTE'
 ;
 
 MethodParams:

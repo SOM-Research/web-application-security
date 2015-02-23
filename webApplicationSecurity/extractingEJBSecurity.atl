@@ -8,6 +8,10 @@ create OUT : SEC from IN : XML, IN2 : JAVA;
 ------------------------------------
 -------------EJB JAR XML------------
 ------------------------------------
+helper def : string2MethodIntfMap : Map(OclAny,OclAny) = 
+	Map{('REMOTE',#REMOTE),('HOME',#HOME)} ;
+
+
 helper context XML!Element def : getAttributes(element_name : String) :  Sequence(XML!Element) =
 	self.children->select(c | c.name = element_name);
 
@@ -52,9 +56,6 @@ helper def : getAllDistinctRolesAllowedInXML : Sequence(OclAny) =
 								->select(c | c.name = 'security-role')
 									->collect(c | c.getAttribute('role-name'));
 
-helper def : getDistinctRole(name : String) : OclAny =
-	thisModule.getAllDistinctRolesAllowedInXML->select(ra | ra.getText = name)->first();
-
 helper def : getSessionsWithSecurityInfo : Sequence(XML!Element) =
 	XML!Element.allInstances()->select(e | e.name = 'role-name')
 								->select(e | e.isIn('session'))
@@ -66,12 +67,144 @@ helper context XML!Element def: isInSessionWithSecurityInfo : Boolean =
 helper context XML!Element def : isSessionWithSecurityInfo : Boolean =
 	thisModule.getSessionsWithSecurityInfo->exists(session | self = session);
 
+------------------------------------
+----------JAVA ANNOTATIONS----------
+------------------------------------
+helper context OclAny def : isInAnnotation(type : String) : Boolean =
+	if self.oclIsTypeOf(JAVA!Annotation) then
+		if self.getAnnotationType = type then
+			true
+		else
+			self.refImmediateComposite().isInAnnotation(type)
+		endif
+	else
+		if self.oclIsTypeOf(JAVA!Model) then
+			false
+		else
+			self.refImmediateComposite().isInAnnotation(type)
+		endif
+	endif;
+
+helper context OclAny def : getAbstractMethodDeclaration : JAVA!AbstractMethodDeclaration =
+	if self.oclIsKindOf(JAVA!AbstractMethodDeclaration) then
+		self
+	else
+		if self.oclIsTypeOf(JAVA!Model) then
+			OclUndefined
+		else
+			self.refImmediateComposite().getAbstractMethodDeclaration
+		endif
+	endif;
+
+helper context OclAny def : getTypeDeclarationName : String =
+	if self.oclIsKindOf(JAVA!AbstractTypeDeclaration) then
+		self.name
+	else
+		if self.oclIsTypeOf(JAVA!Model) then
+			'not found'
+		else
+			self.refImmediateComposite().getTypeDeclarationName
+		endif
+	endif;
+
+helper context JAVA!Annotation def : getAnnotationType : String =
+	self.type.type.name.regexReplaceAll('javax.annotation.security.', '');	
+
+helper def : getRolesInAnnotations(annotationType : String) : Sequence(JAVA!StringLiteral) =
+	JAVA!StringLiteral.allInstances()->select(str | str.isInAnnotation(annotationType))
+		->union(JAVA!SingleVariableAccess.allInstances()->select(sva | sva.isInAnnotation(annotationType))
+															->collect(sva | sva.extractStringLiteral)->flatten()
+																->reject(str | str.oclIsUndefined()));
+		
+helper context JAVA!StringLiteral def : isInRolesInAnnotations(annotationType : String) : Boolean =
+	thisModule.getRolesInAnnotations(annotationType)->exists(rd | rd = self);
+
+helper context JAVA!StringLiteral def : extractStringLiteral : JAVA!StringLiteral =
+	self;
+
+helper context JAVA!ArrayInitializer def : extractStringLiteral : Sequence(JAVA!StringLiteral) =
+	self.expressions->collect(expr | expr.extractStringLiteral);
+
+helper context JAVA!UnresolvedItemAccess def : extractStringLiteral : JAVA!StringLiteral =
+	self.element.extractStringLiteral;
+
+helper context JAVA!UnresolvedItem def : extractStringLiteral : JAVA!StringLiteral =
+	self.name;
+
+helper context JAVA!SingleVariableAccess def : extractStringLiteral : JAVA!StringLiteral =
+	if self.variable.initializer.oclIsUndefined() then
+		OclUndefined
+	else
+		self.variable.initializer.extractStringLiteral
+	endif;
+
+helper def : getDistinctRole(name : String) : OclAny =
+	if thisModule.getAllDistinctRolesAllowedInXML->select(ra | ra.getText = name)->isEmpty() then
+		thisModule.getRolesInAnnotations('DeclareRoles')->select(ra | ra.escapedValue.split('"')->at(2) = name)->first()
+	else
+		thisModule.getAllDistinctRolesAllowedInXML->select(ra | ra.getText = name)->first()
+	endif;
+
+helper def : getAnnotatedRolesAllowedMethods : Sequence(JAVA!AbstractMethodDeclaration) =
+	JAVA!AbstractMethodDeclaration.allInstances()->select(method | method.annotations
+																	->exists(annotation | 
+																							annotation.getAnnotationType ='RolesAllowed')
+														);
+
+helper def : getPermitAllMethods : Sequence(JAVA!AbstractMethodDeclaration) =
+	JAVA!AbstractMethodDeclaration.allInstances()->select(method | method.annotations
+																	->exists(annotation | 
+																							annotation.getAnnotationType ='PermitAll')
+														);
+
+helper def : getAnnotatedDenyAllMethods : Sequence(JAVA!AbstractMethodDeclaration) =
+	JAVA!AbstractMethodDeclaration.allInstances()->select(method | method.annotations
+																	->exists(annotation | annotation.getAnnotationType ='DenyAll'));
+
+helper context JAVA!AbstractMethodDeclaration def : isInAnnotatedRolesAllowedMethods : Boolean =
+	thisModule.getAnnotatedRolesAllowedMethods->exists(method | method = self);
+
+helper context JAVA!SingleVariableDeclaration def : isInAnnotatedRolesAllowedMethods : Boolean =
+	thisModule.getAnnotatedRolesAllowedMethods->exists(method | method.parameters->exists(param | param = self));
+	
+helper context JAVA!AbstractMethodDeclaration def : isInAnnotatedDenyAllMethods : Boolean =
+	thisModule.getAnnotatedDenyAllMethods->exists(method | method = self);
+
+helper context JAVA!SingleVariableDeclaration def : isInAnnotatedDenyAllMethods : Boolean =
+	thisModule.getAnnotatedDenyAllMethods->exists(method | method.parameters->exists(param | param = self));
+
+helper context JAVA!AbstractMethodDeclaration def : isInAnnotatedPermitAllMethods : Boolean =
+	thisModule.getPermitAllMethods->exists(method | method = self);
+
+helper context JAVA!SingleVariableDeclaration def : isInAnnotatedPermitAllMethods : Boolean =
+	thisModule.getPermitAllMethods->exists(method | method.parameters->exists(param | param = self));
+
+
+helper context JAVA!AbstractMethodDeclaration def : getRolesAllowed : Sequence(OclAny) =
+	--select permit all and roles allowed annotation in the method declaration "self"
+	thisModule.getRolesInAnnotations('RolesAllowed')
+				->select(role | role.getAbstractMethodDeclaration = self)
+					->collect(role | thisModule.getDistinctRole(role.escapedValue.split('"')->at(2)))
+						->reject(role | role.oclIsUndefined())->flatten()->asSet()->asSequence();
+	
+------------------------------------
+-------------EJB JAR XML------------
+------------------------------------
 rule Element2Security {
 	from
 		s: XML!Element (s.name = 'ejb-jar')
 	to
 		t: SEC!Security (
-			assemblyDescriptor <- s.getAttribute('assembly-descriptor'),
+			assemblyDescriptor <- 
+								  	if not s.getAttribute('assembly-descriptor').oclIsUndefined() then
+										s.getAttribute('assembly-descriptor')
+									else
+										if thisModule.getRolesInDeclaredRolesAnnotations.notEmpty() then
+											thisModule.createAssemblyDescriptor(s)
+										else
+											OclUndefined
+										endif
+									endif,
 			enterpriseBeans <- s.getAttribute('enterprise-beans')
 		)
 }
@@ -143,14 +276,47 @@ rule Element2RunAs {
 		)
 }
 
+lazy rule createAssemblyDescriptor {
+	from
+		s: XML!Element
+	to
+		t: SEC!AssemblyDescriptor (
+			securityRole <- thisModule.getRolesInAnnotations('DeclareRoles')
+											->collect(dr | thisModule.DeclareRolesAnnotation2SecurityRole(dr))
+		)
+}
+
 rule ElementAssemblyDescriptor {
 	from
 		s: XML!Element (s.name = 'assembly-descriptor')
 	to
 		t: SEC!AssemblyDescriptor (
-			securityRole <- s.getAttributes('security-role'),
-			methodPermission <- s.getAttributes('method-permission'),
-			excludeList <- s.getAttribute('exclude-list')
+			securityRole <- s.getAttributes('security-role')
+								--get roles declared in the @DeclareRoles annotations
+								->union(thisModule.getRolesInAnnotations('DeclareRoles')->collect(dr | thisModule.DeclareRolesAnnotation2SecurityRole(dr)))
+								,
+			methodPermission <- s.getAttributes('method-permission')
+									->union(thisModule.getAnnotatedRolesAllowedMethods)
+										->union(thisModule.getPermitAllMethods),
+			excludeList <- 
+							if s.getAttribute('exclude-list').oclIsUndefined() then
+								if thisModule.getAnnotatedDenyAllMethods.notEmpty() then
+									thisModule.createExcludeList(s)
+								else
+									OclUndefined
+								endif
+							else
+								s.getAttributes('exclude-list')
+							endif
+		)
+}
+
+lazy rule createExcludeList {
+	from
+		s: XML!Element
+	to
+		t: SEC!ExcludeList (
+			method <- thisModule.getAnnotatedDenyAllMethods	
 		)
 }
 
@@ -187,9 +353,16 @@ rule Element2MethodPermission {
 	to
 		t: SEC!MethodPermission (
 			method <- s.getAttributes('method'),
-			unchecked <- not s.getAttribute('unchecked').oclIsUndefined(),
+			unchecked <- s.getAttribute('unchecked'),
 			roleName <- s.getAttributes('role-name')->collect(rn | thisModule.getDistinctRole(rn.getText))->flatten()
 		)
+}
+
+rule Element2Unchecked {
+	from
+		s: XML!Element (s.name = 'unchecked' and s.isIn('method-permission'))
+	to
+		t: SEC!Unchecked ()
 }
 
 rule Element2Method {
@@ -199,7 +372,7 @@ rule Element2Method {
 		t: SEC!Method (
 			ejbName <- thisModule.getDistinctEjbName(s.getAttribute('ejb-name').getText),
 			methodName <- s.getAttribute('method-name').getText,
-			methodInf <- s.getAttribute('method-inf'),
+			methodIntf <- s.getAttribute('method-intf'),
 			methodParams <- s.getAttribute('method-params')
 		)
 }
@@ -227,16 +400,17 @@ rule Element2ExcludeList {
 		s: XML!Element (s.name = 'exclude-list' and s.isIn('assembly-descriptor'))
 	to
 		t: SEC!ExcludeList (
-			method <- s.getAttributes('method')	
+			method <- s.getAttributes('method')
+							->union(thisModule.getAnnotatedDenyAllMethods)
 		)
 }
 
 rule Element2MethodInf {
 	from
-		s: XML!Element (s.name = 'method-inf' and (s.isIn('method-permission') or s.isIn('exclude-list')))
+		s: XML!Element (s.name = 'method-intf' and (s.isIn('method-permission') or s.isIn('exclude-list')))
 	to
-		t: SEC!MethodInf (
-			name <- s.getText	
+		t: SEC!MethodIntf (
+			type <- thisModule.string2MethodIntfMap.get(s.getText)	
 		)
 }
 
@@ -255,5 +429,89 @@ rule Element2MethodParam {
 	to
 		t: SEC!MethodParam (
 			param <- s.getText	
+		)
+}
+
+------------------------------------
+----------JAVA ANNOTATIONS----------
+------------------------------------
+lazy rule DeclareRolesAnnotation2SecurityRole {
+	from
+		s: JAVA!StringLiteral
+	to
+		t: SEC!SecurityRole (
+			roleName <- s
+		)
+}
+
+rule StringLiteral2RoleName {
+	from
+		s: JAVA!StringLiteral (s.isInRolesInAnnotations('DeclareRoles'))
+	to
+		t: SEC!RoleName (
+			name <- s.escapedValue.split('"')->at(2)
+		)
+}
+
+rule AnnotatedMethod2MethodPermitAll {
+	from
+		s: JAVA!AbstractMethodDeclaration (s.isInAnnotatedPermitAllMethods)
+	to
+		t: SEC!MethodPermission (
+			roleName <- role,
+			method <- m
+		),
+		role : SEC!RoleName (
+			name <- '*'	
+		),
+		m : SEC!Method (
+			methodName <- s.name,
+			methodParams <- params,
+			ejbName <- thisModule.getDistinctEjbName(s.getTypeDeclarationName)
+		),
+		params : SEC!MethodParams (
+			methodParam <- s.parameters	
+		)
+}
+
+rule AnnotatedMethod2MethodPermission {
+	from
+		s: JAVA!AbstractMethodDeclaration (s.isInAnnotatedRolesAllowedMethods)
+	to
+		t: SEC!MethodPermission (
+			roleName <- s.getRolesAllowed,
+			method <- m
+		),
+		m : SEC!Method (
+			methodName <- s.name,
+			methodParams <- params,
+			ejbName <- thisModule.getDistinctEjbName(s.getTypeDeclarationName)
+		),
+		params : SEC!MethodParams (
+			methodParam <- s.parameters	
+		)
+}
+
+
+rule SingleVariableDeclaration2MethodParam {
+	from
+		s: JAVA!SingleVariableDeclaration (s.isInAnnotatedRolesAllowedMethods or s.isInAnnotatedDenyAllMethods or s.isInAnnotatedPermitAllMethods)
+	to
+		t: SEC!MethodParam (
+			param <- s.name	
+		)
+}
+
+rule AnnotatedMethod2ExcludeListMethod {
+	from
+		s: JAVA!AbstractMethodDeclaration (s.isInAnnotatedDenyAllMethods)
+	to
+		t: SEC!Method (
+			methodName <- s.name,
+			methodParams <- params,
+			ejbName <- thisModule.getDistinctEjbName(s.getTypeDeclarationName)
+		),
+		params : SEC!MethodParams (
+			methodParam <- s.parameters	
 		)
 }

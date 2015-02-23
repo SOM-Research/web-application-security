@@ -1,29 +1,157 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<ejbSecurity:Security xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ejbSecurity="http://www.xtext.org/ejbSecurity/EjbSecurity">
-  <enterpriseBeans>
-    <session>
-      <ejbName name="DDBasedSLSB"/>
-      <ejbClass name="org.jboss.as.test.integration.ejb.security.DDBasedSLSB"/>
-      <securityRoleRef>
-        <roleNameLink name="DDRole1"/>
-      </securityRoleRef>
-      <securityRoleRef>
-        <roleNameLink name="DDRole2"/>
-      </securityRoleRef>
-      <securityRoleRef>
-        <roleNameLink name="DDRole3"/>
-      </securityRoleRef>
-      <securityIdentity>
-        <userCallerIdentity/>
-      </securityIdentity>
-    </session>
-  </enterpriseBeans>
-  <assemblyDescriptor>
-    <methodPermission>
-      <method ejbName="//@enterpriseBeans/@session.0/@ejbName" methodName="onlyTestRoleCanAccess"/>
-    </methodPermission>
-    <excludeList>
-      <method ejbName="//@enterpriseBeans/@session.0/@ejbName" methodName="accessDenied"/>
-    </excludeList>
-  </assemblyDescriptor>
-</ejbSecurity:Security>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ejbSecurity="http://www.xtext.org/ejbSecurity/EjbSecurity">
+  <ejbSecurity:Security>
+    <enterpriseBeans>
+      <session>
+        <ejbName name="PartialDDBean"/>
+        <ejbClass name="org.jboss.as.test.integration.ejb.security.dd.override.PartialDDBean"/>
+      </session>
+    </enterpriseBeans>
+    <assemblyDescriptor>
+      <securityRole>
+        <roleName name="PROJECT_MANAGER"/>
+      </securityRole>
+      <securityRole>
+        <roleName name="DEVELOPER"/>
+      </securityRole>
+      <securityRole>
+        <roleName name="Users"/>
+      </securityRole>
+      <securityRole>
+        <roleName name="USER"/>
+      </securityRole>
+      <securityRole>
+        <roleName name="MANAGER"/>
+      </securityRole>
+      <methodPermission>
+        <method ejbName="/0/@enterpriseBeans/@session.0/@ejbName" methodName="toBeInvokedByRole2"/>
+      </methodPermission>
+      <methodPermission roleName="/0/@assemblyDescriptor/@securityRole.3/@roleName /0/@assemblyDescriptor/@securityRole.4/@roleName">
+        <method methodName="createReservation">
+          <methodParams>
+            <methodParam param="reservation"/>
+          </methodParams>
+        </method>
+      </methodPermission>
+      <methodPermission roleName="/0/@assemblyDescriptor/@securityRole.3/@roleName /0/@assemblyDescriptor/@securityRole.4/@roleName">
+        <method methodName="removeReservation">
+          <methodParams>
+            <methodParam param="reservation"/>
+          </methodParams>
+        </method>
+      </methodPermission>
+      <methodPermission roleName="/0/@assemblyDescriptor/@securityRole.3/@roleName /0/@assemblyDescriptor/@securityRole.4/@roleName">
+        <method methodName="updateReservation">
+          <methodParams>
+            <methodParam param="reservation"/>
+          </methodParams>
+        </method>
+      </methodPermission>
+      <methodPermission roleName="/0/@assemblyDescriptor/@securityRole.3/@roleName /0/@assemblyDescriptor/@securityRole.4/@roleName">
+        <method methodName="removeAllUserReservations">
+          <methodParams>
+            <methodParam param="user"/>
+          </methodParams>
+        </method>
+      </methodPermission>
+      <methodPermission roleName="/0/@assemblyDescriptor/@securityRole.4/@roleName">
+        <method methodName="removeAllRestaurantReservation">
+          <methodParams>
+            <methodParam param="restaurant"/>
+          </methodParams>
+        </method>
+      </methodPermission>
+      <methodPermission roleName="/0/@assemblyDescriptor/@securityRole.3/@roleName /0/@assemblyDescriptor/@securityRole.4/@roleName">
+        <method methodName="getReservation">
+          <methodParams>
+            <methodParam param="idReservation"/>
+          </methodParams>
+        </method>
+      </methodPermission>
+      <methodPermission roleName="/0/@assemblyDescriptor/@securityRole.3/@roleName /0/@assemblyDescriptor/@securityRole.4/@roleName">
+        <method methodName="getUserReservations">
+          <methodParams>
+            <methodParam param="user"/>
+          </methodParams>
+        </method>
+      </methodPermission>
+      <methodPermission roleName="/0/@assemblyDescriptor/@securityRole.4/@roleName">
+        <method methodName="getRestaurantReservations">
+          <methodParams>
+            <methodParam param="restaurant"/>
+          </methodParams>
+        </method>
+      </methodPermission>
+      <methodPermission roleName="/0/@assemblyDescriptor/@securityRole.4/@roleName">
+        <method methodName="getMenuItemReservations">
+          <methodParams>
+            <methodParam param="menuItem"/>
+          </methodParams>
+        </method>
+      </methodPermission>
+      <methodPermission>
+        <method methodName="get">
+          <methodParams/>
+        </method>
+      </methodPermission>
+      <methodPermission>
+        <method methodName="post">
+          <methodParams>
+            <methodParam param="content"/>
+          </methodParams>
+        </method>
+      </methodPermission>
+      <methodPermission roleName="/1">
+        <method methodName="permitAll">
+          <methodParams/>
+        </method>
+      </methodPermission>
+      <methodPermission roleName="/2">
+        <method methodName="getBaseUri">
+          <methodParams>
+            <methodParam param="baseUri"/>
+          </methodParams>
+        </method>
+      </methodPermission>
+      <methodPermission roleName="/3">
+        <method methodName="getClientAddress">
+          <methodParams>
+            <methodParam param="clientAddress"/>
+          </methodParams>
+        </method>
+      </methodPermission>
+      <methodPermission roleName="/4">
+        <method methodName="getRequest">
+          <methodParams>
+            <methodParam param="request"/>
+          </methodParams>
+        </method>
+      </methodPermission>
+      <methodPermission roleName="/5">
+        <method methodName="getLocale">
+          <methodParams>
+            <methodParam param="locale"/>
+          </methodParams>
+        </method>
+      </methodPermission>
+      <methodPermission roleName="/6">
+        <method methodName="getLocales">
+          <methodParams>
+            <methodParam param="locales"/>
+          </methodParams>
+        </method>
+      </methodPermission>
+      <excludeList>
+        <method methodName="denyAll">
+          <methodParams/>
+        </method>
+      </excludeList>
+    </assemblyDescriptor>
+  </ejbSecurity:Security>
+  <ejbSecurity:RoleName name="*"/>
+  <ejbSecurity:RoleName name="*"/>
+  <ejbSecurity:RoleName name="*"/>
+  <ejbSecurity:RoleName name="*"/>
+  <ejbSecurity:RoleName name="*"/>
+  <ejbSecurity:RoleName name="*"/>
+</xmi:XMI>
