@@ -96,8 +96,19 @@ helper context OclAny def : getAbstractMethodDeclaration : JAVA!AbstractMethodDe
 		endif
 	endif;
 
+helper context OclAny def : getTypeDeclaration : JAVA!TypeDeclaration =
+	if self.oclIsKindOf(JAVA!TypeDeclaration) then
+		self
+	else
+		if self.oclIsTypeOf(JAVA!Model) then
+			OclUndefined
+		else
+			self.refImmediateComposite().getTypeDeclaration
+		endif
+	endif;
+
 helper context OclAny def : getTypeDeclarationName : String =
-	if self.oclIsKindOf(JAVA!AbstractTypeDeclaration) then
+	if self.oclIsKindOf(JAVA!TypeDeclaration) then
 		self.name
 	else
 		if self.oclIsTypeOf(JAVA!Model) then
@@ -145,18 +156,21 @@ helper def : getDistinctRole(name : String) : OclAny =
 		thisModule.getAllDistinctRolesAllowedInXML->select(ra | ra.getText = name)->first()
 	endif;
 
+--get methods annotated with RolesAllowed
 helper def : getAnnotatedRolesAllowedMethods : Sequence(JAVA!AbstractMethodDeclaration) =
 	JAVA!AbstractMethodDeclaration.allInstances()->select(method | method.annotations
 																	->exists(annotation | 
 																							annotation.getAnnotationType ='RolesAllowed')
 														);
 
+--get methods annotated with PermitAll
 helper def : getPermitAllMethods : Sequence(JAVA!AbstractMethodDeclaration) =
 	JAVA!AbstractMethodDeclaration.allInstances()->select(method | method.annotations
 																	->exists(annotation | 
 																							annotation.getAnnotationType ='PermitAll')
 														);
 
+--get methods annotated with DenyAll
 helper def : getAnnotatedDenyAllMethods : Sequence(JAVA!AbstractMethodDeclaration) =
 	JAVA!AbstractMethodDeclaration.allInstances()->select(method | method.annotations
 																	->exists(annotation | annotation.getAnnotationType ='DenyAll'));
@@ -179,11 +193,41 @@ helper context JAVA!AbstractMethodDeclaration def : isInAnnotatedPermitAllMethod
 helper context JAVA!SingleVariableDeclaration def : isInAnnotatedPermitAllMethods : Boolean =
 	thisModule.getPermitAllMethods->exists(method | method.parameters->exists(param | param = self));
 
+--get classes and interfaces annotated with RolesAllowed
+helper def : getAnnotatedRolesAllowedAllClasses : Sequence(JAVA!TypeDeclaration) =
+	JAVA!TypeDeclaration.allInstances()->select(type | type.annotations
+																		->exists(annotation | annotation.getAnnotationType = 'RolesAllowed'));
+
+--get classes and interfaces annotated with PermitAll
+helper def : getAnnotatedPermitAllClasses : Sequence(JAVA!TypeDeclaration) =
+	JAVA!TypeDeclaration.allInstances()->select(type | type.annotations
+																		->exists(annotation | annotation.getAnnotationType = 'PermitAll'));
+
+--get classes and interfaces annotated with DenyAll
+helper def : getAnnotatedDenyAllClasses : Sequence(JAVA!TypeDeclaration) =
+	JAVA!TypeDeclaration.allInstances()->select(type | type.annotations
+																		->exists(annotation | annotation.getAnnotationType = 'DenyAll'));
+
+helper context JAVA!TypeDeclaration def : isInAnnotatedRolesAllowedClasses : Boolean =
+	thisModule.getAnnotatedRolesAllowedAllClasses->exists(class | class = self);
+
+helper context JAVA!TypeDeclaration def : isInAnnotatedDenyAllClasses : Boolean =
+	thisModule.getAnnotatedDenyAllClasses->exists(class | class = self);
+
+helper context JAVA!TypeDeclaration def : isInAnnotatedPermitAllClasses : Boolean =
+	thisModule.getAnnotatedPermitAllClasses->exists(class | class = self);
 
 helper context JAVA!AbstractMethodDeclaration def : getRolesAllowed : Sequence(OclAny) =
 	--select permit all and roles allowed annotation in the method declaration "self"
 	thisModule.getRolesInAnnotations('RolesAllowed')
 				->select(role | role.getAbstractMethodDeclaration = self)
+					->collect(role | thisModule.getDistinctRole(role.escapedValue.split('"')->at(2)))
+						->reject(role | role.oclIsUndefined())->flatten()->asSet()->asSequence();
+	
+helper context JAVA!TypeDeclaration def : getRolesAllowed : Sequence(OclAny) =
+	--select permit all and roles allowed annotation in the class declaration "self"
+	thisModule.getRolesInAnnotations('RolesAllowed')
+				->select(role | role.getTypeDeclaration = self)
 					->collect(role | thisModule.getDistinctRole(role.escapedValue.split('"')->at(2)))
 						->reject(role | role.oclIsUndefined())->flatten()->asSet()->asSequence();
 	
@@ -297,10 +341,12 @@ rule ElementAssemblyDescriptor {
 								,
 			methodPermission <- s.getAttributes('method-permission')
 									->union(thisModule.getAnnotatedRolesAllowedMethods)
-										->union(thisModule.getPermitAllMethods),
+										->union(thisModule.getPermitAllMethods)
+											->union(thisModule.getAnnotatedRolesAllowedAllClasses)
+												->union(thisModule.getAnnotatedPermitAllClasses),
 			excludeList <- 
 							if s.getAttribute('exclude-list').oclIsUndefined() then
-								if thisModule.getAnnotatedDenyAllMethods.notEmpty() then
+								if thisModule.getAnnotatedDenyAllMethods->union(thisModule.getAnnotatedDenyAllClasses).notEmpty() then
 									thisModule.createExcludeList(s)
 								else
 									OclUndefined
@@ -316,7 +362,8 @@ lazy rule createExcludeList {
 		s: XML!Element
 	to
 		t: SEC!ExcludeList (
-			method <- thisModule.getAnnotatedDenyAllMethods	
+			method <- thisModule.getAnnotatedDenyAllMethods->collect(m | thisModule.createMethod(m))
+							->union(thisModule.getAnnotatedDenyAllClasses->collect(class | thisModule.createAllMethod(class)))
 		)
 }
 
@@ -458,19 +505,18 @@ rule AnnotatedMethod2MethodPermitAll {
 		s: JAVA!AbstractMethodDeclaration (s.isInAnnotatedPermitAllMethods)
 	to
 		t: SEC!MethodPermission (
-			roleName <- role,
-			method <- m
+			unchecked <- u,
+			method <- thisModule.createMethod(s)
 		),
-		role : SEC!RoleName (
-			name <- '*'	
-		),
-		m : SEC!Method (
-			methodName <- s.name,
-			methodParams <- params,
-			ejbName <- thisModule.getDistinctEjbName(s.getTypeDeclarationName)
-		),
-		params : SEC!MethodParams (
-			methodParam <- s.parameters	
+		u : SEC!Unchecked ()
+}
+
+lazy rule createEjbName {
+	from
+		s: OclAny
+	to
+		t: SEC!EjbName (
+			name <- s	
 		)
 }
 
@@ -480,16 +526,29 @@ rule AnnotatedMethod2MethodPermission {
 	to
 		t: SEC!MethodPermission (
 			roleName <- s.getRolesAllowed,
-			method <- m
-		),
-		m : SEC!Method (
-			methodName <- s.name,
-			methodParams <- params,
-			ejbName <- thisModule.getDistinctEjbName(s.getTypeDeclarationName)
-		),
-		params : SEC!MethodParams (
-			methodParam <- s.parameters	
+			method <- thisModule.createMethod(s)
 		)
+}
+
+rule RolesAllowedAnnotatedClass2MethodPermission {
+	from
+		s: JAVA!TypeDeclaration (s.isInAnnotatedRolesAllowedClasses)
+	to
+		t: SEC!MethodPermission (
+			roleName <- s.getRolesAllowed,
+			method <- thisModule.createAllMethod(s)
+		)
+}
+
+rule PermitAllAnnotatedClass2MethodPermission {
+	from
+		s: JAVA!TypeDeclaration (s.isInAnnotatedPermitAllClasses)
+	to
+		t: SEC!MethodPermission (
+			unchecked <- u,
+			method <- thisModule.createAllMethod(s)
+		),
+		u : SEC!Unchecked ()
 }
 
 
@@ -502,16 +561,36 @@ rule SingleVariableDeclaration2MethodParam {
 		)
 }
 
-rule AnnotatedMethod2ExcludeListMethod {
+lazy rule createAllMethod {
 	from
-		s: JAVA!AbstractMethodDeclaration (s.isInAnnotatedDenyAllMethods)
+		s: JAVA!TypeDeclaration
+	to
+		t: SEC!Method (
+			methodName <- '*',
+			ejbName <- 
+						if thisModule.getDistinctEjbName(s.name).oclIsUndefined() then
+							thisModule.createEjbName(s.name)
+						else
+							thisModule.getDistinctEjbName(s.name)
+						endif
+		)
+}
+
+lazy rule createMethod {
+	from
+		s: JAVA!AbstractMethodDeclaration
 	to
 		t: SEC!Method (
 			methodName <- s.name,
 			methodParams <- params,
-			ejbName <- thisModule.getDistinctEjbName(s.getTypeDeclarationName)
+			ejbName <- 
+						if thisModule.getDistinctEjbName(s.getTypeDeclarationName).oclIsUndefined() then
+							thisModule.createEjbName(s.getTypeDeclarationName)
+						else
+							thisModule.getDistinctEjbName(s.getTypeDeclarationName)
+						endif
 		),
 		params : SEC!MethodParams (
 			methodParam <- s.parameters	
-		)
+		) 
 }
