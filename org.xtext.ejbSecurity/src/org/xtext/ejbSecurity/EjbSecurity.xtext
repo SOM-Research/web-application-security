@@ -61,8 +61,13 @@ RoleName:
 ;
 
 MethodPermission:
-	'method-permission' '{' (roleName+=[RoleName]+ | unchecked=Unchecked) method+=Method+'}'
+	'method-permission' '{' (roleName+=[RoleName]+ | unchecked=Unchecked) method+=Method+ source=SourceType '}'
 ;
+
+enum SourceType:
+	XML = 'XML' | CODE = 'CODE'
+;
+
 
 Unchecked:
 	name='unchecked'

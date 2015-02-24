@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="ejbSecurity" nsURI="http://www.xtext.org/ejbSecurity/EjbSecurity"
+    nsPrefix="ejbSecurity">
+  <eClassifiers xsi:type="ecore:EClass" name="Security">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="enterpriseBeans" eType="#//EnterpriseBeans"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="assemblyDescriptor" eType="#//AssemblyDescriptor"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EnterpriseBeans">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="session" upperBound="-1"
+        eType="#//Session" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Session">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ejbName" eType="#//EjbName"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ejbClass" eType="#//EjbClass"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="securityRoleRef" upperBound="-1"
+        eType="#//SecurityRoleRef" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="securityIdentity" eType="#//SecurityIdentity"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SecurityRoleRef">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="roleNameLink" eType="#//RoleName"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="roleLink" eType="#//RoleLink"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="roleName" eType="#//RoleName"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RoleLink">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="roleName" eType="#//RoleName"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SecurityIdentity">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="runAs" eType="#//RunAs"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="userCallerIdentity" eType="#//UserCallerIdentity"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RunAs">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="roleName" eType="#//RoleName"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="UserCallerIdentity">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EjbClass">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AssemblyDescriptor">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="securityRole" upperBound="-1"
+        eType="#//SecurityRole" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="methodPermission" upperBound="-1"
+        eType="#//MethodPermission" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="excludeList" eType="#//ExcludeList"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SecurityRole">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="roleName" eType="#//RoleName"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RoleName">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MethodPermission">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="roleName" unique="false"
+        upperBound="-1" eType="#//RoleName"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="unchecked" eType="#//Unchecked"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="method" upperBound="-1"
+        eType="#//Method" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="source" eType="#//SourceType"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="SourceType">
+    <eLiterals name="XML" literal="XML"/>
+    <eLiterals name="CODE" value="1" literal="CODE"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Unchecked">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ExcludeList">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="method" upperBound="-1"
+        eType="#//Method" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Method">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ejbName" eType="#//EjbName"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="methodIntf" eType="#//MethodIntf"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="methodName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="methodParams" eType="#//MethodParams"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EjbName">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MethodIntf">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//MethodInfType"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="MethodInfType">
+    <eLiterals name="HOME" literal="HOME"/>
+    <eLiterals name="REMOTE" value="1" literal="REMOTE"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MethodParams">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="methodParam" upperBound="-1"
+        eType="#//MethodParam" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MethodParam">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="param" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+</ecore:EPackage>

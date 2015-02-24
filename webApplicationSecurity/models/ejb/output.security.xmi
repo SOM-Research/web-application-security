@@ -29,88 +29,88 @@
       <methodPermission>
         <method ejbName="/0/@enterpriseBeans/@session.0/@ejbName" methodName="toBeInvokedByRole2"/>
       </methodPermission>
-      <methodPermission roleName="/0/@assemblyDescriptor/@securityRole.3/@roleName /0/@assemblyDescriptor/@securityRole.4/@roleName">
+      <methodPermission roleName="/0/@assemblyDescriptor/@securityRole.4/@roleName /0/@assemblyDescriptor/@securityRole.3/@roleName" source="CODE">
         <method ejbName="/8" methodName="createReservation">
           <methodParams>
             <methodParam param="reservation"/>
           </methodParams>
         </method>
       </methodPermission>
-      <methodPermission roleName="/0/@assemblyDescriptor/@securityRole.3/@roleName /0/@assemblyDescriptor/@securityRole.4/@roleName">
+      <methodPermission roleName="/0/@assemblyDescriptor/@securityRole.4/@roleName /0/@assemblyDescriptor/@securityRole.3/@roleName" source="CODE">
         <method ejbName="/9" methodName="removeReservation">
           <methodParams>
             <methodParam param="reservation"/>
           </methodParams>
         </method>
       </methodPermission>
-      <methodPermission roleName="/0/@assemblyDescriptor/@securityRole.3/@roleName /0/@assemblyDescriptor/@securityRole.4/@roleName">
+      <methodPermission roleName="/0/@assemblyDescriptor/@securityRole.4/@roleName /0/@assemblyDescriptor/@securityRole.3/@roleName" source="CODE">
         <method ejbName="/10" methodName="updateReservation">
           <methodParams>
             <methodParam param="reservation"/>
           </methodParams>
         </method>
       </methodPermission>
-      <methodPermission roleName="/0/@assemblyDescriptor/@securityRole.3/@roleName /0/@assemblyDescriptor/@securityRole.4/@roleName">
+      <methodPermission roleName="/0/@assemblyDescriptor/@securityRole.4/@roleName /0/@assemblyDescriptor/@securityRole.3/@roleName" source="CODE">
         <method ejbName="/11" methodName="removeAllUserReservations">
           <methodParams>
             <methodParam param="user"/>
           </methodParams>
         </method>
       </methodPermission>
-      <methodPermission roleName="/0/@assemblyDescriptor/@securityRole.4/@roleName">
+      <methodPermission roleName="/0/@assemblyDescriptor/@securityRole.4/@roleName" source="CODE">
         <method ejbName="/12" methodName="removeAllRestaurantReservation">
           <methodParams>
             <methodParam param="restaurant"/>
           </methodParams>
         </method>
       </methodPermission>
-      <methodPermission roleName="/0/@assemblyDescriptor/@securityRole.3/@roleName /0/@assemblyDescriptor/@securityRole.4/@roleName">
+      <methodPermission roleName="/0/@assemblyDescriptor/@securityRole.4/@roleName /0/@assemblyDescriptor/@securityRole.3/@roleName" source="CODE">
         <method ejbName="/13" methodName="getReservation">
           <methodParams>
             <methodParam param="idReservation"/>
           </methodParams>
         </method>
       </methodPermission>
-      <methodPermission roleName="/0/@assemblyDescriptor/@securityRole.3/@roleName /0/@assemblyDescriptor/@securityRole.4/@roleName">
+      <methodPermission roleName="/0/@assemblyDescriptor/@securityRole.4/@roleName /0/@assemblyDescriptor/@securityRole.3/@roleName" source="CODE">
         <method ejbName="/14" methodName="getUserReservations">
           <methodParams>
             <methodParam param="user"/>
           </methodParams>
         </method>
       </methodPermission>
-      <methodPermission roleName="/0/@assemblyDescriptor/@securityRole.4/@roleName">
+      <methodPermission roleName="/0/@assemblyDescriptor/@securityRole.4/@roleName" source="CODE">
         <method ejbName="/15" methodName="getRestaurantReservations">
           <methodParams>
             <methodParam param="restaurant"/>
           </methodParams>
         </method>
       </methodPermission>
-      <methodPermission roleName="/0/@assemblyDescriptor/@securityRole.4/@roleName">
+      <methodPermission roleName="/0/@assemblyDescriptor/@securityRole.4/@roleName" source="CODE">
         <method ejbName="/16" methodName="getMenuItemReservations">
           <methodParams>
             <methodParam param="menuItem"/>
           </methodParams>
         </method>
       </methodPermission>
-      <methodPermission>
+      <methodPermission source="CODE">
         <method ejbName="/17" methodName="get">
           <methodParams/>
         </method>
       </methodPermission>
-      <methodPermission>
+      <methodPermission source="CODE">
         <method ejbName="/18" methodName="post">
           <methodParams>
             <methodParam param="content"/>
           </methodParams>
         </method>
       </methodPermission>
-      <methodPermission>
+      <methodPermission source="CODE">
         <unchecked/>
         <method ejbName="/2" methodName="permitAll">
           <methodParams/>
         </method>
       </methodPermission>
-      <methodPermission>
+      <methodPermission source="CODE">
         <unchecked/>
         <method ejbName="/3" methodName="getBaseUri">
           <methodParams>
@@ -118,7 +118,7 @@
           </methodParams>
         </method>
       </methodPermission>
-      <methodPermission>
+      <methodPermission source="CODE">
         <unchecked/>
         <method ejbName="/4" methodName="getClientAddress">
           <methodParams>
@@ -126,7 +126,7 @@
           </methodParams>
         </method>
       </methodPermission>
-      <methodPermission>
+      <methodPermission source="CODE">
         <unchecked/>
         <method ejbName="/5" methodName="getRequest">
           <methodParams>
@@ -134,7 +134,7 @@
           </methodParams>
         </method>
       </methodPermission>
-      <methodPermission>
+      <methodPermission source="CODE">
         <unchecked/>
         <method ejbName="/6" methodName="getLocale">
           <methodParams>
@@ -142,7 +142,7 @@
           </methodParams>
         </method>
       </methodPermission>
-      <methodPermission>
+      <methodPermission source="CODE">
         <unchecked/>
         <method ejbName="/7" methodName="getLocales">
           <methodParams>
@@ -150,13 +150,13 @@
           </methodParams>
         </method>
       </methodPermission>
-      <methodPermission>
+      <methodPermission source="CODE">
         <method ejbName="/19" methodName="*"/>
       </methodPermission>
-      <methodPermission roleName="/0/@assemblyDescriptor/@securityRole.5/@roleName">
+      <methodPermission roleName="/0/@assemblyDescriptor/@securityRole.5/@roleName" source="CODE">
         <method ejbName="/20" methodName="*"/>
       </methodPermission>
-      <methodPermission>
+      <methodPermission source="CODE">
         <unchecked/>
         <method ejbName="/21" methodName="*"/>
       </methodPermission>

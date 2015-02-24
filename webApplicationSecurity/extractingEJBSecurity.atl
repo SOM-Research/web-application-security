@@ -401,7 +401,8 @@ rule Element2MethodPermission {
 		t: SEC!MethodPermission (
 			method <- s.getAttributes('method'),
 			unchecked <- s.getAttribute('unchecked'),
-			roleName <- s.getAttributes('role-name')->collect(rn | thisModule.getDistinctRole(rn.getText))->flatten()
+			roleName <- s.getAttributes('role-name')->collect(rn | thisModule.getDistinctRole(rn.getText))->flatten(),
+			source <- #XML
 		)
 }
 
@@ -506,7 +507,8 @@ rule AnnotatedMethod2MethodPermitAll {
 	to
 		t: SEC!MethodPermission (
 			unchecked <- u,
-			method <- thisModule.createMethod(s)
+			method <- thisModule.createMethod(s),
+			source <- #CODE
 		),
 		u : SEC!Unchecked ()
 }
@@ -526,7 +528,8 @@ rule AnnotatedMethod2MethodPermission {
 	to
 		t: SEC!MethodPermission (
 			roleName <- s.getRolesAllowed,
-			method <- thisModule.createMethod(s)
+			method <- thisModule.createMethod(s),
+			source <- #CODE
 		)
 }
 
@@ -536,7 +539,8 @@ rule RolesAllowedAnnotatedClass2MethodPermission {
 	to
 		t: SEC!MethodPermission (
 			roleName <- s.getRolesAllowed,
-			method <- thisModule.createAllMethod(s)
+			method <- thisModule.createAllMethod(s),
+			source <- #CODE
 		)
 }
 
@@ -546,7 +550,8 @@ rule PermitAllAnnotatedClass2MethodPermission {
 	to
 		t: SEC!MethodPermission (
 			unchecked <- u,
-			method <- thisModule.createAllMethod(s)
+			method <- thisModule.createAllMethod(s),
+			source <- #CODE
 		),
 		u : SEC!Unchecked ()
 }
