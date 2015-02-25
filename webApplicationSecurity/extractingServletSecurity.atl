@@ -309,17 +309,17 @@ rule Element2WebResourceCollection {
 			id <- s.getAttribute('id'),
 			webResourceName <- s.getAttribute('web-resource-name').getText,
 			urlPattern <- s.getAttributes('url-pattern'),
-			httpMethod <- s.getAttributes('http-method')->union(s.getAttributes('http-method-omissions'))
+			httpMethod <- s.getAttributes('http-method')->union(s.getAttributes('http-method-omission'))
 		)
 }
 
 rule Element2HttpMethod {
 	from
-		s: XML!Element (s.name = 'http-method' or s.name = 'http-method-omissions')
+		s: XML!Element (s.name = 'http-method' or s.name = 'http-method-omission')
 	to
 		t: SEC!HttpMethod (
 			name <- s.getText,
-			omission <- s.name = 'http-method-omissions'						
+			omission <- s.name = 'http-method-omission'						
 		)
 }
 
