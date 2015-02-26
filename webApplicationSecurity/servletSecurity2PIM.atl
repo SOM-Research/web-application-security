@@ -1,0 +1,156 @@
+-- @path SEC=/webApplicationSecurity/metamodels/ServletSecurity.ecore
+-- @path PIM=/webApplicationSecurity/metamodels/websecurity.ecore
+
+module servletSecurity2PIM;
+create OUT : PIM from IN : SEC;
+
+helper def : getAllDistinctUrlPatterns : Sequence(SEC!UrlPattern) =
+	SEC!UrlPattern.allInstances()->iterate(url; output : Sequence(SEC!UrlPattern) = Sequence{} |
+		if output->exists(o | o.value = url.value) then
+			output
+		else
+			output->including(url)
+		endif
+	);
+
+helper context SEC!UrlPattern def : getDistinctUrlPattern : SEC!UrlPattern =
+	thisModule.getAllDistinctUrlPatterns->select(url | url.value = self.value)->first();
+
+helper context SEC!UrlPattern def : isInAllUrlPatterns : Boolean =
+	thisModule.getAllDistinctUrlPatterns->exists(url | url = self);
+
+helper def : getAllRoleName : Sequence(SEC!RoleName) =
+	SEC!RoleName.allInstances();
+
+helper def : getAllDistinctHTTPMethods : Sequence(SEC!HttpMethod) =
+	SEC!HttpMethod.allInstances()->reject(m | m.omission)
+		->iterate(m; output : Sequence(SEC!HttpMethod) = Sequence{} |
+			if output->exists(o | o.name = m.name) then
+				output
+			else
+				output->including(m)
+			endif
+		);
+
+helper context SEC!HttpMethod def : getDistinctHTTPMethod : SEC!HttpMethod =
+	thisModule.getAllDistinctHTTPMethods->select(method | method.name = self.name)->first();
+
+helper context OclAny def: getSecurityConstraint : SEC!SecurityConstraint =
+	if self.oclIsTypeOf(SEC!SecurityConstraint) then
+		self
+	else
+		if self.oclIsTypeOf(SEC!Security) then
+			OclUndefined
+		else
+			self.refImmediateComposite().getSecurityConstraint
+		endif
+	endif;
+
+helper context OclAny def: getWebResourceCollection : SEC!WebResourceCollection =
+	if self.oclIsTypeOf(SEC!WebResourceCollection) then
+		self
+	else
+		if self.oclIsTypeOf(SEC!Security) then
+			OclUndefined
+		else
+			self.refImmediateComposite().getWebResourceCollection
+		endif
+	endif;
+
+helper def : getHttpMethodUrlPairs : Sequence(OclAny) =
+	SEC!HttpMethod.allInstances()->reject(m | m.omission)->iterate(method ; o1 : Sequence(OclAny) = Sequence{} |
+		method.getWebResourceCollection.urlPattern->iterate(url ; o2 : Sequence(OclAny) = o1 |
+			if o2->exists(o | o.method.name = method.name) then
+				o2->including(Tuple{method = o2->select(o | o.method.name = method.name)->first().method, url = url.getDistinctUrlPattern, ref_method = method})
+			else
+				o2->including(Tuple{method = method, url = url.getDistinctUrlPattern, ref_method = method})
+			endif
+		)
+	);
+
+helper def : getHttpMethodOmissionUrlPairs : Sequence(OclAny) =
+	SEC!HttpMethod.allInstances()->select(m | m.omission)->iterate(om_method ; o1 : Sequence(OclAny) = Sequence{} |
+		om_method.getWebResourceCollection.urlPattern->iterate(url ; o2 : Sequence(OclAny) = o1 |			
+			thisModule.getAllDistinctHTTPMethods->reject(m | m.omission)->select(m | m.name <> om_method.name)
+					->iterate(method ; o3 : Sequence(OclAny) = o2 |
+						if o3->exists(o | o.method.name = method.name) then
+							o3->including(Tuple{method = o3->select(o | o.method.name = method.name)->first().method, url = url.getDistinctUrlPattern, ref_method = om_method})
+						else
+							o3->including(Tuple{method = method, url = url.getDistinctUrlPattern, ref_method = om_method})
+						endif
+				)
+			)
+	);
+
+helper context SEC!HttpMethod def : isInHttpMethodUrlPairs : Boolean =
+	thisModule.getHttpMethodUrlPairs->exists(p | p.method = self);
+
+rule Security2WebApplication {
+	from
+		s: SEC!Security
+	to
+		t: PIM!WebApplication (
+			resources <- thisModule.getAllDistinctUrlPatterns,
+			requests <- thisModule.getHttpMethodUrlPairs->union(thisModule.getHttpMethodOmissionUrlPairs)
+								->collect(pair | thisModule.createRequest(pair)),
+			subjects <- thisModule.getAllRoleName
+		)
+}
+
+lazy rule createRequest {
+	from
+		s: OclAny
+	to
+		t: PIM!HTTPRequest (
+			method <- s.method,
+			resource <- s.url,
+			subject <-
+						if s.ref_method.getSecurityConstraint.authConstraint.oclIsUndefined() then
+							thisModule.getAllRoleName
+						else
+							if s.ref_method.getSecurityConstraint.authConstraint.roleName.isEmpty() then
+								thisModule.getAllRoleName
+							else
+								s.ref_method.getSecurityConstraint.authConstraint.roleName
+							endif
+						endif,
+			kind <-
+					if s.ref_method.getSecurityConstraint.authConstraint.oclIsUndefined() then
+						#Allow
+					else
+						if s.ref_method.getSecurityConstraint.authConstraint.roleName.isEmpty() then
+							#Deny
+						else
+							#Allow
+						endif
+					endif
+		)
+}
+
+
+rule UrlPattern2Resource {
+	from
+		s: SEC!UrlPattern (s.isInAllUrlPatterns)
+	to
+		t: PIM!Resource (
+			path <- s.value	
+		)
+}
+
+rule RoleName2Role {
+	from
+		s: SEC!RoleName
+	to
+		t: PIM!Role (
+			name <- s.name
+		)
+}
+
+rule HttpMethod2HttpMethod {
+	from
+		s: SEC!HttpMethod (s.isInHttpMethodUrlPairs)
+	to
+		t: PIM!HttpMethod (
+			name <- s.name	
+		)
+}

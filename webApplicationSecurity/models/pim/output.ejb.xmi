@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<WebApplication xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="websecurity">
+  <aResources>
+    <methods name="toBeInvokedByRole2"/>
+  </aResources>
+  <aResources>
+    <methods name="denyAll"/>
+  </aResources>
+  <aResources>
+    <methods name="permitAll"/>
+  </aResources>
+  <aResources>
+    <methods name="getBaseUri"/>
+  </aResources>
+  <aResources>
+    <methods name="getClientAddress"/>
+  </aResources>
+  <aResources>
+    <methods name="getRequest"/>
+  </aResources>
+  <aResources>
+    <methods name="getLocale"/>
+  </aResources>
+  <aResources>
+    <methods name="getLocales"/>
+  </aResources>
+  <aResources>
+    <methods name="createReservation"/>
+  </aResources>
+  <aResources>
+    <methods name="removeReservation"/>
+  </aResources>
+  <aResources>
+    <methods name="updateReservation"/>
+  </aResources>
+  <aResources>
+    <methods name="removeAllUserReservations"/>
+  </aResources>
+  <aResources>
+    <methods name="removeAllRestaurantReservation"/>
+  </aResources>
+  <aResources>
+    <methods name="getReservation"/>
+  </aResources>
+  <aResources>
+    <methods name="getUserReservations"/>
+  </aResources>
+  <aResources>
+    <methods name="getRestaurantReservations"/>
+  </aResources>
+  <aResources>
+    <methods name="getMenuItemReservations"/>
+  </aResources>
+  <aResources>
+    <methods name="get"/>
+  </aResources>
+  <aResources>
+    <methods name="post"/>
+  </aResources>
+  <aResources>
+    <methods name="*"/>
+  </aResources>
+  <aResources>
+    <methods name="*"/>
+  </aResources>
+  <aResources>
+    <methods name="*"/>
+  </aResources>
+  <subjects xsi:type="Role" name="PROJECT_MANAGER"/>
+  <subjects xsi:type="Role" name="DEVELOPER"/>
+  <subjects xsi:type="Role" name="Users"/>
+  <subjects xsi:type="Role" name="USER"/>
+  <subjects xsi:type="Role" name="MANAGER"/>
+  <subjects xsi:type="Role" name="guest"/>
+</WebApplication>
