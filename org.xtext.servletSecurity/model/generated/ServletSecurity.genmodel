@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.xtext.servletSecurity/src-gen" editDirectory="/org.xtext.servletSecurity.edit/src"
+    editorDirectory="/org.xtext.servletSecurity.editor/src" modelPluginID="org.xtext.servletSecurity"
+    forceOverwrite="true" modelName="ServletSecurity" updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    complianceLevel="5.0" copyrightFields="false" editPluginID="org.xtext.servletSecurity.edit"
+    editorPluginID="org.xtext.servletSecurity.editor" runtimeVersion="2.10">
+  <genPackages prefix="ServletSecurity" basePackage="org.xtext.servletSecurity" disposableProviderFactory="true"
+      fileExtensions="ssy" ecorePackage="ServletSecurity.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="ServletSecurity.ecore#//SourceType">
+      <genEnumLiterals ecoreEnumLiteral="ServletSecurity.ecore#//SourceType/XML"/>
+      <genEnumLiterals ecoreEnumLiteral="ServletSecurity.ecore#//SourceType/CODE"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="ServletSecurity.ecore#//RestrictionType">
+      <genEnumLiterals ecoreEnumLiteral="ServletSecurity.ecore#//RestrictionType/NONE"/>
+      <genEnumLiterals ecoreEnumLiteral="ServletSecurity.ecore#//RestrictionType/INTEGRAL"/>
+      <genEnumLiterals ecoreEnumLiteral="ServletSecurity.ecore#//RestrictionType/CONFIDENTIAL"/>
+    </genEnums>
+    <genClasses ecoreClass="ServletSecurity.ecore#//Security">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ServletSecurity.ecore#//Security/role"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ServletSecurity.ecore#//Security/constraint"/>
+    </genClasses>
+    <genClasses ecoreClass="ServletSecurity.ecore#//SecurityRole">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ServletSecurity.ecore#//SecurityRole/roleName"/>
+    </genClasses>
+    <genClasses ecoreClass="ServletSecurity.ecore#//RoleName">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ServletSecurity.ecore#//RoleName/name"/>
+    </genClasses>
+    <genClasses ecoreClass="ServletSecurity.ecore#//SecurityConstraint">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ServletSecurity.ecore#//SecurityConstraint/displayName"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ServletSecurity.ecore#//SecurityConstraint/webResourceCollection"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ServletSecurity.ecore#//SecurityConstraint/authConstraint"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ServletSecurity.ecore#//SecurityConstraint/userDataConstraint"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ServletSecurity.ecore#//SecurityConstraint/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ServletSecurity.ecore#//SecurityConstraint/source"/>
+    </genClasses>
+    <genClasses ecoreClass="ServletSecurity.ecore#//Identifier">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ServletSecurity.ecore#//Identifier/name"/>
+    </genClasses>
+    <genClasses ecoreClass="ServletSecurity.ecore#//DisplayName">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ServletSecurity.ecore#//DisplayName/value"/>
+    </genClasses>
+    <genClasses ecoreClass="ServletSecurity.ecore#//WebResourceCollection">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ServletSecurity.ecore#//WebResourceCollection/webResourceName"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ServletSecurity.ecore#//WebResourceCollection/urlPattern"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ServletSecurity.ecore#//WebResourceCollection/httpMethod"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ServletSecurity.ecore#//WebResourceCollection/id"/>
+    </genClasses>
+    <genClasses ecoreClass="ServletSecurity.ecore#//UrlPattern">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ServletSecurity.ecore#//UrlPattern/value"/>
+    </genClasses>
+    <genClasses ecoreClass="ServletSecurity.ecore#//HttpMethod">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ServletSecurity.ecore#//HttpMethod/omission"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ServletSecurity.ecore#//HttpMethod/name"/>
+    </genClasses>
+    <genClasses ecoreClass="ServletSecurity.ecore#//AuthConstraint">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ServletSecurity.ecore#//AuthConstraint/roleName"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ServletSecurity.ecore#//AuthConstraint/id"/>
+    </genClasses>
+    <genClasses ecoreClass="ServletSecurity.ecore#//UserDataConstraint">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ServletSecurity.ecore#//UserDataConstraint/transportGuarantee"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ServletSecurity.ecore#//UserDataConstraint/id"/>
+    </genClasses>
+    <genClasses ecoreClass="ServletSecurity.ecore#//TransportGuarantee">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ServletSecurity.ecore#//TransportGuarantee/restriction"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.xtext.ejbSecurity/src-gen" editDirectory="/org.xtext.ejbSecurity.edit/src"
+    editorDirectory="/org.xtext.ejbSecurity.editor/src" modelPluginID="org.xtext.ejbSecurity"
+    forceOverwrite="true" modelName="EjbSecurity" updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    complianceLevel="5.0" copyrightFields="false" editPluginID="org.xtext.ejbSecurity.edit"
+    editorPluginID="org.xtext.ejbSecurity.editor" runtimeVersion="2.10">
+  <genPackages prefix="EjbSecurity" basePackage="org.xtext.ejbSecurity" disposableProviderFactory="true"
+      fileExtensions="esy" ecorePackage="EjbSecurity.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="EjbSecurity.ecore#//SourceType">
+      <genEnumLiterals ecoreEnumLiteral="EjbSecurity.ecore#//SourceType/XML"/>
+      <genEnumLiterals ecoreEnumLiteral="EjbSecurity.ecore#//SourceType/CODE"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="EjbSecurity.ecore#//MethodInfType">
+      <genEnumLiterals ecoreEnumLiteral="EjbSecurity.ecore#//MethodInfType/HOME"/>
+      <genEnumLiterals ecoreEnumLiteral="EjbSecurity.ecore#//MethodInfType/REMOTE"/>
+    </genEnums>
+    <genClasses ecoreClass="EjbSecurity.ecore#//Security">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EjbSecurity.ecore#//Security/enterpriseBeans"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EjbSecurity.ecore#//Security/assemblyDescriptor"/>
+    </genClasses>
+    <genClasses ecoreClass="EjbSecurity.ecore#//EnterpriseBeans">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EjbSecurity.ecore#//EnterpriseBeans/session"/>
+    </genClasses>
+    <genClasses ecoreClass="EjbSecurity.ecore#//Session">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EjbSecurity.ecore#//Session/ejbName"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EjbSecurity.ecore#//Session/ejbClass"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EjbSecurity.ecore#//Session/securityRoleRef"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EjbSecurity.ecore#//Session/securityIdentity"/>
+    </genClasses>
+    <genClasses ecoreClass="EjbSecurity.ecore#//SecurityRoleRef">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EjbSecurity.ecore#//SecurityRoleRef/roleNameLink"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EjbSecurity.ecore#//SecurityRoleRef/roleLink"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference EjbSecurity.ecore#//SecurityRoleRef/roleName"/>
+    </genClasses>
+    <genClasses ecoreClass="EjbSecurity.ecore#//RoleLink">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference EjbSecurity.ecore#//RoleLink/roleName"/>
+    </genClasses>
+    <genClasses ecoreClass="EjbSecurity.ecore#//SecurityIdentity">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EjbSecurity.ecore#//SecurityIdentity/runAs"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EjbSecurity.ecore#//SecurityIdentity/userCallerIdentity"/>
+    </genClasses>
+    <genClasses ecoreClass="EjbSecurity.ecore#//RunAs">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference EjbSecurity.ecore#//RunAs/roleName"/>
+    </genClasses>
+    <genClasses ecoreClass="EjbSecurity.ecore#//UserCallerIdentity">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute EjbSecurity.ecore#//UserCallerIdentity/name"/>
+    </genClasses>
+    <genClasses ecoreClass="EjbSecurity.ecore#//EjbClass">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute EjbSecurity.ecore#//EjbClass/name"/>
+    </genClasses>
+    <genClasses ecoreClass="EjbSecurity.ecore#//AssemblyDescriptor">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EjbSecurity.ecore#//AssemblyDescriptor/securityRole"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EjbSecurity.ecore#//AssemblyDescriptor/methodPermission"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EjbSecurity.ecore#//AssemblyDescriptor/excludeList"/>
+    </genClasses>
+    <genClasses ecoreClass="EjbSecurity.ecore#//SecurityRole">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EjbSecurity.ecore#//SecurityRole/roleName"/>
+    </genClasses>
+    <genClasses ecoreClass="EjbSecurity.ecore#//RoleName">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute EjbSecurity.ecore#//RoleName/name"/>
+    </genClasses>
+    <genClasses ecoreClass="EjbSecurity.ecore#//MethodPermission">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference EjbSecurity.ecore#//MethodPermission/roleName"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EjbSecurity.ecore#//MethodPermission/unchecked"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EjbSecurity.ecore#//MethodPermission/method"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute EjbSecurity.ecore#//MethodPermission/source"/>
+    </genClasses>
+    <genClasses ecoreClass="EjbSecurity.ecore#//Unchecked">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute EjbSecurity.ecore#//Unchecked/name"/>
+    </genClasses>
+    <genClasses ecoreClass="EjbSecurity.ecore#//ExcludeList">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EjbSecurity.ecore#//ExcludeList/method"/>
+    </genClasses>
+    <genClasses ecoreClass="EjbSecurity.ecore#//Method">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference EjbSecurity.ecore#//Method/ejbName"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EjbSecurity.ecore#//Method/methodIntf"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute EjbSecurity.ecore#//Method/methodName"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EjbSecurity.ecore#//Method/methodParams"/>
+    </genClasses>
+    <genClasses ecoreClass="EjbSecurity.ecore#//EjbName">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute EjbSecurity.ecore#//EjbName/name"/>
+    </genClasses>
+    <genClasses ecoreClass="EjbSecurity.ecore#//MethodIntf">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute EjbSecurity.ecore#//MethodIntf/type"/>
+    </genClasses>
+    <genClasses ecoreClass="EjbSecurity.ecore#//MethodParams">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EjbSecurity.ecore#//MethodParams/methodParam"/>
+    </genClasses>
+    <genClasses ecoreClass="EjbSecurity.ecore#//MethodParam">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute EjbSecurity.ecore#//MethodParam/param"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
