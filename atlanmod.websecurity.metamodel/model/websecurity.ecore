@@ -6,6 +6,10 @@
         eType="#//Resource" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="aResources" upperBound="-1"
         eType="#//ActiveResource" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="subjects" upperBound="-1"
+        eType="#//Subject" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="requests" upperBound="-1"
+        eType="#//Request" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Resource">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="path" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -31,6 +35,8 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Subject" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="request" upperBound="-1"
+        eType="#//Request" eOpposite="#//Request/subject"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MethodRequest" eSuperTypes="#//Request">
     <eStructuralFeatures xsi:type="ecore:EReference" name="method" lowerBound="1"
@@ -38,7 +44,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Request">
     <eStructuralFeatures xsi:type="ecore:EReference" name="subject" lowerBound="1"
-        upperBound="-1" eType="#//Subject"/>
+        upperBound="-1" eType="#//Subject" eOpposite="#//Subject/request"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="active" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
         defaultValueLiteral="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="kind" lowerBound="1" eType="#//RequestKind"/>
