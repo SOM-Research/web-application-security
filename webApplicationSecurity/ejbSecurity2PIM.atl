@@ -19,17 +19,47 @@ helper context EJB!EjbName def : isInDistinctEjbNames : Boolean =
 helper def : getAllRoleNames : Sequence(EJB!RoleName) =
 	EJB!RoleName.allInstances();
 
+helper def : getAllSessions : Sequence(EJB!Session) =
+	EJB!Session.allInstances();
+
 helper def : getAllMethods : Sequence(EJB!Method) =
 	EJB!Method.allInstances();
 
 helper context EJB!EjbName def : getAllMethodsEjbName : Sequence(EJB!Method) =
 	thisModule.getAllMethods->select(m | m.ejbName.name = self.name);
 
+helper def : getAllDistinctMethodsEjbName : Sequence(EJB!Method) =
+	thisModule.getAllDistinctEjbNames->collect(ejb | ejb.getAllMethodsEjbName)
+		->flatten()->asSet()->asSequence();
+
+helper context EJB!Method def : isInDistinctMethods : Boolean =
+	thisModule.getAllDistinctMethodsEjbName->exists(m | m = self);
+
+helper context EJB!Method def : getDistinctMethod : EBJ!Method =
+	thisModule.getAllDistinctMethodsEjbName->select(m | m.methodName = self.methodName);
+
 helper def : getMethodRoleNameListPairs : Sequence(OclAny) =
 	EJB!MethodPermission.allInstances()->collect(mp | mp.method)->flatten()
 		->iterate(m ; output : Sequence(OclAny) = Sequence{} |
 			output.including(Tuple{method = m, roles = m.refImmediateComposite().roleName})
 		);
+
+helper def : getAllExcludeList : Sequence(EBJ!ExcludeList) =
+	EJB!ExcludeList.allInstances();
+
+helper context EJB!EjbName def : getRunAsRole : EJB!RoleName =
+	let runAs : EJB!RunAs = 
+	thisModule.getAllSessions->select(session | session.ejbName.name = self.name)
+								->reject(session | session.securityIdentity.oclIsUndefined())
+									->collect(session | session.securityIdentity)	
+										->reject(si | si.runAs.oclIsUndefined())
+											->collect(si | si.runAs)->first()
+	in
+	if runAs.oclIsUndefined() then
+		OclUndefined
+	else
+		runAs.roleName
+	endif;
 
 rule Security2WebApplication {
 	from
@@ -38,7 +68,9 @@ rule Security2WebApplication {
 		t: PIM!WebApplication (
 			aResources <- thisModule.getAllDistinctEjbNames,
 			subjects <- thisModule.getAllRoleNames,
-			requests <- thisModule.getMethodRoleNameListPairs->collect(pair | thisModule.createMethodRequest(pair))
+			requests <- thisModule.getMethodRoleNameListPairs->collect(pair | thisModule.createAllowedMethodRequest(pair))
+							->union(thisModule.getAllExcludeList->collect(e | e.method)->flatten()->collect(method | method.getDistinctMethod)->flatten()->asSet()->asSequence()
+										->collect(forbidden_method | thisModule.createDeniedMethodRequest(forbidden_method)))
 		)
 }
 
@@ -56,20 +88,22 @@ rule EJBName2ActiveResource {
 		s: EJB!EjbName (s.isInDistinctEjbNames)
 	to
 		t: PIM!ActiveResource (
-			methods <- s.getAllMethodsEjbName
+			path <- s.name,
+			methods <- s.getAllMethodsEjbName,
+			identifiesAs <- s.getRunAsRole
 		)
 }
 
 rule Method2Method {
 	from
-		s: EJB!Method
+		s: EJB!Method (s.isInDistinctMethods)
 	to
 		t: PIM!Method (
 			name <- s.methodName
 		)
 }
 
-lazy rule createMethodRequest {
+lazy rule createAllowedMethodRequest {
 	from
 		s: OclAny
 	to
@@ -80,6 +114,38 @@ lazy rule createMethodRequest {
 							thisModule.getAllRoleNames
 						else
 							s.roles
-						endif
+						endif,
+			kind <- #Allow
+		)
+}
+
+lazy rule createDeniedMethodRequest {
+	from
+		s: EJB!Method
+	to
+		t: PIM!MethodRequest (
+			method <- s,
+			subject <- thisModule.getAllRoleNames,
+			kind <- #Deny
+		)
+}
+
+rule SecurityRoleRef2RoleTransition {
+	from
+		s: EJB!SecurityRoleRef
+	to
+		t: PIM!RoleTransition (
+			sourceRole <- 
+							if s.roleLink.oclIsUndefined() then
+								s.roleName
+							else
+								s.roleNameLink
+							endif,
+			targetRole <- 
+							if s.roleLink.oclIsUndefined() then
+								s.roleName
+							else
+								s.roleLink.roleName
+							endif
 		)
 }
