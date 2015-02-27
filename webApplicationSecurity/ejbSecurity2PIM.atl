@@ -41,7 +41,17 @@ helper context EJB!Method def : getDistinctMethod : EBJ!Method =
 helper def : getMethodRoleNameListPairs : Sequence(OclAny) =
 	EJB!MethodPermission.allInstances()->collect(mp | mp.method)->flatten()
 		->iterate(m ; output : Sequence(OclAny) = Sequence{} |
-			output.including(Tuple{method = m, roles = m.refImmediateComposite().roleName})
+			output.including(Tuple{method = m, roles = 
+														if m.refImmediateComposite().roleName.isEmpty() then
+															if m.refImmediateComposite().unchecked.oclIsUndefined() then
+																Sequence{}
+															else
+																thisModule.getAllRoleNames
+															endif
+														else
+															m.refImmediateComposite().roleName
+														endif
+									})
 		);
 
 helper def : getAllExcludeList : Sequence(EBJ!ExcludeList) =
@@ -109,12 +119,7 @@ lazy rule createAllowedMethodRequest {
 	to
 		t: PIM!MethodRequest (
 			method <- s.method,
-			subject <- 
-						if s.roles.isEmpty() then
-							thisModule.getAllRoleNames
-						else
-							s.roles
-						endif,
+			subject <- s.roles,
 			kind <- #Allow
 		)
 }

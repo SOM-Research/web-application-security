@@ -34,13 +34,13 @@
   <aResources path="SecuredEJB">
     <methods name="*"/>
   </aResources>
-  <subjects xsi:type="Role" name="PROJECT_MANAGER" request="//@requests.0 //@requests.10 //@requests.11 //@requests.12 //@requests.13 //@requests.14 //@requests.15 //@requests.16 //@requests.17 //@requests.18 //@requests.20 //@requests.21"/>
-  <subjects xsi:type="Role" name="DEVELOPER" request="//@requests.0 //@requests.10 //@requests.11 //@requests.12 //@requests.13 //@requests.14 //@requests.15 //@requests.16 //@requests.17 //@requests.18 //@requests.20 //@requests.21"/>
-  <subjects xsi:type="Role" name="Users" request="//@requests.0 //@requests.10 //@requests.11 //@requests.12 //@requests.13 //@requests.14 //@requests.15 //@requests.16 //@requests.17 //@requests.18 //@requests.20 //@requests.21"/>
-  <subjects xsi:type="Role" name="USER" request="//@requests.0 //@requests.1 //@requests.2 //@requests.3 //@requests.4 //@requests.6 //@requests.7 //@requests.10 //@requests.11 //@requests.12 //@requests.13 //@requests.14 //@requests.15 //@requests.16 //@requests.17 //@requests.18 //@requests.20 //@requests.21"/>
-  <subjects xsi:type="Role" name="MANAGER" request="//@requests.0 //@requests.1 //@requests.2 //@requests.3 //@requests.4 //@requests.5 //@requests.6 //@requests.7 //@requests.8 //@requests.9 //@requests.10 //@requests.11 //@requests.12 //@requests.13 //@requests.14 //@requests.15 //@requests.16 //@requests.17 //@requests.18 //@requests.20 //@requests.21"/>
-  <subjects xsi:type="Role" name="guest" request="//@requests.0 //@requests.10 //@requests.11 //@requests.12 //@requests.13 //@requests.14 //@requests.15 //@requests.16 //@requests.17 //@requests.18 //@requests.19 //@requests.20 //@requests.21"/>
-  <requests xsi:type="MethodRequest" subject="//@subjects.0 //@subjects.1 //@subjects.2 //@subjects.3 //@subjects.4 //@subjects.5" method="//@aResources.0/@methods.0"/>
+  <subjects xsi:type="Role" name="PROJECT_MANAGER" request="//@requests.12 //@requests.13 //@requests.14 //@requests.15 //@requests.16 //@requests.17 //@requests.20 //@requests.21"/>
+  <subjects xsi:type="Role" name="DEVELOPER" request="//@requests.12 //@requests.13 //@requests.14 //@requests.15 //@requests.16 //@requests.17 //@requests.20 //@requests.21"/>
+  <subjects xsi:type="Role" name="Users" request="//@requests.12 //@requests.13 //@requests.14 //@requests.15 //@requests.16 //@requests.17 //@requests.20 //@requests.21"/>
+  <subjects xsi:type="Role" name="USER" request="//@requests.1 //@requests.2 //@requests.3 //@requests.4 //@requests.6 //@requests.7 //@requests.12 //@requests.13 //@requests.14 //@requests.15 //@requests.16 //@requests.17 //@requests.20 //@requests.21"/>
+  <subjects xsi:type="Role" name="MANAGER" request="//@requests.1 //@requests.2 //@requests.3 //@requests.4 //@requests.5 //@requests.6 //@requests.7 //@requests.8 //@requests.9 //@requests.12 //@requests.13 //@requests.14 //@requests.15 //@requests.16 //@requests.17 //@requests.20 //@requests.21"/>
+  <subjects xsi:type="Role" name="guest" request="//@requests.12 //@requests.13 //@requests.14 //@requests.15 //@requests.16 //@requests.17 //@requests.19 //@requests.20 //@requests.21"/>
+  <requests xsi:type="MethodRequest" method="//@aResources.0/@methods.0"/>
   <requests xsi:type="MethodRequest" subject="//@subjects.3 //@subjects.4" method="//@aResources.3/@methods.0"/>
   <requests xsi:type="MethodRequest" subject="//@subjects.3 //@subjects.4" method="//@aResources.3/@methods.1"/>
   <requests xsi:type="MethodRequest" subject="//@subjects.3 //@subjects.4" method="//@aResources.3/@methods.2"/>
@@ -50,15 +50,15 @@
   <requests xsi:type="MethodRequest" subject="//@subjects.3 //@subjects.4" method="//@aResources.3/@methods.6"/>
   <requests xsi:type="MethodRequest" subject="//@subjects.4" method="//@aResources.3/@methods.7"/>
   <requests xsi:type="MethodRequest" subject="//@subjects.4" method="//@aResources.3/@methods.8"/>
-  <requests xsi:type="MethodRequest" subject="//@subjects.0 //@subjects.1 //@subjects.2 //@subjects.3 //@subjects.4 //@subjects.5" method="//@aResources.4/@methods.0"/>
-  <requests xsi:type="MethodRequest" subject="//@subjects.0 //@subjects.1 //@subjects.2 //@subjects.3 //@subjects.4 //@subjects.5" method="//@aResources.4/@methods.1"/>
+  <requests xsi:type="MethodRequest" method="//@aResources.4/@methods.0"/>
+  <requests xsi:type="MethodRequest" method="//@aResources.4/@methods.1"/>
   <requests xsi:type="MethodRequest" subject="//@subjects.0 //@subjects.1 //@subjects.2 //@subjects.3 //@subjects.4 //@subjects.5" method="//@aResources.1/@methods.0"/>
   <requests xsi:type="MethodRequest" subject="//@subjects.0 //@subjects.1 //@subjects.2 //@subjects.3 //@subjects.4 //@subjects.5" method="//@aResources.2/@methods.0"/>
   <requests xsi:type="MethodRequest" subject="//@subjects.0 //@subjects.1 //@subjects.2 //@subjects.3 //@subjects.4 //@subjects.5" method="//@aResources.2/@methods.1"/>
   <requests xsi:type="MethodRequest" subject="//@subjects.0 //@subjects.1 //@subjects.2 //@subjects.3 //@subjects.4 //@subjects.5" method="//@aResources.2/@methods.2"/>
   <requests xsi:type="MethodRequest" subject="//@subjects.0 //@subjects.1 //@subjects.2 //@subjects.3 //@subjects.4 //@subjects.5" method="//@aResources.2/@methods.3"/>
   <requests xsi:type="MethodRequest" subject="//@subjects.0 //@subjects.1 //@subjects.2 //@subjects.3 //@subjects.4 //@subjects.5" method="//@aResources.2/@methods.4"/>
-  <requests xsi:type="MethodRequest" subject="//@subjects.0 //@subjects.1 //@subjects.2 //@subjects.3 //@subjects.4 //@subjects.5" method="//@aResources.1/@methods.1"/>
+  <requests xsi:type="MethodRequest" method="//@aResources.1/@methods.1"/>
   <requests xsi:type="MethodRequest" subject="//@subjects.5" method="//@aResources.5/@methods.0"/>
   <requests xsi:type="MethodRequest" subject="//@subjects.0 //@subjects.1 //@subjects.2 //@subjects.3 //@subjects.4 //@subjects.5" method="//@aResources.4/@methods.2"/>
   <requests xsi:type="MethodRequest" subject="//@subjects.0 //@subjects.1 //@subjects.2 //@subjects.3 //@subjects.4 //@subjects.5" kind="Deny" method="//@aResources.1/@methods.2"/>
