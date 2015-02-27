@@ -1,75 +1,22 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="websecurity">
   <WebApplication>
-    <resources path="/search/style.css"/>
-    <resources path="/js/*"/>
-    <resources path="/error"/>
-    <resources path="/unauthorized"/>
-    <resources path="/VAADIN/*"/>
-    <resources path="/schemas/*"/>
-    <resources path="/favicon.ico"/>
-    <resources path="/search-plugin.xml"/>
-    <resources path="/logout"/>
-    <resources path="/"/>
-    <resources path="/tags"/>
-    <resources path="/hierarchy"/>
-    <resources path="/news"/>
-    <resources path="/projects"/>
-    <resources path="/projects/*"/>
-    <resources path="/vprojects/*"/>
+    <resources path="/images/*"/>
+    <resources path="/docs/*"/>
+    <resources path="/css/*"/>
     <resources path="/*"/>
-    <resources path="/addProduct"/>
-    <resources path="/ajax/addProduct"/>
-    <resources path="/picture/upload"/>
-    <resources path="/cart"/>
-    <resources path="/updateCart"/>
-    <resources path="/addToCart"/>
-    <resources path="/ajax/addToCart"/>
-    <subjects xsi:type="Role" name="admin" request="/0/@requests.0 /0/@requests.1 /0/@requests.2 /0/@requests.3 /0/@requests.4 /0/@requests.5 /0/@requests.6 /0/@requests.7 /0/@requests.8 /0/@requests.9 /0/@requests.10 /0/@requests.11 /0/@requests.12 /0/@requests.13 /0/@requests.14 /0/@requests.15 /0/@requests.16 /0/@requests.17 /0/@requests.18 /0/@requests.19 /0/@requests.20 /0/@requests.21 /0/@requests.22 /0/@requests.23 /0/@requests.24 /0/@requests.25 /0/@requests.26 /0/@requests.27 /0/@requests.28 /0/@requests.29 /0/@requests.30 /0/@requests.31 /0/@requests.32 /0/@requests.33 /0/@requests.36 /0/@requests.37"/>
-    <subjects xsi:type="Role" name="Everyone" request="/0/@requests.0 /0/@requests.1 /0/@requests.2 /0/@requests.3 /0/@requests.4 /0/@requests.5 /0/@requests.6 /0/@requests.7 /0/@requests.8 /0/@requests.9 /0/@requests.10 /0/@requests.11 /0/@requests.12 /0/@requests.13 /0/@requests.14 /0/@requests.15 /0/@requests.16 /0/@requests.17 /0/@requests.18 /0/@requests.19 /0/@requests.20 /0/@requests.21 /0/@requests.22 /0/@requests.23 /0/@requests.24 /0/@requests.25 /0/@requests.26 /0/@requests.27 /0/@requests.28 /0/@requests.29 /0/@requests.30 /0/@requests.31 /0/@requests.32 /0/@requests.33 /0/@requests.36 /0/@requests.37"/>
-    <subjects xsi:type="Role" name="R1" request="/0/@requests.0 /0/@requests.1 /0/@requests.2 /0/@requests.3 /0/@requests.4 /0/@requests.5 /0/@requests.6 /0/@requests.7 /0/@requests.8 /0/@requests.9 /0/@requests.10 /0/@requests.11 /0/@requests.12 /0/@requests.13 /0/@requests.14 /0/@requests.15 /0/@requests.16 /0/@requests.17 /0/@requests.18 /0/@requests.19 /0/@requests.20 /0/@requests.21 /0/@requests.22 /0/@requests.23 /0/@requests.24 /0/@requests.25 /0/@requests.26 /0/@requests.27 /0/@requests.28 /0/@requests.29 /0/@requests.30 /0/@requests.31 /0/@requests.36 /0/@requests.37 /0/@requests.38 /0/@requests.39"/>
-    <subjects xsi:type="Role" name="customer" request="/0/@requests.0 /0/@requests.1 /0/@requests.2 /0/@requests.3 /0/@requests.4 /0/@requests.5 /0/@requests.6 /0/@requests.7 /0/@requests.8 /0/@requests.9 /0/@requests.10 /0/@requests.11 /0/@requests.12 /0/@requests.13 /0/@requests.14 /0/@requests.15 /0/@requests.16 /0/@requests.17 /0/@requests.18 /0/@requests.19 /0/@requests.20 /0/@requests.21 /0/@requests.22 /0/@requests.23 /0/@requests.24 /0/@requests.25 /0/@requests.26 /0/@requests.27 /0/@requests.28 /0/@requests.29 /0/@requests.30 /0/@requests.31 /0/@requests.34 /0/@requests.35 /0/@requests.36 /0/@requests.37"/>
-    <requests xsi:type="HTTPRequest" subject="/0/@subjects.0 /0/@subjects.1 /0/@subjects.2 /0/@subjects.3" method="/1" resource="/0/@resources.0"/>
-    <requests xsi:type="HTTPRequest" subject="/0/@subjects.0 /0/@subjects.1 /0/@subjects.2 /0/@subjects.3" method="/1" resource="/0/@resources.1"/>
-    <requests xsi:type="HTTPRequest" subject="/0/@subjects.0 /0/@subjects.1 /0/@subjects.2 /0/@subjects.3" method="/1" resource="/0/@resources.2"/>
-    <requests xsi:type="HTTPRequest" subject="/0/@subjects.0 /0/@subjects.1 /0/@subjects.2 /0/@subjects.3" method="/1" resource="/0/@resources.3"/>
-    <requests xsi:type="HTTPRequest" subject="/0/@subjects.0 /0/@subjects.1 /0/@subjects.2 /0/@subjects.3" method="/1" resource="/0/@resources.4"/>
-    <requests xsi:type="HTTPRequest" subject="/0/@subjects.0 /0/@subjects.1 /0/@subjects.2 /0/@subjects.3" method="/1" resource="/0/@resources.5"/>
-    <requests xsi:type="HTTPRequest" subject="/0/@subjects.0 /0/@subjects.1 /0/@subjects.2 /0/@subjects.3" method="/1" resource="/0/@resources.6"/>
-    <requests xsi:type="HTTPRequest" subject="/0/@subjects.0 /0/@subjects.1 /0/@subjects.2 /0/@subjects.3" method="/1" resource="/0/@resources.7"/>
-    <requests xsi:type="HTTPRequest" subject="/0/@subjects.0 /0/@subjects.1 /0/@subjects.2 /0/@subjects.3" method="/1" resource="/0/@resources.8"/>
-    <requests xsi:type="HTTPRequest" subject="/0/@subjects.0 /0/@subjects.1 /0/@subjects.2 /0/@subjects.3" method="/1" resource="/0/@resources.9"/>
-    <requests xsi:type="HTTPRequest" subject="/0/@subjects.0 /0/@subjects.1 /0/@subjects.2 /0/@subjects.3" method="/1" resource="/0/@resources.10"/>
-    <requests xsi:type="HTTPRequest" subject="/0/@subjects.0 /0/@subjects.1 /0/@subjects.2 /0/@subjects.3" method="/1" resource="/0/@resources.11"/>
-    <requests xsi:type="HTTPRequest" subject="/0/@subjects.0 /0/@subjects.1 /0/@subjects.2 /0/@subjects.3" method="/1" resource="/0/@resources.12"/>
-    <requests xsi:type="HTTPRequest" subject="/0/@subjects.0 /0/@subjects.1 /0/@subjects.2 /0/@subjects.3" method="/1" resource="/0/@resources.13"/>
-    <requests xsi:type="HTTPRequest" subject="/0/@subjects.0 /0/@subjects.1 /0/@subjects.2 /0/@subjects.3" method="/1" resource="/0/@resources.14"/>
-    <requests xsi:type="HTTPRequest" subject="/0/@subjects.0 /0/@subjects.1 /0/@subjects.2 /0/@subjects.3" method="/1" resource="/0/@resources.15"/>
-    <requests xsi:type="HTTPRequest" subject="/0/@subjects.0 /0/@subjects.1 /0/@subjects.2 /0/@subjects.3" method="/2" resource="/0/@resources.0"/>
-    <requests xsi:type="HTTPRequest" subject="/0/@subjects.0 /0/@subjects.1 /0/@subjects.2 /0/@subjects.3" method="/2" resource="/0/@resources.1"/>
-    <requests xsi:type="HTTPRequest" subject="/0/@subjects.0 /0/@subjects.1 /0/@subjects.2 /0/@subjects.3" method="/2" resource="/0/@resources.2"/>
-    <requests xsi:type="HTTPRequest" subject="/0/@subjects.0 /0/@subjects.1 /0/@subjects.2 /0/@subjects.3" method="/2" resource="/0/@resources.3"/>
-    <requests xsi:type="HTTPRequest" subject="/0/@subjects.0 /0/@subjects.1 /0/@subjects.2 /0/@subjects.3" method="/2" resource="/0/@resources.4"/>
-    <requests xsi:type="HTTPRequest" subject="/0/@subjects.0 /0/@subjects.1 /0/@subjects.2 /0/@subjects.3" method="/2" resource="/0/@resources.5"/>
-    <requests xsi:type="HTTPRequest" subject="/0/@subjects.0 /0/@subjects.1 /0/@subjects.2 /0/@subjects.3" method="/2" resource="/0/@resources.6"/>
-    <requests xsi:type="HTTPRequest" subject="/0/@subjects.0 /0/@subjects.1 /0/@subjects.2 /0/@subjects.3" method="/2" resource="/0/@resources.7"/>
-    <requests xsi:type="HTTPRequest" subject="/0/@subjects.0 /0/@subjects.1 /0/@subjects.2 /0/@subjects.3" method="/2" resource="/0/@resources.8"/>
-    <requests xsi:type="HTTPRequest" subject="/0/@subjects.0 /0/@subjects.1 /0/@subjects.2 /0/@subjects.3" method="/2" resource="/0/@resources.9"/>
-    <requests xsi:type="HTTPRequest" subject="/0/@subjects.0 /0/@subjects.1 /0/@subjects.2 /0/@subjects.3" method="/2" resource="/0/@resources.10"/>
-    <requests xsi:type="HTTPRequest" subject="/0/@subjects.0 /0/@subjects.1 /0/@subjects.2 /0/@subjects.3" method="/2" resource="/0/@resources.11"/>
-    <requests xsi:type="HTTPRequest" subject="/0/@subjects.0 /0/@subjects.1 /0/@subjects.2 /0/@subjects.3" method="/2" resource="/0/@resources.12"/>
-    <requests xsi:type="HTTPRequest" subject="/0/@subjects.0 /0/@subjects.1 /0/@subjects.2 /0/@subjects.3" method="/2" resource="/0/@resources.13"/>
-    <requests xsi:type="HTTPRequest" subject="/0/@subjects.0 /0/@subjects.1 /0/@subjects.2 /0/@subjects.3" method="/2" resource="/0/@resources.14"/>
-    <requests xsi:type="HTTPRequest" subject="/0/@subjects.0 /0/@subjects.1 /0/@subjects.2 /0/@subjects.3" method="/2" resource="/0/@resources.15"/>
-    <requests xsi:type="HTTPRequest" subject="/0/@subjects.0 /0/@subjects.1" method="/1" resource="/0/@resources.16"/>
-    <requests xsi:type="HTTPRequest" subject="/0/@subjects.0 /0/@subjects.1" method="/2" resource="/0/@resources.16"/>
-    <requests xsi:type="HTTPRequest" subject="/0/@subjects.3" method="/1" resource="/0/@resources.20"/>
-    <requests xsi:type="HTTPRequest" subject="/0/@subjects.3" method="/2" resource="/0/@resources.20"/>
-    <requests xsi:type="HTTPRequest" subject="/0/@subjects.0 /0/@subjects.1 /0/@subjects.2 /0/@subjects.3" kind="Deny" method="/1" resource="/0/@resources.22"/>
-    <requests xsi:type="HTTPRequest" subject="/0/@subjects.0 /0/@subjects.1 /0/@subjects.2 /0/@subjects.3" kind="Deny" method="/1" resource="/0/@resources.23"/>
-    <requests xsi:type="HTTPRequest" subject="/0/@subjects.2" method="/2" resource="/0/@resources.22"/>
-    <requests xsi:type="HTTPRequest" subject="/0/@subjects.2" method="/2" resource="/0/@resources.23"/>
+    <subjects xsi:type="Role" name="everyone" request="/0/@requests.0 /0/@requests.1 /0/@requests.2"/>
+    <subjects xsi:type="Role" name="admin" request="/0/@requests.0 /0/@requests.1 /0/@requests.2 /0/@requests.3 /0/@requests.4 /0/@requests.5 /0/@requests.6"/>
+    <requests xsi:type="HTTPRequest" subject="/0/@subjects.0 /0/@subjects.1" method="/1" resource="/0/@resources.0"/>
+    <requests xsi:type="HTTPRequest" subject="/0/@subjects.0 /0/@subjects.1" method="/1" resource="/0/@resources.1"/>
+    <requests xsi:type="HTTPRequest" subject="/0/@subjects.0 /0/@subjects.1" method="/1" resource="/0/@resources.2"/>
+    <requests xsi:type="HTTPRequest" subject="/0/@subjects.1" method="/2" resource="/0/@resources.3"/>
+    <requests xsi:type="HTTPRequest" subject="/0/@subjects.1" method="/1" resource="/0/@resources.3"/>
+    <requests xsi:type="HTTPRequest" subject="/0/@subjects.1" method="/3" resource="/0/@resources.3"/>
+    <requests xsi:type="HTTPRequest" subject="/0/@subjects.1" method="/4" resource="/0/@resources.3"/>
   </WebApplication>
   <HttpMethod name="GET"/>
+  <HttpMethod name="DELETE"/>
   <HttpMethod name="POST"/>
+  <HttpMethod name="PUT"/>
 </xmi:XMI>
