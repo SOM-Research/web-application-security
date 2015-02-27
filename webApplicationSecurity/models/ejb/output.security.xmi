@@ -29,28 +29,28 @@
       <methodPermission>
         <method ejbName="/0/@enterpriseBeans/@session.0/@ejbName" methodName="toBeInvokedByRole2"/>
       </methodPermission>
-      <methodPermission roleName="/0/@assemblyDescriptor/@securityRole.4/@roleName /0/@assemblyDescriptor/@securityRole.3/@roleName" source="CODE">
+      <methodPermission roleName="/0/@assemblyDescriptor/@securityRole.3/@roleName /0/@assemblyDescriptor/@securityRole.4/@roleName" source="CODE">
         <method ejbName="/8" methodName="createReservation">
           <methodParams>
             <methodParam param="reservation"/>
           </methodParams>
         </method>
       </methodPermission>
-      <methodPermission roleName="/0/@assemblyDescriptor/@securityRole.4/@roleName /0/@assemblyDescriptor/@securityRole.3/@roleName" source="CODE">
+      <methodPermission roleName="/0/@assemblyDescriptor/@securityRole.3/@roleName /0/@assemblyDescriptor/@securityRole.4/@roleName" source="CODE">
         <method ejbName="/9" methodName="removeReservation">
           <methodParams>
             <methodParam param="reservation"/>
           </methodParams>
         </method>
       </methodPermission>
-      <methodPermission roleName="/0/@assemblyDescriptor/@securityRole.4/@roleName /0/@assemblyDescriptor/@securityRole.3/@roleName" source="CODE">
+      <methodPermission roleName="/0/@assemblyDescriptor/@securityRole.3/@roleName /0/@assemblyDescriptor/@securityRole.4/@roleName" source="CODE">
         <method ejbName="/10" methodName="updateReservation">
           <methodParams>
             <methodParam param="reservation"/>
           </methodParams>
         </method>
       </methodPermission>
-      <methodPermission roleName="/0/@assemblyDescriptor/@securityRole.4/@roleName /0/@assemblyDescriptor/@securityRole.3/@roleName" source="CODE">
+      <methodPermission roleName="/0/@assemblyDescriptor/@securityRole.3/@roleName /0/@assemblyDescriptor/@securityRole.4/@roleName" source="CODE">
         <method ejbName="/11" methodName="removeAllUserReservations">
           <methodParams>
             <methodParam param="user"/>
@@ -64,14 +64,14 @@
           </methodParams>
         </method>
       </methodPermission>
-      <methodPermission roleName="/0/@assemblyDescriptor/@securityRole.4/@roleName /0/@assemblyDescriptor/@securityRole.3/@roleName" source="CODE">
+      <methodPermission roleName="/0/@assemblyDescriptor/@securityRole.3/@roleName /0/@assemblyDescriptor/@securityRole.4/@roleName" source="CODE">
         <method ejbName="/13" methodName="getReservation">
           <methodParams>
             <methodParam param="idReservation"/>
           </methodParams>
         </method>
       </methodPermission>
-      <methodPermission roleName="/0/@assemblyDescriptor/@securityRole.4/@roleName /0/@assemblyDescriptor/@securityRole.3/@roleName" source="CODE">
+      <methodPermission roleName="/0/@assemblyDescriptor/@securityRole.3/@roleName /0/@assemblyDescriptor/@securityRole.4/@roleName" source="CODE">
         <method ejbName="/14" methodName="getUserReservations">
           <methodParams>
             <methodParam param="user"/>

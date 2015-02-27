@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="ASCII"?>
+<modisco.xml:Root xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:modisco.xml="http://www.eclipse.org/MoDisco/Xml/0.1.incubation/XML" name="web-app">
+  <children xsi:type="modisco.xml:Attribute" name="xsi:schemaLocation" value="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"/>
+  <children xsi:type="modisco.xml:Attribute" name="id" value="WebApp_ID"/>
+  <children xsi:type="modisco.xml:Attribute" name="version" value="3.0"/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  "/>
+  <children xsi:type="modisco.xml:Element" name="display-name">
+    <children xsi:type="modisco.xml:Text" name="SaasTest"/>
+  </children>
+  <children xsi:type="modisco.xml:Text" name="&#xA;  &#xA;  &#x9; "/>
+  <children xsi:type="modisco.xml:Element" name="context-param">
+    <children xsi:type="modisco.xml:Text" name="&#xA;  &#x9; &#x9;"/>
+    <children xsi:type="modisco.xml:Element" name="param-name">
+      <children xsi:type="modisco.xml:Text" name="carbon.enable.saas"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="param-value">
+      <children xsi:type="modisco.xml:Text" name="*"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;  &#x9; "/>
+  </children>
+  <children xsi:type="modisco.xml:Text" name="&#xA;&#xA; &#x9;"/>
+  <children xsi:type="modisco.xml:Element" name="security-constraint">
+    <children xsi:type="modisco.xml:Text" name="&#xA;   &#x9;&#x9;&#x9;&#x9;"/>
+    <children xsi:type="modisco.xml:Element" name="web-resource-collection">
+      <children xsi:type="modisco.xml:Text" name="&#xA;     &#x9;&#x9;&#x9;&#x9;&#x9;"/>
+      <children xsi:type="modisco.xml:Element" name="web-resource-name">
+        <children xsi:type="modisco.xml:Text" name="Public access"/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;     &#x9;&#x9;&#x9;&#x9;&#x9;"/>
+      <children xsi:type="modisco.xml:Element" name="url-pattern">
+        <children xsi:type="modisco.xml:Text" name="/images/*"/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;   &#x9;&#x9;&#x9;&#x9;&#x9;&#x9; "/>
+      <children xsi:type="modisco.xml:Element" name="http-method">
+        <children xsi:type="modisco.xml:Text" name="GET"/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;        &#x9;&#x9;"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;&#x9;"/>
+  </children>
+  <children xsi:type="modisco.xml:Text" name="&#xA;&#xA;&#x9;"/>
+  <children xsi:type="modisco.xml:Element" name="security-constraint">
+    <children xsi:type="modisco.xml:Text" name="&#xA;   &#x9;&#x9;&#x9;&#x9;"/>
+    <children xsi:type="modisco.xml:Element" name="web-resource-collection">
+      <children xsi:type="modisco.xml:Text" name="&#xA;     &#x9;&#x9;&#x9;&#x9;&#x9;"/>
+      <children xsi:type="modisco.xml:Element" name="web-resource-name">
+        <children xsi:type="modisco.xml:Text" name="Public access"/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;     &#x9;&#x9;&#x9;&#x9;&#x9;"/>
+      <children xsi:type="modisco.xml:Element" name="url-pattern">
+        <children xsi:type="modisco.xml:Text" name="/docs/*"/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;   &#x9;&#x9;&#x9;&#x9;&#x9;&#x9; "/>
+      <children xsi:type="modisco.xml:Element" name="http-method">
+        <children xsi:type="modisco.xml:Text" name="GET"/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;        &#x9;&#x9;"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;&#x9;"/>
+  </children>
+  <children xsi:type="modisco.xml:Text" name="&#xA; &#x9;&#xA;&#x9;"/>
+  <children xsi:type="modisco.xml:Element" name="security-constraint">
+    <children xsi:type="modisco.xml:Text" name="&#xA;   &#x9;&#x9;&#x9;&#x9;"/>
+    <children xsi:type="modisco.xml:Element" name="web-resource-collection">
+      <children xsi:type="modisco.xml:Text" name="&#xA;     &#x9;&#x9;&#x9;&#x9;&#x9;"/>
+      <children xsi:type="modisco.xml:Element" name="web-resource-name">
+        <children xsi:type="modisco.xml:Text" name="Public access"/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;     &#x9;&#x9;&#x9;&#x9;&#x9;"/>
+      <children xsi:type="modisco.xml:Element" name="url-pattern">
+        <children xsi:type="modisco.xml:Text" name="/css/*"/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;   &#x9;&#x9;&#x9;&#x9;&#x9;&#x9; "/>
+      <children xsi:type="modisco.xml:Element" name="http-method">
+        <children xsi:type="modisco.xml:Text" name="GET"/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;        &#x9;&#x9;"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;&#x9;"/>
+  </children>
+  <children xsi:type="modisco.xml:Text" name="&#xA; &#x9;&#xA;     "/>
+  <children xsi:type="modisco.xml:Element" name="security-constraint">
+    <children xsi:type="modisco.xml:Text" name="&#xA;      "/>
+    <children xsi:type="modisco.xml:Element" name="display-name">
+      <children xsi:type="modisco.xml:Text" name="Example Security Constraint"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;      "/>
+    <children xsi:type="modisco.xml:Element" name="web-resource-collection">
+      <children xsi:type="modisco.xml:Text" name="&#xA;         "/>
+      <children xsi:type="modisco.xml:Element" name="web-resource-name">
+        <children xsi:type="modisco.xml:Text" name="Protected Area"/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;         "/>
+      <children xsi:type="modisco.xml:Comment" name=" Define the context-relative URL(s) to be protected "/>
+      <children xsi:type="modisco.xml:Text" name="&#xA;         "/>
+      <children xsi:type="modisco.xml:Element" name="url-pattern">
+        <children xsi:type="modisco.xml:Text" name="/*"/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;         "/>
+      <children xsi:type="modisco.xml:Comment" name=" If you list http methods, only those methods are protected "/>
+      <children xsi:type="modisco.xml:Text" name="&#xA;         "/>
+      <children xsi:type="modisco.xml:Element" name="http-method">
+        <children xsi:type="modisco.xml:Text" name="DELETE"/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;         "/>
+      <children xsi:type="modisco.xml:Element" name="http-method">
+        <children xsi:type="modisco.xml:Text" name="GET"/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;         "/>
+      <children xsi:type="modisco.xml:Element" name="http-method">
+        <children xsi:type="modisco.xml:Text" name="POST"/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;         "/>
+      <children xsi:type="modisco.xml:Element" name="http-method">
+        <children xsi:type="modisco.xml:Text" name="PUT"/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;      "/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;      "/>
+    <children xsi:type="modisco.xml:Element" name="auth-constraint">
+      <children xsi:type="modisco.xml:Text" name="&#xA;         "/>
+      <children xsi:type="modisco.xml:Comment" name=" Anyone with one of the listed roles may access this area "/>
+      <children xsi:type="modisco.xml:Text" name="&#xA;         "/>
+      <children xsi:type="modisco.xml:Element" name="role-name">
+        <children xsi:type="modisco.xml:Text" name="admin"/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;      "/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;   "/>
+    <children xsi:type="modisco.xml:Comment" name="   &lt;user-data-constraint>&#xA;            &lt;transport-guarantee>CONFIDENTIAL&lt;/transport-guarantee>&#xA;        &lt;/user-data-constraint>&#xA;    "/>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  </children>
+  <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+  <children xsi:type="modisco.xml:Comment" name=" Default login configuration uses form-based authentication "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  <children xsi:type="modisco.xml:Element" name="login-config">
+    <children xsi:type="modisco.xml:Text" name="&#xA;      "/>
+    <children xsi:type="modisco.xml:Element" name="auth-method">
+      <children xsi:type="modisco.xml:Text" name="FORM"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;      "/>
+    <children xsi:type="modisco.xml:Element" name="realm-name">
+      <children xsi:type="modisco.xml:Text" name="Example Form-Based Authentication Area"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;      "/>
+    <children xsi:type="modisco.xml:Element" name="form-login-config">
+      <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+      <children xsi:type="modisco.xml:Element" name="form-login-page">
+        <children xsi:type="modisco.xml:Text" name="/login.jsp"/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+      <children xsi:type="modisco.xml:Element" name="form-error-page">
+        <children xsi:type="modisco.xml:Text" name="/error.jsp"/>
+      </children>
+      <children xsi:type="modisco.xml:Text" name="&#xA;      "/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  </children>
+  <children xsi:type="modisco.xml:Text" name="&#xA;&#xA;    "/>
+  <children xsi:type="modisco.xml:Comment" name=" Security roles referenced by this web application "/>
+  <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  <children xsi:type="modisco.xml:Element" name="security-role">
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="role-name">
+      <children xsi:type="modisco.xml:Text" name="everyone"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  </children>
+  <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  <children xsi:type="modisco.xml:Element" name="security-role">
+    <children xsi:type="modisco.xml:Text" name="&#xA;        "/>
+    <children xsi:type="modisco.xml:Element" name="role-name">
+      <children xsi:type="modisco.xml:Text" name="admin"/>
+    </children>
+    <children xsi:type="modisco.xml:Text" name="&#xA;    "/>
+  </children>
+  <children xsi:type="modisco.xml:Text" name="&#xA;"/>
+  <namespaces name="xsi" value="http://www.w3.org/2001/XMLSchema-instance"/>
+  <namespaces name="" value="http://java.sun.com/xml/ns/javaee"/>
+  <namespaces name="web" value="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"/>
+</modisco.xml:Root>

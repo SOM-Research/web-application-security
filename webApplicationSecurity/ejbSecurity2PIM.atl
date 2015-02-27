@@ -4,8 +4,17 @@
 module ejbSecurity2PIM;
 create OUT : PIM from IN : EJB;
 
-helper def: getAllEjbNames : Sequence(EJB!EjbName) =
-	EJB!EjbName.allInstances();
+helper def: getAllDistinctEjbNames : Sequence(EJB!EjbName) =
+	EJB!EjbName.allInstances()->iterate(e ; output : Sequence(EJB!EjbName) = Sequence{} |
+		if output->exists(o | o.name = e.name) then
+			output
+		else
+			output->including(e)
+		endif
+	);
+
+helper context EJB!EjbName def : isInDistinctEjbNames : Boolean =
+	thisModule.getAllDistinctEjbNames->exists(ejb | ejb = self);
 
 helper def : getAllRoleNames : Sequence(EJB!RoleName) =
 	EJB!RoleName.allInstances();
@@ -14,15 +23,22 @@ helper def : getAllMethods : Sequence(EJB!Method) =
 	EJB!Method.allInstances();
 
 helper context EJB!EjbName def : getAllMethodsEjbName : Sequence(EJB!Method) =
-	thisModule.getAllMethods->select(m | m.ejbName = self);
+	thisModule.getAllMethods->select(m | m.ejbName.name = self.name);
+
+helper def : getMethodRoleNameListPairs : Sequence(OclAny) =
+	EJB!MethodPermission.allInstances()->collect(mp | mp.method)->flatten()
+		->iterate(m ; output : Sequence(OclAny) = Sequence{} |
+			output.including(Tuple{method = m, roles = m.refImmediateComposite().roleName})
+		);
 
 rule Security2WebApplication {
 	from
 		s: EJB!Security
 	to
 		t: PIM!WebApplication (
-			aResources <- thisModule.getAllEjbNames,
-			subjects <- thisModule.getAllRoleNames
+			aResources <- thisModule.getAllDistinctEjbNames,
+			subjects <- thisModule.getAllRoleNames,
+			requests <- thisModule.getMethodRoleNameListPairs->collect(pair | thisModule.createMethodRequest(pair))
 		)
 }
 
@@ -37,11 +53,10 @@ rule RoleName2Role {
 
 rule EJBName2ActiveResource {
 	from
-		s: EJB!EjbName
+		s: EJB!EjbName (s.isInDistinctEjbNames)
 	to
 		t: PIM!ActiveResource (
 			methods <- s.getAllMethodsEjbName
-			--identifiesAs cardinality 1, is it correct?
 		)
 }
 
@@ -50,8 +65,21 @@ rule Method2Method {
 		s: EJB!Method
 	to
 		t: PIM!Method (
-			name <- s.methodName	
+			name <- s.methodName
 		)
 }
 
---role transition is not contained in any class
+lazy rule createMethodRequest {
+	from
+		s: OclAny
+	to
+		t: PIM!MethodRequest (
+			method <- s.method,
+			subject <- 
+						if s.roles.isEmpty() then
+							thisModule.getAllRoleNames
+						else
+							s.roles
+						endif
+		)
+}

@@ -1,103 +1,38 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <servletSecurity:Security xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:servletSecurity="http://www.xtext.org/servletSecurity/ServletSecurity">
   <role>
+    <roleName name="everyone"/>
+  </role>
+  <role>
     <roleName name="admin"/>
   </role>
-  <role>
-    <roleName name="Everyone"/>
-  </role>
-  <role>
-    <roleName name="R1"/>
-  </role>
-  <role>
-    <roleName name="customer"/>
-  </role>
   <constraint>
-    <webResourceCollection webResourceName="All Access">
-      <urlPattern value="/search/style.css"/>
-      <urlPattern value="/js/*"/>
-      <urlPattern value="/error"/>
-      <urlPattern value="/unauthorized"/>
-      <urlPattern value="/VAADIN/*"/>
-      <urlPattern value="/schemas/*"/>
-      <urlPattern value="/favicon.ico"/>
-      <urlPattern value="/search-plugin.xml"/>
-      <urlPattern value="/logout"/>
-      <urlPattern value="/"/>
-      <urlPattern value="/tags"/>
-      <urlPattern value="/hierarchy"/>
-      <urlPattern value="/news"/>
-      <urlPattern value="/projects"/>
-      <urlPattern value="/projects/*"/>
-      <urlPattern value="/vprojects/*"/>
+    <webResourceCollection webResourceName="Public access">
+      <urlPattern value="/images/*"/>
       <httpMethod name="GET"/>
-      <httpMethod name="POST"/>
     </webResourceCollection>
-    <userDataConstraint>
-      <transportGuarantee/>
-    </userDataConstraint>
   </constraint>
   <constraint>
-    <webResourceCollection webResourceName="all">
+    <webResourceCollection webResourceName="Public access">
+      <urlPattern value="/docs/*"/>
+      <httpMethod name="GET"/>
+    </webResourceCollection>
+  </constraint>
+  <constraint>
+    <webResourceCollection webResourceName="Public access">
+      <urlPattern value="/css/*"/>
+      <httpMethod name="GET"/>
+    </webResourceCollection>
+  </constraint>
+  <constraint>
+    <displayName value="Example Security Constraint"/>
+    <webResourceCollection webResourceName="Protected Area">
       <urlPattern value="/*"/>
+      <httpMethod name="DELETE"/>
       <httpMethod name="GET"/>
       <httpMethod name="POST"/>
+      <httpMethod name="PUT"/>
     </webResourceCollection>
-    <authConstraint roleName="//@role.0/@roleName //@role.1/@roleName"/>
-  </constraint>
-  <constraint source="CODE">
-    <webResourceCollection webResourceName=" Add Product Servlet 1">
-      <urlPattern value="/addProduct"/>
-      <urlPattern value="/ajax/addProduct"/>
-    </webResourceCollection>
-    <authConstraint roleName="//@role.0/@roleName //@role.3/@roleName"/>
-  </constraint>
-  <constraint source="CODE">
-    <webResourceCollection webResourceName=" Upload Picture Servlet 2">
-      <urlPattern value="/picture/upload"/>
-    </webResourceCollection>
-    <authConstraint roleName="//@role.0/@roleName"/>
-  </constraint>
-  <constraint source="CODE">
-    <webResourceCollection webResourceName=" Cart Servlet 3">
-      <urlPattern value="/cart"/>
-      <httpMethod name="GET"/>
-    </webResourceCollection>
-    <authConstraint roleName="//@role.3/@roleName"/>
-  </constraint>
-  <constraint source="CODE">
-    <webResourceCollection webResourceName=" Cart Servlet 4">
-      <urlPattern value="/cart"/>
-      <httpMethod name="POST"/>
-    </webResourceCollection>
-    <authConstraint roleName="//@role.3/@roleName"/>
-    <userDataConstraint>
-      <transportGuarantee restriction="CONFIDENTIAL"/>
-    </userDataConstraint>
-  </constraint>
-  <constraint source="CODE">
-    <webResourceCollection webResourceName=" Update Cart Servlet 5">
-      <urlPattern value="/updateCart"/>
-    </webResourceCollection>
-    <authConstraint roleName="//@role.3/@roleName"/>
-    <userDataConstraint>
-      <transportGuarantee restriction="CONFIDENTIAL"/>
-    </userDataConstraint>
-  </constraint>
-  <constraint source="CODE">
-    <webResourceCollection webResourceName=" Add Product To Cart Servlet 6">
-      <urlPattern value="/addToCart"/>
-      <urlPattern value="/ajax/addToCart"/>
-      <httpMethod omission="true" name="GET"/>
-    </webResourceCollection>
-    <authConstraint roleName="//@role.2/@roleName"/>
-  </constraint>
-  <constraint source="CODE">
-    <webResourceCollection webResourceName=" Add Product To Cart Servlet 7">
-      <urlPattern value="/addToCart"/>
-      <urlPattern value="/ajax/addToCart"/>
-      <httpMethod name="GET"/>
-    </webResourceCollection>
-    <authConstraint/>
+    <authConstraint roleName="//@role.1/@roleName"/>
   </constraint>
 </servletSecurity:Security>

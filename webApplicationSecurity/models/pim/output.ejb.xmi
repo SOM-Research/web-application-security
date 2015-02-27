@@ -66,10 +66,31 @@
   <aResources>
     <methods name="*"/>
   </aResources>
-  <subjects xsi:type="Role" name="PROJECT_MANAGER"/>
-  <subjects xsi:type="Role" name="DEVELOPER"/>
-  <subjects xsi:type="Role" name="Users"/>
-  <subjects xsi:type="Role" name="USER"/>
-  <subjects xsi:type="Role" name="MANAGER"/>
-  <subjects xsi:type="Role" name="guest"/>
+  <subjects xsi:type="Role" name="PROJECT_MANAGER" request="//@requests.0 //@requests.10 //@requests.11 //@requests.12 //@requests.13 //@requests.14 //@requests.15 //@requests.16 //@requests.17 //@requests.18 //@requests.20"/>
+  <subjects xsi:type="Role" name="DEVELOPER" request="//@requests.0 //@requests.10 //@requests.11 //@requests.12 //@requests.13 //@requests.14 //@requests.15 //@requests.16 //@requests.17 //@requests.18 //@requests.20"/>
+  <subjects xsi:type="Role" name="Users" request="//@requests.0 //@requests.10 //@requests.11 //@requests.12 //@requests.13 //@requests.14 //@requests.15 //@requests.16 //@requests.17 //@requests.18 //@requests.20"/>
+  <subjects xsi:type="Role" name="USER" request="//@requests.0 //@requests.1 //@requests.2 //@requests.3 //@requests.4 //@requests.6 //@requests.7 //@requests.10 //@requests.11 //@requests.12 //@requests.13 //@requests.14 //@requests.15 //@requests.16 //@requests.17 //@requests.18 //@requests.20"/>
+  <subjects xsi:type="Role" name="MANAGER" request="//@requests.0 //@requests.1 //@requests.2 //@requests.3 //@requests.4 //@requests.5 //@requests.6 //@requests.7 //@requests.8 //@requests.9 //@requests.10 //@requests.11 //@requests.12 //@requests.13 //@requests.14 //@requests.15 //@requests.16 //@requests.17 //@requests.18 //@requests.20"/>
+  <subjects xsi:type="Role" name="guest" request="//@requests.0 //@requests.10 //@requests.11 //@requests.12 //@requests.13 //@requests.14 //@requests.15 //@requests.16 //@requests.17 //@requests.18 //@requests.19 //@requests.20"/>
+  <requests xsi:type="MethodRequest" subject="//@subjects.0 //@subjects.1 //@subjects.2 //@subjects.3 //@subjects.4 //@subjects.5" method="//@aResources.0/@methods.0"/>
+  <requests xsi:type="MethodRequest" subject="//@subjects.3 //@subjects.4" method="//@aResources.8/@methods.0"/>
+  <requests xsi:type="MethodRequest" subject="//@subjects.3 //@subjects.4" method="//@aResources.9/@methods.0"/>
+  <requests xsi:type="MethodRequest" subject="//@subjects.3 //@subjects.4" method="//@aResources.10/@methods.0"/>
+  <requests xsi:type="MethodRequest" subject="//@subjects.3 //@subjects.4" method="//@aResources.11/@methods.0"/>
+  <requests xsi:type="MethodRequest" subject="//@subjects.4" method="//@aResources.12/@methods.0"/>
+  <requests xsi:type="MethodRequest" subject="//@subjects.3 //@subjects.4" method="//@aResources.13/@methods.0"/>
+  <requests xsi:type="MethodRequest" subject="//@subjects.3 //@subjects.4" method="//@aResources.14/@methods.0"/>
+  <requests xsi:type="MethodRequest" subject="//@subjects.4" method="//@aResources.15/@methods.0"/>
+  <requests xsi:type="MethodRequest" subject="//@subjects.4" method="//@aResources.16/@methods.0"/>
+  <requests xsi:type="MethodRequest" subject="//@subjects.0 //@subjects.1 //@subjects.2 //@subjects.3 //@subjects.4 //@subjects.5" method="//@aResources.17/@methods.0"/>
+  <requests xsi:type="MethodRequest" subject="//@subjects.0 //@subjects.1 //@subjects.2 //@subjects.3 //@subjects.4 //@subjects.5" method="//@aResources.18/@methods.0"/>
+  <requests xsi:type="MethodRequest" subject="//@subjects.0 //@subjects.1 //@subjects.2 //@subjects.3 //@subjects.4 //@subjects.5" method="//@aResources.2/@methods.0"/>
+  <requests xsi:type="MethodRequest" subject="//@subjects.0 //@subjects.1 //@subjects.2 //@subjects.3 //@subjects.4 //@subjects.5" method="//@aResources.3/@methods.0"/>
+  <requests xsi:type="MethodRequest" subject="//@subjects.0 //@subjects.1 //@subjects.2 //@subjects.3 //@subjects.4 //@subjects.5" method="//@aResources.4/@methods.0"/>
+  <requests xsi:type="MethodRequest" subject="//@subjects.0 //@subjects.1 //@subjects.2 //@subjects.3 //@subjects.4 //@subjects.5" method="//@aResources.5/@methods.0"/>
+  <requests xsi:type="MethodRequest" subject="//@subjects.0 //@subjects.1 //@subjects.2 //@subjects.3 //@subjects.4 //@subjects.5" method="//@aResources.6/@methods.0"/>
+  <requests xsi:type="MethodRequest" subject="//@subjects.0 //@subjects.1 //@subjects.2 //@subjects.3 //@subjects.4 //@subjects.5" method="//@aResources.7/@methods.0"/>
+  <requests xsi:type="MethodRequest" subject="//@subjects.0 //@subjects.1 //@subjects.2 //@subjects.3 //@subjects.4 //@subjects.5" method="//@aResources.19/@methods.0"/>
+  <requests xsi:type="MethodRequest" subject="//@subjects.5" method="//@aResources.20/@methods.0"/>
+  <requests xsi:type="MethodRequest" subject="//@subjects.0 //@subjects.1 //@subjects.2 //@subjects.3 //@subjects.4 //@subjects.5" method="//@aResources.21/@methods.0"/>
 </WebApplication>
