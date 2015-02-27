@@ -4,51 +4,54 @@
 module ejbSecurity2PIM;
 create OUT : PIM from IN : EJB;
 
---helper def: getAllEjbNames : Sequence(EJB!EjbName) =
---	EJB!EjbName.allInstances();
---
---helper def : getAllRoleNames : Sequence(EJB!RoleName) =
---	EJB!RoleName.allInstances();
---
---helper def : getAllMethods : Sequence(EJB!Method) =
---	EJB!Method.allInstances();
---
---helper context EJB!EjbName def : getAllMethodsEjbName : Sequence(EJB!Method) =
---	thisModule.getAllMethods->select(m | m.ejbName = self);
---
---rule Security2WebApplication {
---	from
---		s: EJB!Security
---	to
---		t: PIM!WebApplication (
---			aResources <- thisModule.getAllEjbNames,
---			subjects <- thisModule.getAllRoleNames
---		)
---}
---
---rule RoleName2Role {
---	from
---		s: EJB!RoleName
---	to
---		t: PIM!Role (
---			name <- s.name	
---		)
---}
---
---rule EJBName2ActiveResource {
---	from
---		s: EJB!EjbName
---	to
---		t: PIM!ActiveResource (
---			methods <- s.getAllMethodsEjbName
---		)
---}
---
---rule Method2Method {
---	from
---		s: EJB!Method
---	to
---		t: PIM!Method (
---			name <- s.methodName	
---		)
---}
+helper def: getAllEjbNames : Sequence(EJB!EjbName) =
+	EJB!EjbName.allInstances();
+
+helper def : getAllRoleNames : Sequence(EJB!RoleName) =
+	EJB!RoleName.allInstances();
+
+helper def : getAllMethods : Sequence(EJB!Method) =
+	EJB!Method.allInstances();
+
+helper context EJB!EjbName def : getAllMethodsEjbName : Sequence(EJB!Method) =
+	thisModule.getAllMethods->select(m | m.ejbName = self);
+
+rule Security2WebApplication {
+	from
+		s: EJB!Security
+	to
+		t: PIM!WebApplication (
+			aResources <- thisModule.getAllEjbNames,
+			subjects <- thisModule.getAllRoleNames
+		)
+}
+
+rule RoleName2Role {
+	from
+		s: EJB!RoleName
+	to
+		t: PIM!Role (
+			name <- s.name	
+		)
+}
+
+rule EJBName2ActiveResource {
+	from
+		s: EJB!EjbName
+	to
+		t: PIM!ActiveResource (
+			methods <- s.getAllMethodsEjbName
+			--identifiesAs cardinality 1, is it correct?
+		)
+}
+
+rule Method2Method {
+	from
+		s: EJB!Method
+	to
+		t: PIM!Method (
+			name <- s.methodName	
+		)
+}
+
+--role transition is not contained in any class
