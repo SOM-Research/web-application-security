@@ -28,7 +28,11 @@ helper context XML!Element def : isIn(element_name : String) : Boolean =
 		if self.name = 'ejb-jar' then
 			false
 		else
-			self.refImmediateComposite().isIn(element_name)
+			if self.refImmediateComposite().oclIsUndefined() then
+				false
+			else
+				self.refImmediateComposite().isIn(element_name)
+			endif
 		endif
 	endif;
 
@@ -52,9 +56,13 @@ helper def : getDistinctEjbName(name : String) : XML!Element =
 			
 --retrieve the roles allowed in the xml
 helper def : getAllDistinctRolesAllowedInXML : Sequence(OclAny) =
-	XML!Element.allInstances()->select(e | e.name = 'assembly-descriptor')->first().children
-								->select(c | c.name = 'security-role')
-									->collect(c | c.getAttribute('role-name'));
+	if XML!Element.allInstances()->select(e | e.name = 'assembly-descriptor')->notEmpty() then
+		XML!Element.allInstances()->select(e | e.name = 'assembly-descriptor')->first().children
+									->select(c | c.name = 'security-role')
+										->collect(c | c.getAttribute('role-name'))
+	else
+		Sequence{}
+	endif;
 
 helper def : getSessionsWithSecurityInfo : Sequence(XML!Element) =
 	XML!Element.allInstances()->select(e | e.name = 'role-name')

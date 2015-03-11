@@ -26,7 +26,11 @@ helper context XML!Element def : isIn(element_name : String) : Boolean =
 		if self.name = 'web-app' then
 			false
 		else
-			self.refImmediateComposite().isIn(element_name)
+			if self.refImmediateComposite().oclIsUndefined() then
+				false
+			else
+				self.refImmediateComposite().isIn(element_name)
+			endif
 		endif
 	endif;
 
