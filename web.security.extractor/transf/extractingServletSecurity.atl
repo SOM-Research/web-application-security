@@ -1,0 +1,502 @@
+-- @path SEC=/xml2security/metamodels/ServletSecurity.ecore
+-- @nsURI XML=http://www.eclipse.org/MoDisco/Xml/0.1.incubation/XML
+-- @nsURI JAVA=http://www.eclipse.org/MoDisco/Java/0.2.incubation/java
+
+module extractingServletSecurity;
+create OUT : SEC from IN : XML, IN2 : JAVA;
+
+helper def : Counter : Integer = 1;
+
+------------------------------------
+---------------WEB XML--------------
+------------------------------------
+helper context XML!Element def : getAttributes(element_name : String) :  Sequence(XML!Element) =
+	self.children->select(c | c.name = element_name);
+
+helper context XML!Element def : getAttribute(element_name : String) : XML!Element =
+	self.getAttributes(element_name)->first();
+		
+helper context XML!Element def : getText : String =
+	self.children->select(c | c.oclIsTypeOf(XML!Text))->first().name;
+
+helper context XML!Element def : isIn(element_name : String) : Boolean =
+	if self.name = element_name then
+		true
+	else
+		if self.name = 'web-app' then
+			false
+		else
+			if self.refImmediateComposite().oclIsUndefined() then
+				false
+			else
+				self.refImmediateComposite().isIn(element_name)
+			endif
+		endif
+	endif;
+
+helper def : string2transportGuaranteeMap : Map(OclAny,OclAny) = 
+	Map{('NONE',#NONE),('INTEGRAL',#INTEGRAL), ('CONFIDENTIAL', #CONFIDENTIAL)} ;
+	
+helper def : getAllSecurityRoleElements : Sequence(XML!Element) =
+	XML!Element.allInstances()->select(e | e.name = 'security-role');
+
+------------------------------------
+----------JAVA ANNOTATIONS----------
+------------------------------------
+helper def : getSeparatedName(input : String) : String =
+	input.toSequence()->iterate(c ; output : String = '' |
+		if c = c.toUpper() then
+			output->concat(' ')->concat(c)
+		else
+			output->concat(c)
+		endif
+	)->concat(' ')->concat(thisModule.Counter.toString());
+	
+
+helper context OclAny def : getTypeDeclarationName : String =
+	if self.oclIsKindOf(JAVA!AbstractTypeDeclaration) then
+		self.name
+	else
+		if self.oclIsTypeOf(JAVA!Model) then
+			'not found'
+		else
+			self.refImmediateComposite().getTypeDeclarationName
+		endif
+	endif;
+
+helper context OclAny def : getContainerAnnotation(type : String) : JAVA!Annotation =
+	if self.oclIsTypeOf(JAVA!Annotation) then
+		if self.getAnnotationType = type then
+			self
+		else
+			self.refImmediateComposite().getContainerAnnotation(type)
+		endif
+	else
+		if self.oclIsTypeOf(JAVA!Model) then
+			OclUndefined
+		else
+			self.refImmediateComposite().getContainerAnnotation(type)
+		endif
+	endif;
+
+helper context OclAny def : isInAnnotation(type : String) : Boolean =
+	if self.oclIsTypeOf(JAVA!Annotation) then
+		if self.getAnnotationType = type then
+			true
+		else
+			self.refImmediateComposite().isInAnnotation(type)
+		endif
+	else
+		if self.oclIsTypeOf(JAVA!Model) then
+			false
+		else
+			self.refImmediateComposite().isInAnnotation(type)
+		endif
+	endif;
+
+
+helper context OclAny def : isInSpecificAnnotation(target : JAVA!Annotation) : Boolean =
+	if self.oclIsTypeOf(JAVA!Annotation) then
+		if self = target then
+			true
+		else
+			self.refImmediateComposite().isInSpecificAnnotation(target)
+		endif
+	else
+		if self.oclIsTypeOf(JAVA!Model) then
+			false
+		else
+			self.refImmediateComposite().isInSpecificAnnotation(target)
+		endif
+	endif;
+
+helper context OclAny def : isInAnnotationMemberValuePair(target : String) : Boolean =
+	if self.oclIsTypeOf(JAVA!AnnotationMemberValuePair) then
+		self.name = target
+	else
+		if self.oclIsTypeOf(JAVA!Model) then
+			false
+		else
+			self.refImmediateComposite().isInAnnotationMemberValuePair(target)
+		endif
+	endif;
+
+helper context JAVA!Annotation def : getAnnotationType : String =
+	self.type.type.name.regexReplaceAll('javax.servlet.annotation.', '');		
+
+helper context JAVA!StringLiteral def : extractStringLiteral : JAVA!StringLiteral =
+	self;
+
+helper context JAVA!ArrayInitializer def : extractStringLiteral : Sequence(JAVA!StringLiteral) =
+	self.expressions->collect(expr | expr.extractStringLiteral);
+
+helper context JAVA!SingleVariableAccess def : extractStringLiteral : JAVA!StringLiteral =
+	if self.variable.initializer.oclIsUndefined() then
+		OclUndefined
+	else
+		self.variable.initializer.extractStringLiteral
+	endif;
+
+--get all servlet security annotations in the code
+helper def : getAllServletSecurityAnnotations : Sequence(OclAny) =
+	--retrieve the servlet security annotations (both if the annotation is recognized or not by MoDisco)
+	let servletSecurityAnnotations : Sequence(OclAny) = 
+		JAVA!Annotation.allInstances()
+			->select(a | a.refImmediateComposite().oclIsTypeOf(JAVA!ClassDeclaration))
+			->select(a | a.getAnnotationType = 'ServletSecurity') 
+	in
+	servletSecurityAnnotations;
+	
+--get all HttpConstraint and HttpMethodConstraint annotations in servlet security annotations
+helper def : getAllHttpConstraintAndHttpMethodConstraintAnnotations : Sequence(OclAny) =
+	JAVA!Annotation.allInstances()->select(a | a.isInAnnotation('ServletSecurity'))
+									->select(a | 
+												a.getAnnotationType = 'HttpConstraint' or 
+												a.getAnnotationType = 'HttpMethodConstraint');
+
+helper context JAVA!StringLiteral def : isInRolesAllowedSet : Boolean =
+	thisModule.getAllDistinctRolesAllowedInCode->exists(r | r = self);
+
+--retrieve the roles allowed in a given servlet annotation
+helper context JAVA!Annotation def : getRolesAllowed : Sequence(JAVA!StringLiteral) =
+	JAVA!StringLiteral.allInstances()->select(str | str.isInSpecificAnnotation(self))
+										->select(str | str.isInAnnotationMemberValuePair('rolesAllowed'))
+		->union(JAVA!SingleVariableAccess.allInstances()->select(sva | sva.isInSpecificAnnotation(self))
+															->select(sva | sva.isInAnnotationMemberValuePair('rolesAllowed'))
+																->collect(sva | sva.extractStringLiteral)->flatten()
+																	->reject(str | str.oclIsUndefined()));
+			
+--retrieve the roles allowed in the xml
+helper def : getAllDistinctRolesAllowedInXML : Sequence(OclAny) =
+	XML!Root.allInstances()->first().children->select(c | c.name = 'security-role')
+													->collect(c | c.getAttribute('role-name'));
+
+--retrieve the roles allowed and spread in the source code
+helper def : getAllDistinctRolesAllowedInCode : Sequence(OclAny)	=
+	JAVA!StringLiteral.allInstances()->select(str | str.isInAnnotationMemberValuePair('rolesAllowed'))
+		->union(JAVA!SingleVariableAccess.allInstances()->select(sva | sva.isInAnnotationMemberValuePair('rolesAllowed'))
+											->collect(sva | sva.extractStringLiteral)->flatten()
+												->reject(str | str.oclIsUndefined()))
+			--remove duplicates
+			->iterate(str ; output : Sequence(OclAny) = Sequence{} |
+				if output->exists(o | o.escapedValue.split('"')->at(2) = str.escapedValue.split('"')->at(2)) then
+					output
+				else
+					output->append(str)
+				endif
+			)
+			--remove already defined roles in web-app.xml
+			->reject(str | thisModule.getAllDistinctRolesAllowedInXML->collect(rnxml | rnxml.getText)
+										->exists(web_app_role | web_app_role = str.escapedValue.split('"')->at(2))
+			);
+
+helper def : getDistinctRole(name : String) : OclAny =
+	if thisModule.getAllDistinctRolesAllowedInCode->exists(ra | ra.escapedValue.split('"')->at(2) = name) then
+		thisModule.getAllDistinctRolesAllowedInCode->select(ra | ra.escapedValue.split('"')->at(2) = name)->first()
+	else
+		thisModule.getAllDistinctRolesAllowedInXML->select(ra | ra.getText = name)->first()
+	endif;
+
+helper context JAVA!Annotation def : getWebServlet : JAVA!Annotation =
+	let class : JAVA!ClassDeclaration = self.refImmediateComposite() in
+	class.annotations->select(a | a.getAnnotationType = 'WebServlet')->first();	
+
+
+helper context JAVA!Annotation def : isInWebServletAnnotationSet : Boolean =
+	thisModule.getAllServletSecurityAnnotations->collect(ssa | ssa.getWebServlet)->flatten()
+		->exists(ws | ws = self);
+
+helper context JAVA!Annotation def : getTransportGuarantee : JAVA!Expression =
+	JAVA!Expression.allInstances()->select(expr | expr.isInSpecificAnnotation(self))
+									->select(expr | expr.isInAnnotationMemberValuePair('transportGuarantee'))
+										->first();
+
+helper context JAVA!Annotation def : getEmptyRoleSemantic : String =
+	let emptyRoleSemantic : JAVA!Expression = JAVA!Expression.allInstances()->select(expr | expr.isInSpecificAnnotation(self))
+																				->select(expr | expr.isInAnnotationMemberValuePair('emptyRoleSemantic'))
+																					->first() in
+	if emptyRoleSemantic.oclIsUndefined() then
+		'PERMIT'
+	else
+		'DENY'
+	endif;
+
+helper context JAVA!UnresolvedItemAccess def : getTransportGuaranteeLevel : String = 
+	self.element.name;
+
+helper context JAVA!SingleVariableAccess def : getTransportGuaranteeLevel : String =
+	JAVA!EnumConstantDeclaration.allInstances()->select(ecd | ecd.usageInVariableAccess->exists(uva | uva = self))
+												->collect(ecd | ecd.name)->first();
+
+helper context JAVA!Annotation def : getHttpMethodOmissionName : Sequence(JAVA!StringLiteral) =
+	JAVA!Annotation.allInstances()->select(a | a.isInSpecificAnnotation(self))
+									->select(a | a.getAnnotationType = 'HttpMethodConstraint')
+										->collect(a | a.getHttpMethodName);
+
+helper context JAVA!Annotation def : getHttpMethodName : JAVA!StringLiteral =
+	let methods : Sequence(JAVA!StringLiteral) = 
+								JAVA!StringLiteral.allInstances()->select(str | str.isInSpecificAnnotation(self))
+										->select(str | str.isInAnnotationMemberValuePair('value')) in
+	if methods.isEmpty() then
+		if self.values->size() = 1 then
+			self.values->first().value
+		else
+			self.values->first().value.debug('more than one literal - getMethodName')
+		endif
+	else
+		methods->first()
+	endif;
+	
+rule Root2Security {
+	from
+		s: XML!Root (s.name = 'web-app')
+	to
+		t: SEC!Security (
+			constraint <- s.children->select(c | c.name = 'security-constraint')
+							->union(
+								thisModule.getAllHttpConstraintAndHttpMethodConstraintAnnotations
+									->collect(c | thisModule.createSecurityConstraint(c))),
+			role <- s.children->select(c | c.name = 'security-role')
+						->union(thisModule.getAllDistinctRolesAllowedInCode->collect(ra | thisModule.RoleAllowed2SecurityRole(ra)))
+		)
+} 
+
+------------------------------------
+---------------WEB XML--------------
+------------------------------------
+rule Element2SecurityRole {
+	from
+		s: XML!Element (s.name = 'security-role')
+	to
+		t: SEC!SecurityRole (
+			roleName <- s.getAttribute('role-name')
+		)
+}
+
+rule ElementInSecRole2RoleName {
+	from
+		s: XML!Element (s.name = 'role-name' and s.isIn('security-role'))
+	to
+		t: SEC!RoleName (
+			name <- s.getText
+		)
+}
+
+rule Element2SecurityConstraint {
+	from
+		s: XML!Element (s.name = 'security-constraint')
+	to
+		t: SEC!SecurityConstraint (
+			id <- s.getAttribute('id'),
+			displayName <- s.getAttributes('display-name'),
+			webResourceCollection <- s.getAttributes('web-resource-collection'),
+			authConstraint <- s.getAttribute('auth-constraint'),
+			userDataConstraint <- s.getAttribute('user-data-constraint'),
+			source <- #XML
+		)
+}
+
+rule Element2DisplayName {
+	from
+		s: XML!Element (s.name = 'display-name' and s.isIn('security-constraint'))
+	to
+		t: SEC!DisplayName (
+			value <- s.getText
+		)
+}
+
+rule Element2WebResourceCollection {
+	from
+		s: XML!Element (s.name = 'web-resource-collection')
+	to
+		t: SEC!WebResourceCollection (
+			id <- s.getAttribute('id'),
+			webResourceName <- s.getAttribute('web-resource-name').getText,
+			urlPattern <- s.getAttributes('url-pattern'),
+			httpMethod <- s.getAttributes('http-method')->union(s.getAttributes('http-method-omission'))
+		)
+}
+
+rule Element2HttpMethod {
+	from
+		s: XML!Element (s.name = 'http-method' or s.name = 'http-method-omission')
+	to
+		t: SEC!HttpMethod (
+			name <- s.getText,
+			omission <- s.name = 'http-method-omission'						
+		)
+}
+
+rule Element2UrlPattern {
+	from
+		s: XML!Element (s.name = 'url-pattern' and s.isIn('web-resource-collection'))
+	to
+		t: SEC!UrlPattern (
+			value <- s.getText	
+		)
+}
+
+rule Element2AuthConstraint {
+	from
+		s: XML!Element (s.name = 'auth-constraint')
+	to
+		t: SEC!AuthConstraint (
+			id <- s.getAttribute('id'),
+			roleName <- s.getAttributes('role-name')->collect(rn | thisModule.getDistinctRole(rn.getText ))->flatten()
+		)
+}
+
+rule Element2UserDataConstraint {
+	from
+		s: XML!Element (s.name = 'user-data-constraint')
+	to
+		t: SEC!UserDataConstraint (
+			id <- s.getAttribute('id'),
+			transportGuarantee <- trans
+		),
+		trans : SEC!TransportGuarantee (
+			restriction <- 	thisModule.string2transportGuaranteeMap.get(s.getAttribute('transport-guarantee').getText)
+		)
+}
+
+rule Element2Identifier {
+	from
+		s: XML!Element (s.name = 'id' and (
+											s.isIn('security-constraint') or 
+											s.isIn('web-resource-collection') or
+											s.isIn('auth-constraint') or
+											s.isIn('user-data-constraint')
+											)
+						)
+	to
+		t: SEC!Identifier (
+			name <- s.name	
+		)
+}
+
+------------------------------------
+----------JAVA ANNOTATIONS----------
+------------------------------------
+lazy rule RoleAllowed2SecurityRole {
+	from
+		s: JAVA!StringLiteral
+	to
+		t: SEC!SecurityRole (
+			roleName <- s
+		)
+}
+
+rule StringLiteral2SecurityRole {
+	from
+		s: JAVA!StringLiteral (s.isInRolesAllowedSet)
+	to
+		t: SEC!RoleName (
+			name <- s.escapedValue.split('"')->at(2)	
+		)
+}
+
+lazy rule createSecurityConstraint {
+	from
+		s : JAVA!Annotation --HttpMethod or HttpMethodConstraint
+	using {
+		servletAnnotation : JAVA!Annotation = s.getContainerAnnotation('ServletSecurity');
+		}
+	to
+		t: SEC!SecurityConstraint (
+			webResourceCollection <- thisModule.createWebResourceCollection(servletAnnotation.getWebServlet, s),
+			authConstraint <- 
+								if s.getEmptyRoleSemantic = 'PERMIT' then
+									thisModule.createAuthConstraint(s, true)
+								else
+									thisModule.createAuthConstraint(s, false)
+								endif,
+			userDataConstraint <- 
+									if s.getTransportGuarantee.oclIsUndefined() then
+										OclUndefined
+									else
+										thisModule.createTransportGuarantee(s.getTransportGuarantee)
+									endif,
+			source <- #CODE
+		)
+}
+
+lazy rule createTransportGuarantee {
+	from
+		s: JAVA!Expression
+	to
+		t: SEC!UserDataConstraint (
+			transportGuarantee <- trans	
+		),
+		trans: SEC!TransportGuarantee (
+			restriction <- thisModule.string2transportGuaranteeMap.get(s.getTransportGuaranteeLevel)
+		)
+}
+
+lazy rule createAuthConstraint {
+	from
+		s: JAVA!Annotation, flag: Boolean
+	to
+		t: SEC!AuthConstraint (
+			roleName <- 
+						if flag then
+							s.getRolesAllowed->collect(ra | thisModule.getDistinctRole(ra.escapedValue.split('"')->at(2)))
+						else
+							OclUndefined
+						endif
+		)
+}
+
+lazy rule createWebResourceCollection {
+	from
+		webServlet: JAVA!Annotation, http: JAVA!Annotation
+	using {
+		servletAnnotation : JAVA!Annotation = http.getContainerAnnotation('ServletSecurity');
+		type : String = http.getAnnotationType;
+		}
+	to
+		t: SEC!WebResourceCollection (
+			webResourceName <- thisModule.getSeparatedName(webServlet.getTypeDeclarationName),
+			urlPattern <- webServlet.values->select(v | v.name = 'urlPatterns')
+										->collect(v | v.value.extractStringLiteral)->flatten()
+											->collect(v | thisModule.createUrlPattern(v)),
+			httpMethod <- 
+				if type = 'HttpMethodConstraint' then
+					thisModule.createHttpMethod(http.getHttpMethodName)
+				else
+					servletAnnotation.getHttpMethodOmissionName->collect(http | thisModule.createHttpMethodOmission(http))
+				endif
+		)
+	do {
+		thisModule.Counter <- thisModule.Counter + 1;	
+	}
+}
+
+lazy rule createHttpMethod {
+	from
+		s: JAVA!StringLiteral
+	to
+		t: SEC!HttpMethod (
+			name <- s.escapedValue.split('"')->at(2),
+			omission <- false
+		)
+}
+
+
+lazy rule createHttpMethodOmission {
+	from
+		s: JAVA!StringLiteral
+	to
+		t: SEC!HttpMethod (
+			name <- s.escapedValue.split('"')->at(2),
+			omission <- true
+		)
+}
+
+lazy rule createUrlPattern {
+	from
+		s: JAVA!StringLiteral
+	to
+		t: SEC!UrlPattern (
+			value <- s.escapedValue.split('"')->at(2)
+		)
+}
