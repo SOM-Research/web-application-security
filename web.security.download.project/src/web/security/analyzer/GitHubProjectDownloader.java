@@ -1,10 +1,11 @@
 package web.security.analyzer;
 
-import java.util.List;
 import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -12,10 +13,13 @@ import java.net.URLConnection;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
-public class SecurityAnalyzer {
+
+public class GitHubProjectDownloader {
 	
 	private static final int BUFFER_SIZE = 4096;
-		
+	private final String SAMPLE_FILE_PATH = "./sample_projects.txt";
+	private final String TARGET_WORKSPACE = "C:\\Users\\atlanmod\\Desktop\\runtime-EclipseXtext\\";
+	
 	public void downloadRepoZip(String repoUrl, String zipFilePath) {
         try {
             URL url = new URL(repoUrl);
@@ -58,28 +62,51 @@ public class SecurityAnalyzer {
         zipIn.close();
     }
 	
-	private void extractFile(ZipInputStream zipIn, String filePath) throws IOException {
-        BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(filePath));
-        byte[] bytesIn = new byte[BUFFER_SIZE];
-        int read = 0;
-        while ((read = zipIn.read(bytesIn)) != -1) {
-            bos.write(bytesIn, 0, read);
-        }
-        bos.close();
+	private void extractFile(ZipInputStream zipIn, String filePath) {
+		try {
+	        BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(filePath));
+	        byte[] bytesIn = new byte[BUFFER_SIZE];
+	        int read = 0;
+	        while ((read = zipIn.read(bytesIn)) != -1) {
+	            bos.write(bytesIn, 0, read);
+	        }
+	        bos.close();
+		}
+		catch (Exception e) { System.out.println(filePath + " not converted!"); }
     }
 	
+	public void deleteRepoZip(String path) {
+		try {
+			File toDelete = new File(path);
+			toDelete.delete();
+		}
+		catch (Exception e) { System.out.println(path + " not deleted!"); }
+	}
+	
+	public void importSampleToWorkspace() {
+		try {
+			FileReader reader = new FileReader(this.SAMPLE_FILE_PATH);
+			BufferedReader br = new BufferedReader(reader);
+			
+			int counter = 0;
+			String currentLine;
+			String currentRepo;
+			while ((currentLine = br.readLine()) != null) {
+				currentRepo = String.valueOf(counter) + "_repo.zip";
+				this.downloadRepoZip(currentLine, "./tmp/" + currentRepo);
+				this.unzipRepo("./tmp/" + currentRepo, this.TARGET_WORKSPACE);
+				this.deleteRepoZip("./tmp" + currentRepo);
+				counter++;
+			}
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		} 
+	}
 	
 	public static void main(String[] args) {
-		SecurityAnalyzer sa = new SecurityAnalyzer();
-		try {
-			sa.downloadRepoZip(
-					"https://github.com/atlanmod/gila/archive/master.zip", 
-					"./tmp/repo.zip");
-			sa.unzipRepo("./tmp/repo.zip", "../");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		GitHubProjectDownloader sa = new GitHubProjectDownloader();
+		sa.importSampleToWorkspace();
 	}
 	
 
