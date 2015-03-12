@@ -132,6 +132,7 @@ public class GitHubSampleCreator {
 			if (link.contains("/" + filter + "/"))
 				filtered.add(link);
 		}
+		links.clear();
 		links = filtered;
 	}
 	
@@ -228,8 +229,8 @@ public class GitHubSampleCreator {
 		GitHubSampleCreator x = new GitHubSampleCreator("servlet");
 		x.createSample("<web-resource-collection>", "xml", ">1000", 100, "WEB-INF");
 		
-		//GitHubSampleCreator y = new GitHubSampleCreator("ejb");
-		//y.createSample("<security-identity>", "xml", ">1000", 100, "META-INF");
+		GitHubSampleCreator y = new GitHubSampleCreator("ejb");
+		y.createSample("<security-identity>", "xml", ">1000", 100, "META-INF");
 	}
 
 }
