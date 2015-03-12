@@ -16,11 +16,13 @@ public class GitHubSampleCreator {
 	private List<String> links;
 	private final int HITS_PER_PAGE = 10;
 	private final int TIME_BETWEEN_REQUESTS = 10000; //10 secs
-	private final String SAMPLE_LINKS_PATH = "./sample_links.txt";
-	private final String SAMPLE_REPOS_PATH = "./sample_projects.txt";
+	private String sample_links_path;
+	private String sample_repos_path;
 	
-	public GitHubSampleCreator() {
+	public GitHubSampleCreator(String type) {
 		this.links = new LinkedList<String>();
+		this.sample_links_path = "./" + type + "_file_links.txt";
+		this.sample_repos_path = "./" + type + "_sample_projects.txt";
 	}
 	
 	private void sleep(int time) {
@@ -31,7 +33,7 @@ public class GitHubSampleCreator {
 		}
 	}
 	
-	public void createSample(String search_text, String file_ext, String file_size, int sample_size) {
+	public void createSample(String search_text, String file_ext, String file_size, int sample_size, String filter) {
 		//start browser
 		System.setProperty("webdriver.chrome.driver", "C:/chromedriver_win32/chromedriver.exe");
 		WebDriver driver = new ChromeDriver();
@@ -39,6 +41,7 @@ public class GitHubSampleCreator {
 		
 		prepareSearch(driver, search_text, file_ext, file_size);
 		collectProjects(driver, sample_size);
+		this.filter(this.links, filter);
 		this.save(this.links);
 		
 		//close browser
@@ -123,11 +126,20 @@ public class GitHubSampleCreator {
 		return repo_link;
 	}
 	
-	public void save(List<String> paths) {
+	public void filter(List<String> links, String filter) {
+		List<String> filtered = new LinkedList<String>();
+		for (String link : links) {
+			if (link.contains("/" + filter + "/"))
+				filtered.add(link);
+		}
+		links = filtered;
+	}
+	
+	public void save(List<String> links) {
 		try {
-			PrintWriter writer_links = new PrintWriter(this.SAMPLE_LINKS_PATH, "UTF-8");
-			PrintWriter writer_repos = new PrintWriter(this.SAMPLE_REPOS_PATH, "UTF-8");
-			for (String link : this.links) {
+			PrintWriter writer_links = new PrintWriter(this.sample_links_path, "UTF-8");
+			PrintWriter writer_repos = new PrintWriter(this.sample_repos_path, "UTF-8");
+			for (String link : links) {
 				//write file link
 				writer_links.println(this.getFileLink(link));
 				//retrieve project zip and write it
@@ -213,9 +225,11 @@ public class GitHubSampleCreator {
 	
 	
 	public static void main(String[] args) {
-		GitHubSampleCreator sa = new GitHubSampleCreator();
-		sa.createSample("<web-resource-collection>", "xml", ">1000", 100);
-		//sa.createSample("<security-identity>", "xml", ">1000", 100);
+		GitHubSampleCreator x = new GitHubSampleCreator("servlet");
+		x.createSample("<web-resource-collection>", "xml", ">1000", 100, "WEB-INF");
+		
+		//GitHubSampleCreator y = new GitHubSampleCreator("ejb");
+		//y.createSample("<security-identity>", "xml", ">1000", 100, "META-INF");
 	}
 
 }

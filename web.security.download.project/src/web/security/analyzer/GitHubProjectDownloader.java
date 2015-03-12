@@ -17,8 +17,15 @@ import java.util.zip.ZipInputStream;
 public class GitHubProjectDownloader {
 	
 	private static final int BUFFER_SIZE = 4096;
-	private final String SAMPLE_FILE_PATH = "./sample_projects.txt";
-	private final String TARGET_WORKSPACE = "C:\\Users\\atlanmod\\Desktop\\runtime-EclipseXtext\\";
+	
+	private String sample_file_path;
+	private String target_workspace;
+	
+	public GitHubProjectDownloader(String sampleFilePath, String targetWorkspace) {
+		this.target_workspace = targetWorkspace;
+		this.sample_file_path = sampleFilePath;
+	
+	}
 	
 	public void downloadRepoZip(String repoUrl, String zipFilePath) {
         try {
@@ -86,9 +93,18 @@ public class GitHubProjectDownloader {
 		catch (Exception e) { System.out.println(path + " not deleted!"); }
 	}
 	
+	private void emptyTmpFolder(String path) {
+		File dir = new File(path);
+		for (File file : dir.listFiles())
+			try {
+				file.delete();
+			}
+			catch (Exception e) { System.out.println(file.getName() + " not deleted!"); }
+	}
+	
 	public void importSampleToWorkspace() {
 		try {
-			FileReader reader = new FileReader(this.SAMPLE_FILE_PATH);
+			FileReader reader = new FileReader(this.sample_file_path);
 			BufferedReader br = new BufferedReader(reader);
 			
 			int counter = 0;
@@ -97,10 +113,12 @@ public class GitHubProjectDownloader {
 			while ((currentLine = br.readLine()) != null) {
 				currentRepo = String.valueOf(counter) + "_repo.zip";
 				this.downloadRepoZip(currentLine, "./tmp/" + currentRepo);
-				this.unzipRepo("./tmp/" + currentRepo, this.TARGET_WORKSPACE);
+				this.unzipRepo("./tmp/" + currentRepo, this.target_workspace);
 				this.deleteRepoZip("./tmp/" + currentRepo);
 				counter++;
 			}
+			
+			this.emptyTmpFolder("./tmp/");
 			
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -108,7 +126,8 @@ public class GitHubProjectDownloader {
 	}
 	
 	public static void main(String[] args) {
-		GitHubProjectDownloader sa = new GitHubProjectDownloader();
+		//init the downloader with the path of the file containing the GitHub projects to download and the target workspace
+		GitHubProjectDownloader sa = new GitHubProjectDownloader("./servlet_sample_projects.txt", "C:\\Users\\atlanmod\\Desktop\\runtime-EclipseXtext\\");
 		sa.importSampleToWorkspace();
 	}
 	
