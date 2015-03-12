@@ -38,28 +38,31 @@ public class GitHubProjectDownloader {
         }
     }
 	
-	public void unzipRepo(String zipFilePath, String destDirectory) throws IOException {
-        File destDir = new File(destDirectory);
-        if (!destDir.exists()) {
-            destDir.mkdir();
-        }
-        ZipInputStream zipIn = new ZipInputStream(new FileInputStream(zipFilePath));
-        ZipEntry entry = zipIn.getNextEntry();
-        // iterates over entries in the zip file
-        while (entry != null) {
-            String filePath = destDirectory + File.separator + entry.getName();
-            if (!entry.isDirectory()) {
-                // if the entry is a file, extracts it
-                extractFile(zipIn, filePath);
-            } else {
-                // if the entry is a directory, make the directory
-                File dir = new File(filePath);
-                dir.mkdir();
-            }
-            zipIn.closeEntry();
-            entry = zipIn.getNextEntry();
-        }
-        zipIn.close();
+	public void unzipRepo(String zipFilePath, String destDirectory) {
+		try {
+	        File destDir = new File(destDirectory);
+	        if (!destDir.exists()) {
+	            destDir.mkdir();
+	        }
+	        ZipInputStream zipIn = new ZipInputStream(new FileInputStream(zipFilePath));
+	        ZipEntry entry = zipIn.getNextEntry();
+	        // iterates over entries in the zip file
+	        while (entry != null) {
+	            String filePath = destDirectory + File.separator + entry.getName();
+	            if (!entry.isDirectory()) {
+	                // if the entry is a file, extracts it
+	                extractFile(zipIn, filePath);
+	            } else {
+	                // if the entry is a directory, make the directory
+	                File dir = new File(filePath);
+	                dir.mkdir();
+	            }
+	            zipIn.closeEntry();
+	            entry = zipIn.getNextEntry();
+	        }
+	        zipIn.close();
+		}
+	    catch (Exception e) { System.out.println(zipFilePath + " unzip problem!"); }
     }
 	
 	private void extractFile(ZipInputStream zipIn, String filePath) {
@@ -95,7 +98,7 @@ public class GitHubProjectDownloader {
 				currentRepo = String.valueOf(counter) + "_repo.zip";
 				this.downloadRepoZip(currentLine, "./tmp/" + currentRepo);
 				this.unzipRepo("./tmp/" + currentRepo, this.TARGET_WORKSPACE);
-				this.deleteRepoZip("./tmp" + currentRepo);
+				this.deleteRepoZip("./tmp/" + currentRepo);
 				counter++;
 			}
 			
