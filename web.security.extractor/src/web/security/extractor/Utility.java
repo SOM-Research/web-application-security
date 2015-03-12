@@ -13,6 +13,7 @@ public class Utility {
 	public static final String EJB_SECURITY_METAMODEL_PATH = getLocation() + metamodelsFolder + "EjbSecurity.ecore"; 
 	public static final String WEB_SECURITY_METAMODEL_PATH = getLocation() + metamodelsFolder + "websecurity.ecore";
 	public static final String EMPTY_XMI_XML_PATH = getLocation().replaceFirst("file:/", "") + resourcesFolder + "empty_xml.xmi";
+	public static final String EMPTY_XMI_JAVA_PATH = getLocation().replaceFirst("file:/", "") + resourcesFolder + "empty_java_project.xmi";
 	
 	public static final String EJB_SECURITY_2_PIM = '/' + transformationsFolder + "ejbSecurity2PIM.asm";
 	public static final String EXTRACTING_EJB_SECURITY = '/' + transformationsFolder + "extractingEJBSecurity.asm";
