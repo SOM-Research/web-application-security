@@ -13,6 +13,21 @@ import java.net.URLConnection;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
+/**
+ * 
+ * @author atlanmod
+ * this class retrieves the GitHub project links contained in "sampleFilePath"
+ * and downloads them to the workspace "targetWorkspace"
+ * 
+ * template ex.:
+ * GitHubProjectDownloader x = new GitHubProjectDownloader(sampleFilePath, targetWorkspace);
+ * x.importSampleToWorkspace();
+ * 
+ * ex.:
+ * GitHubProjectDownloader x = new GitHubProjectDownloader("./servlet_sample_projects.txt", "C:\\Users\\atlanmod\\Desktop\\runtime-EclipseXtext\\");
+ * x.importSampleToWorkspace();
+ *
+ */
 
 public class GitHubProjectDownloader {
 	
@@ -118,7 +133,7 @@ public class GitHubProjectDownloader {
 				counter++;
 			}
 			
-			this.emptyTmpFolder("./tmp/");
+			this.emptyTmpFolder("./tmp");
 			
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -127,8 +142,11 @@ public class GitHubProjectDownloader {
 	
 	public static void main(String[] args) {
 		//init the downloader with the path of the file containing the GitHub projects to download and the target workspace
-		GitHubProjectDownloader sa = new GitHubProjectDownloader("./servlet_sample_projects.txt", "C:\\Users\\atlanmod\\Desktop\\runtime-EclipseXtext\\");
-		sa.importSampleToWorkspace();
+		GitHubProjectDownloader x = new GitHubProjectDownloader("./servlet_sample_projects.txt", "C:\\Users\\atlanmod\\Desktop\\runtime-EclipseXtext\\");
+		x.importSampleToWorkspace();
+		
+		GitHubProjectDownloader y = new GitHubProjectDownloader("./ejb_sample_projects.txt", "C:\\Users\\atlanmod\\Desktop\\runtime-EclipseXtext\\");
+		y.importSampleToWorkspace();
 	}
 	
 

@@ -11,18 +11,27 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+/**
+ * 
+ * @author atlanmod
+ * This class builds a random sample of GitHub projects containing security information.
+ * From the set of projects retrieved from the GitHub search, a sample of size X is randomly created
+ * 
+ * ex. template:
+ * GitHubSampleCreator x = new GitHubSampleCreator();
+ * x.createSample(text_to_search, file_extension, file_size, sample_size, filter);
+ * x.save(path_to_file_links_found, path_to_project_links_to_download_found);
+ *
+ */
+
 public class GitHubSampleCreator {
 	
 	private List<String> links;
 	private final int HITS_PER_PAGE = 10;
 	private final int TIME_BETWEEN_REQUESTS = 10000; //10 secs
-	private String sample_links_path;
-	private String sample_repos_path;
 	
-	public GitHubSampleCreator(String type) {
+	public GitHubSampleCreator() {
 		this.links = new LinkedList<String>();
-		this.sample_links_path = "./" + type + "_file_links.txt";
-		this.sample_repos_path = "./" + type + "_sample_projects.txt";
 	}
 	
 	private void sleep(int time) {
@@ -41,8 +50,9 @@ public class GitHubSampleCreator {
 		
 		prepareSearch(driver, search_text, file_ext, file_size);
 		collectProjects(driver, sample_size);
-		this.filter(this.links, filter);
-		this.save(this.links);
+		
+		if (!filter.equals(""))
+			this.filter(filter);
 		
 		//close browser
 		driver.quit();
@@ -91,25 +101,6 @@ public class GitHubSampleCreator {
 		this.lookForProjects(driver, inSample);
 	}
 	
-	private String getFileLink(String link) {
-		String[] fragments = link.replaceAll("https://github.com/", "").split("/");
-		String file_link = "";
-		for (int i = 0; i<fragments.length; i++) {
-			if (fragments[i].equals("blob")) {
-				//skip blob and sha fragments
-				i = i+1;
-			}
-			else {
-				if (i == fragments.length-1)
-					file_link = file_link + fragments[i];
-				else
-					file_link = file_link + fragments[i] + "/";
-			}
-		}
-		
-		return file_link;
-	}
-	
 	private String getRepoLink(String link) {
 		String[] fragments = link.replaceAll("https://github.com/", "").split("/");
 		String repo_link = "https://github.com/";
@@ -126,26 +117,36 @@ public class GitHubSampleCreator {
 		return repo_link;
 	}
 	
-	public void filter(List<String> links, String filter) {
+	public void filter(String filter) {
 		List<String> filtered = new LinkedList<String>();
-		for (String link : links) {
+		for (String link : this.links) {
 			if (link.contains("/" + filter + "/"))
 				filtered.add(link);
 		}
-		links.clear();
-		links = filtered;
+		this.links.clear();
+		this.links = filtered;
 	}
 	
-	public void save(List<String> links) {
+	private List<String> getRepoLinks() {
+		List<String> repoLinks = new LinkedList<String>();
+		for (String link : this.links) {
+			if (!repoLinks.contains(this.getRepoLink(link)))
+				repoLinks.add(this.getRepoLink(link));
+		}
+		return repoLinks;
+	}
+	
+	public void save(String sample_links_path, String sample_repos_path) {
 		try {
-			PrintWriter writer_links = new PrintWriter(this.sample_links_path, "UTF-8");
-			PrintWriter writer_repos = new PrintWriter(this.sample_repos_path, "UTF-8");
-			for (String link : links) {
+			PrintWriter writer_links = new PrintWriter(sample_links_path, "UTF-8");
+			PrintWriter writer_repos = new PrintWriter(sample_repos_path, "UTF-8");
+			for (String link : this.links) {
 				//write file link
-				writer_links.println(this.getFileLink(link));
+				writer_links.println(link);
+			}
+			for (String link : this.getRepoLinks()) {
 				//retrieve project zip and write it
-				writer_repos.println(this.getRepoLink(link));
-				
+				writer_repos.println(link);
 			}
 			writer_links.close();
 			writer_repos.close();
@@ -226,11 +227,14 @@ public class GitHubSampleCreator {
 	
 	
 	public static void main(String[] args) {
-		GitHubSampleCreator x = new GitHubSampleCreator("servlet");
+		GitHubSampleCreator x = new GitHubSampleCreator();
+		//deactivate the filter using "" in the filter parameter
 		x.createSample("<web-resource-collection>", "xml", ">1000", 100, "WEB-INF");
+		x.save("./servlet_file_links.txt", "./servlet_sample_links.txt");
 		
-		GitHubSampleCreator y = new GitHubSampleCreator("ejb");
-		y.createSample("<security-identity>", "xml", ">1000", 100, "META-INF");
+		GitHubSampleCreator y = new GitHubSampleCreator();
+		y.createSample("<security-identity>", "xml", ">1000", 100, "");
+		y.save("./ejb_file_links.txt", "./ejb_sample_links.txt");
 	}
 
 }
