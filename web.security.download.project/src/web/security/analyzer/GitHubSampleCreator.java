@@ -194,8 +194,13 @@ public class GitHubSampleCreator {
 		WebElement pagination = driver.findElement(By.className("pagination"));
 		List<WebElement> pages = pagination.findElements(By.xpath("./a"));
 		WebElement nextPage = pages.get(pages.size()-1);
-		nextPage.click();
-		this.sleep(this.TIME_BETWEEN_REQUESTS);
+		
+		try {
+			this.sleep(2000);
+			nextPage.click();
+			this.sleep(this.TIME_BETWEEN_REQUESTS);
+		}
+		catch (Exception e) {}
 	}
 	
 	private List<Integer> getRandomSample(int sample_size, int population) {
@@ -232,9 +237,9 @@ public class GitHubSampleCreator {
 		x.createSample("<web-resource-collection>", "xml", ">1000", 100, "WEB-INF");
 		x.save("./servlet_file_links.txt", "./servlet_sample_links.txt");
 		
-		GitHubSampleCreator y = new GitHubSampleCreator();
-		y.createSample("<security-identity>", "xml", ">1000", 100, "");
-		y.save("./ejb_file_links.txt", "./ejb_sample_links.txt");
+//		GitHubSampleCreator y = new GitHubSampleCreator();
+//		y.createSample("<security-identity>", "xml", ">1000", 100, "");
+//		y.save("./ejb_file_links.txt", "./ejb_sample_links.txt");
 	}
 
 }

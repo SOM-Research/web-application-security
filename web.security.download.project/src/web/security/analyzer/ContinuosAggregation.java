@@ -1,5 +1,6 @@
 package web.security.analyzer;
 
+
 public class ContinuosAggregation {
 	
 	public static void main(String[] args) {
@@ -14,10 +15,8 @@ public class ContinuosAggregation {
 			finder.getProjects("<security-identity>", "xml", finder.getEjb_links(), "");
 			finder.findMatches();
 			finder.save(finder.getMatch_links(), "./servlet_ejb_links.txt");
-			finder.save(finder.getFile_links(), "./file_links.txt");
 			
 			aggregator.aggregate("./aggr_servlet_ejb_links.txt", "./servlet_ejb_links.txt");
-			aggregator.aggregate("./aggr_file_links.txt", "./file_links.txt");
 		
 			iterations++;
 		}

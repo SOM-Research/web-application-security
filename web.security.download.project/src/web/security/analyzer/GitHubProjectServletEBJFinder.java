@@ -1,8 +1,10 @@
 package web.security.analyzer;
 
+import java.io.File;
 import java.io.PrintWriter;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Random;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -29,7 +31,7 @@ public class GitHubProjectServletEBJFinder {
 	private List<String> ejb_links;
 	private List<String> match_links;
 	private List<String> file_links;
-	private final int TIME_BETWEEN_REQUESTS = 10000; //10 secs
+	private final int TIME_BETWEEN_REQUESTS = 15000; //15 secs
 	
 	public GitHubProjectServletEBJFinder() {
 		this.servlet_links = new LinkedList<String>();
@@ -69,6 +71,8 @@ public class GitHubProjectServletEBJFinder {
 		WebDriver driver = new ChromeDriver();
 		driver.get("https://github.com/search/advanced?q=test&type=Repositories&utf8=%E2%9C%93");
 		
+		this.sleep(this.TIME_BETWEEN_REQUESTS);
+		
 		prepareSearch(driver, search_text, file_ext);
 		collectProjects(driver, output, filter);
 		
@@ -93,7 +97,7 @@ public class GitHubProjectServletEBJFinder {
 		WebElement lastButtonSearch = buttonsSearch.get(buttonsSearch.size()-1);
 		//search
 		lastButtonSearch.click();
-		this.sleep(3000);
+		this.sleep(this.TIME_BETWEEN_REQUESTS);
 		
 	}
 	
@@ -147,8 +151,12 @@ public class GitHubProjectServletEBJFinder {
 		WebElement pagination = driver.findElement(By.className("pagination"));
 		List<WebElement> pages = pagination.findElements(By.xpath("./a"));
 		WebElement nextPage = pages.get(pages.size()-1);
-		nextPage.click();
-		this.sleep(this.TIME_BETWEEN_REQUESTS);
+		try {
+			this.sleep(2000);
+			nextPage.click();
+			this.sleep(this.TIME_BETWEEN_REQUESTS);
+		}
+		catch (Exception e) {}
 	}
 	
 	private boolean inList(List<String> output, String link) {
@@ -174,9 +182,14 @@ public class GitHubProjectServletEBJFinder {
 	
 	public void save(List<String> links, String output_path) {
 		try {
+			File f = new File(output_path);
+			if (!f.exists())
+				f.createNewFile();
+			
 			PrintWriter writer = new PrintWriter(output_path, "UTF-8");
 			for (String link : links)
 				writer.println(link);
+			writer.flush();
 			writer.close();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
