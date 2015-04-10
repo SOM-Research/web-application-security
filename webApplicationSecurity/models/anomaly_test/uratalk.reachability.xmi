@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:anomalies="http://atlanmod.sec.anomalies.org">
+  <anomalies:ResourceReachability description="resource /slim3/gtx is not reachable">
+    <trace href="uratalk.psm.xmi#//@constraint.0/@webResourceCollection.0/@urlPattern.0"/>
+  </anomalies:ResourceReachability>
+  <anomalies:ResourceReachability description="resource /my/* is not reachable">
+    <trace href="uratalk.psm.xmi#//@constraint.1/@webResourceCollection.0/@urlPattern.0"/>
+  </anomalies:ResourceReachability>
+  <anomalies:ResourceReachability description="resource /cron/* is not reachable">
+    <trace href="uratalk.psm.xmi#//@constraint.2/@webResourceCollection.0/@urlPattern.0"/>
+  </anomalies:ResourceReachability>
+  <anomalies:ResourceReachability description="resource /task/* is not reachable">
+    <trace href="uratalk.psm.xmi#//@constraint.3/@webResourceCollection.0/@urlPattern.0"/>
+  </anomalies:ResourceReachability>
+  <anomalies:ResourceReachability description="resource /templates/* is not reachable">
+    <trace href="uratalk.psm.xmi#//@constraint.4/@webResourceCollection.0/@urlPattern.0"/>
+  </anomalies:ResourceReachability>
+</xmi:XMI>

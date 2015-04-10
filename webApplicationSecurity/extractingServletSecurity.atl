@@ -311,7 +311,11 @@ rule Element2WebResourceCollection {
 	to
 		t: SEC!WebResourceCollection (
 			id <- s.getAttribute('id'),
-			webResourceName <- s.getAttribute('web-resource-name').getText,
+			webResourceName <- if s.getAttribute('web-resource-name').oclIsUndefined() then
+									OclUndefined
+								else
+									s.getAttribute('web-resource-name').getText
+								endif,
 			urlPattern <- s.getAttributes('url-pattern'),
 			httpMethod <- s.getAttributes('http-method')->union(s.getAttributes('http-method-omission'))
 		)
@@ -342,7 +346,8 @@ rule Element2AuthConstraint {
 	to
 		t: SEC!AuthConstraint (
 			id <- s.getAttribute('id'),
-			roleName <- s.getAttributes('role-name')->collect(rn | thisModule.getDistinctRole(rn.getText ))->flatten()
+			roleNameTxt <- s.getAttributes('role-name')->collect(rn | rn.getText),
+			roleName <- s.getAttributes('role-name')->collect(rn | thisModule.getDistinctRole(rn.getText))->flatten()
 		)
 }
 
@@ -437,6 +442,7 @@ lazy rule createAuthConstraint {
 		s: JAVA!Annotation, flag: Boolean
 	to
 		t: SEC!AuthConstraint (
+			roleNameTxt <- s.getRolesAllowed->collect(ra | ra.escapedValue.split('"')->at(2)),
 			roleName <- 
 						if flag then
 							s.getRolesAllowed->collect(ra | thisModule.getDistinctRole(ra.escapedValue.split('"')->at(2)))

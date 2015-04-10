@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<anomalies:Anomalies xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:anomalies="http://atlanmod.sec.anomalies.org">
+  <anomaly xsi:type="anomalies:UndeclaredRole" description="Missing role(s): User, Engineer">
+    <trace href="bridgemonitoring.psm.xmi#//@constraint.0"/>
+  </anomaly>
+  <anomaly xsi:type="anomalies:UndeclaredRole" description="Missing role(s): User, Engineer">
+    <trace href="bridgemonitoring.psm.xmi#//@constraint.1"/>
+  </anomaly>
+  <anomaly xsi:type="anomalies:UndeclaredRole" description="Missing role(s): User, Engineer">
+    <trace href="bridgemonitoring.psm.xmi#//@constraint.2"/>
+  </anomaly>
+  <anomaly xsi:type="anomalies:UndeclaredRole" description="Missing role(s): Administrator">
+    <trace href="bridgemonitoring.psm.xmi#//@constraint.3"/>
+  </anomaly>
+  <anomaly xsi:type="anomalies:UndeclaredRole" description="Missing role(s): Engineer, User">
+    <trace href="bridgemonitoring.psm.xmi#//@constraint.4"/>
+  </anomaly>
+  <anomaly xsi:type="anomalies:UndeclaredRole" description="Missing role(s): Engineer">
+    <trace href="bridgemonitoring.psm.xmi#//@constraint.5"/>
+  </anomaly>
+  <anomaly xsi:type="anomalies:UndeclaredRole" description="Missing role(s): Administrator">
+    <trace href="bridgemonitoring.psm.xmi#//@constraint.6"/>
+  </anomaly>
+  <anomaly xsi:type="anomalies:UndeclaredRole" description="Missing role(s): User, Engineer, Administrator">
+    <trace href="bridgemonitoring.psm.xmi#//@constraint.7"/>
+  </anomaly>
+  <anomaly xsi:type="anomalies:UndeclaredRole" description="No security roles declared"/>
+</anomalies:Anomalies>

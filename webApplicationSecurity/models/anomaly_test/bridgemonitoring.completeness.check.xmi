@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:anomalies="http://atlanmod.sec.anomalies.org">
+  <anomalies:UnprotectedMethod trace="/0" description="methods[OPTIONS, HEAD, PUT, DELETE, TRACE, CONNECT] not defined for /MNDomain&#xA;"/>
+  <anomalies:UnprotectedMethod trace="/1" description="methods[OPTIONS, HEAD, PUT, DELETE, TRACE, CONNECT] not defined for /MNDomain&#xA;"/>
+  <anomalies:UnprotectedMethod trace="/2" description="methods[OPTIONS, HEAD, PUT, DELETE, TRACE, CONNECT] not defined for /TestRawData&#xA;"/>
+  <anomalies:UnprotectedMethod trace="/3" description="methods[OPTIONS, HEAD, PUT, DELETE, TRACE, CONNECT] not defined for /TestRawData&#xA;"/>
+  <anomalies:UnprotectedMethod trace="/4" description="methods[OPTIONS, HEAD, PUT, DELETE, TRACE, CONNECT] not defined for /TestParametersData&#xA;"/>
+  <anomalies:UnprotectedMethod trace="/5" description="methods[OPTIONS, HEAD, PUT, DELETE, TRACE, CONNECT] not defined for /TestParametersData&#xA;"/>
+  <anomalies:UnprotectedMethod trace="/6" description="methods[OPTIONS, HEAD, PUT, DELETE, TRACE, CONNECT] not defined for /TestParser&#xA;"/>
+  <anomalies:UnprotectedMethod trace="/7" description="methods[OPTIONS, HEAD, PUT, DELETE, TRACE, CONNECT] not defined for /TestParser&#xA;"/>
+  <anomalies:UnprotectedMethod trace="/8" description="methods[OPTIONS, HEAD, PUT, DELETE, TRACE, CONNECT] not defined for /HistoryView&#xA;"/>
+  <anomalies:UnprotectedMethod trace="/9" description="methods[OPTIONS, HEAD, PUT, DELETE, TRACE, CONNECT] not defined for /HistoryView&#xA;"/>
+  <anomalies:UnprotectedMethod trace="/10" description="methods[OPTIONS, HEAD, PUT, DELETE, TRACE, CONNECT] not defined for /TestTimestampAndCounts&#xA;"/>
+  <anomalies:UnprotectedMethod trace="/11" description="methods[OPTIONS, HEAD, PUT, DELETE, TRACE, CONNECT] not defined for /TestTimestampAndCounts&#xA;"/>
+  <anomalies:UnprotectedMethod trace="/12" description="methods[OPTIONS, HEAD, PUT, DELETE, TRACE, CONNECT] not defined for /UserAdministration&#xA;"/>
+  <anomalies:UnprotectedMethod trace="/13" description="methods[OPTIONS, HEAD, PUT, DELETE, TRACE, CONNECT] not defined for /UserAdministration&#xA;"/>
+  <anomalies:UnprotectedMethod trace="/14" description="methods[OPTIONS, HEAD, PUT, DELETE, TRACE, CONNECT] not defined for /Login&#xA;"/>
+  <anomalies:UnprotectedMethod trace="/15" description="methods[OPTIONS, HEAD, PUT, DELETE, TRACE, CONNECT] not defined for /Login&#xA;"/>
+</xmi:XMI>

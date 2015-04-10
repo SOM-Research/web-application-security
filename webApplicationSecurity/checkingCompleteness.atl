@@ -1,0 +1,61 @@
+-- @path ANO=/webApplicationSecurity/metamodels/anomalies.ecore
+-- @path PSM=/webApplicationSecurity/metamodels/ServletSecurity.ecore
+
+module checkingCompleteness;
+create OUT : ANO from IN : PSM;
+
+helper def : HTTP_METHODS : Sequence(OclAny) = 
+	Sequence{'OPTIONS','GET','HEAD','POST','PUT','DELETE','TRACE','CONNECT'};
+	
+helper def : ALL_HTTP_METHODS : Sequence(PSM!HttpMethod) =
+	PSM!HttpMethod.allInstances();
+
+helper context PSM!HttpMethod def : isComplete : Boolean =
+	let httpMethodsToCheck : Sequence(String) =
+		if self.omission then
+			thisModule.HTTP_METHODS->select(m | m = self.name)
+		else
+			thisModule.HTTP_METHODS->reject(m | m = self.name)
+		endif in
+	let selfUrlPatterns : Sequence(PSM!UrlPattern) = self.refImmediateComposite().urlPattern in
+	selfUrlPatterns->iterate(sup ; output : Boolean = true | 
+		let declaredHttpMethods : Sequence(PSM!HttpMethod) = thisModule.ALL_HTTP_METHODS->reject(hm | hm = self)
+									->select(hm | hm.refImmediateComposite().urlPattern->exists(up | sup.value = up.value)) in
+		if declaredHttpMethods->isEmpty() then
+			false
+		else
+			output and httpMethodsToCheck->forAll(m | declaredHttpMethods->exists(dhm | dhm.name = m))
+		endif
+	);
+			
+helper context PSM!HttpMethod def : getUncompleteMethods : Sequence(String) =
+	let httpMethodsToCheck : Sequence(String) =
+		if self.omission then
+			thisModule.HTTP_METHODS->select(m | m = self.name)
+		else
+			thisModule.HTTP_METHODS->reject(m | m = self.name)
+		endif in
+	let selfUrlPatterns : Sequence(PSM!UrlPattern) = self.refImmediateComposite().urlPattern in
+	selfUrlPatterns->iterate(sup ; output : Sequence(String) = Sequence{} | 
+		let declaredHttpMethods : Sequence(PSM!HttpMethod) = thisModule.ALL_HTTP_METHODS->reject(hm | hm = self)
+									->select(hm | hm.refImmediateComposite().urlPattern->exists(up | sup.value = up.value)) in
+		if declaredHttpMethods->isEmpty() then
+			output->including('methods ' + httpMethodsToCheck.toString() + ' not defined for ' + sup.value)
+		else
+			output->including('methods' + httpMethodsToCheck->reject(m | declaredHttpMethods->exists(dhm | dhm.name = m)) + ' not defined for ' + sup.value)
+		endif
+	);
+	
+
+rule HttpMethod2Completeness {
+	from
+		s: PSM!HttpMethod (not s.isComplete)
+	to
+		t: ANO!UnprotectedMethod (
+			description <- s.getUncompleteMethods->iterate(uc ; output : String = '' | output->concat(uc + '\n'))
+		)
+	do {
+		t.trace <- Sequence{s};
+	}
+}
+

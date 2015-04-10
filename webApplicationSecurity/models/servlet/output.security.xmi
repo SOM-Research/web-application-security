@@ -1,38 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<servletSecurity:Security xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:servletSecurity="http://www.xtext.org/servletSecurity/ServletSecurity">
-  <role>
-    <roleName name="everyone"/>
-  </role>
-  <role>
-    <roleName name="admin"/>
-  </role>
-  <constraint>
-    <webResourceCollection webResourceName="Public access">
-      <urlPattern value="/images/*"/>
-      <httpMethod name="GET"/>
-    </webResourceCollection>
-  </constraint>
-  <constraint>
-    <webResourceCollection webResourceName="Public access">
-      <urlPattern value="/docs/*"/>
-      <httpMethod name="GET"/>
-    </webResourceCollection>
-  </constraint>
-  <constraint>
-    <webResourceCollection webResourceName="Public access">
-      <urlPattern value="/css/*"/>
-      <httpMethod name="GET"/>
-    </webResourceCollection>
-  </constraint>
-  <constraint>
-    <displayName value="Example Security Constraint"/>
-    <webResourceCollection webResourceName="Protected Area">
-      <urlPattern value="/*"/>
-      <httpMethod name="DELETE"/>
-      <httpMethod name="GET"/>
-      <httpMethod name="POST"/>
-      <httpMethod name="PUT"/>
-    </webResourceCollection>
-    <authConstraint roleName="//@role.1/@roleName"/>
-  </constraint>
-</servletSecurity:Security>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:servletSecurity="http://www.xtext.org/servletSecurity/ServletSecurity">
+  <servletSecurity:RoleName name="admin"/>
+  <servletSecurity:RoleName name="customer"/>
+  <servletSecurity:RoleName name="R1"/>
+  <servletSecurity:RoleName name="Role1"/>
+</xmi:XMI>

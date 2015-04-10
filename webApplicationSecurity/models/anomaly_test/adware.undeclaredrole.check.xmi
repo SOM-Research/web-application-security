@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:anomalies="http://atlanmod.sec.anomalies.org">
+  <anomalies:UndeclaredRole description="No security roles declared"/>
+  <anomalies:UndeclaredRole trace="/1" description="Missing role(s): *"/>
+  <anomalies:UndeclaredRole trace="/2" description="Missing role(s): admin"/>
+  <anomalies:UndeclaredRole trace="/3" description="Missing role(s): admin"/>
+  <anomalies:UndeclaredRole trace="/4" description="Missing role(s): admin"/>
+  <anomalies:UndeclaredRole trace="/5" description="Missing role(s): admin"/>
+  <anomalies:UndeclaredRole trace="/6" description="Missing role(s): admin"/>
+  <anomalies:UndeclaredRole trace="/7" description="Missing role(s): admin"/>
+  <anomalies:UndeclaredRole trace="/8" description="Missing role(s): admin"/>
+</xmi:XMI>

@@ -5,3 +5,9 @@
 /extractingEJBSecurity.asm
 /servletSecurity2PIM.asm
 /ejbSecurity2PIM.asm
+/checkingUndeclaredRole.asm
+/checkingRedundancy.asm
+/checkingCompleteness.asm
+/checkingReachability.asm
+/checkingShadowing.asm
+/MergingAnomalies.asm

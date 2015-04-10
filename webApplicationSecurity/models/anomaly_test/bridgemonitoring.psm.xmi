@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<servletSecurity:Security xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:servletSecurity="http://www.xtext.org/servletSecurity/ServletSecurity">
+  <constraint>
+    <webResourceCollection webResourceName="MN_Domain_WC_Table_and_Alarm">
+      <urlPattern value="/MNDomain"/>
+      <httpMethod name="GET"/>
+      <httpMethod name="POST"/>
+    </webResourceCollection>
+    <authConstraint>
+      <roleNameTxt>User</roleNameTxt>
+      <roleNameTxt>Engineer</roleNameTxt>
+    </authConstraint>
+    <userDataConstraint>
+      <transportGuarantee/>
+    </userDataConstraint>
+  </constraint>
+  <constraint>
+    <webResourceCollection webResourceName="TestRawData">
+      <urlPattern value="/TestRawData"/>
+      <httpMethod name="GET"/>
+      <httpMethod name="POST"/>
+    </webResourceCollection>
+    <authConstraint>
+      <roleNameTxt>User</roleNameTxt>
+      <roleNameTxt>Engineer</roleNameTxt>
+    </authConstraint>
+    <userDataConstraint>
+      <transportGuarantee/>
+    </userDataConstraint>
+  </constraint>
+  <constraint>
+    <webResourceCollection webResourceName="Wildcard means whole app requires authentication">
+      <urlPattern value="/TestParametersData"/>
+      <httpMethod name="GET"/>
+      <httpMethod name="POST"/>
+    </webResourceCollection>
+    <authConstraint>
+      <roleNameTxt>User</roleNameTxt>
+      <roleNameTxt>Engineer</roleNameTxt>
+    </authConstraint>
+    <userDataConstraint>
+      <transportGuarantee/>
+    </userDataConstraint>
+  </constraint>
+  <constraint>
+    <webResourceCollection webResourceName="TestParser">
+      <urlPattern value="/TestParser"/>
+      <httpMethod name="GET"/>
+      <httpMethod name="POST"/>
+    </webResourceCollection>
+    <authConstraint>
+      <roleNameTxt>Administrator</roleNameTxt>
+    </authConstraint>
+    <userDataConstraint>
+      <transportGuarantee/>
+    </userDataConstraint>
+  </constraint>
+  <constraint>
+    <webResourceCollection webResourceName="HistoryView">
+      <urlPattern value="/HistoryView"/>
+      <httpMethod name="GET"/>
+      <httpMethod name="POST"/>
+    </webResourceCollection>
+    <authConstraint>
+      <roleNameTxt>Engineer</roleNameTxt>
+      <roleNameTxt>User</roleNameTxt>
+    </authConstraint>
+    <userDataConstraint>
+      <transportGuarantee/>
+    </userDataConstraint>
+  </constraint>
+  <constraint>
+    <webResourceCollection webResourceName="TestTimestampAndCounts">
+      <urlPattern value="/TestTimestampAndCounts"/>
+      <httpMethod name="GET"/>
+      <httpMethod name="POST"/>
+    </webResourceCollection>
+    <authConstraint>
+      <roleNameTxt>Engineer</roleNameTxt>
+    </authConstraint>
+    <userDataConstraint>
+      <transportGuarantee/>
+    </userDataConstraint>
+  </constraint>
+  <constraint>
+    <webResourceCollection webResourceName="UserAdministration">
+      <urlPattern value="/UserAdministration"/>
+      <httpMethod name="GET"/>
+      <httpMethod name="POST"/>
+    </webResourceCollection>
+    <authConstraint>
+      <roleNameTxt>Administrator</roleNameTxt>
+    </authConstraint>
+    <userDataConstraint>
+      <transportGuarantee/>
+    </userDataConstraint>
+  </constraint>
+  <constraint>
+    <webResourceCollection webResourceName="Login">
+      <urlPattern value="/Login"/>
+      <httpMethod name="GET"/>
+      <httpMethod name="POST"/>
+    </webResourceCollection>
+    <authConstraint>
+      <roleNameTxt>User</roleNameTxt>
+      <roleNameTxt>Engineer</roleNameTxt>
+      <roleNameTxt>Administrator</roleNameTxt>
+    </authConstraint>
+    <userDataConstraint>
+      <transportGuarantee/>
+    </userDataConstraint>
+  </constraint>
+</servletSecurity:Security>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<anomalies:Anomalies xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:anomalies="http://atlanmod.sec.anomalies.org">
+  <anomaly xsi:type="anomalies:ConstraintRedundancy" description="Redundancy between constraints in position 1 and position(s): 2">
+    <trace href="scwcdshowcase.psm.xmi#//@constraint.0"/>
+    <trace href="scwcdshowcase.psm.xmi#//@constraint.1"/>
+  </anomaly>
+  <anomaly xsi:type="anomalies:ConstraintRedundancy" description="Redundancy between constraints in position 2 and position(s): 1">
+    <trace href="scwcdshowcase.psm.xmi#//@constraint.1"/>
+    <trace href="scwcdshowcase.psm.xmi#//@constraint.0"/>
+  </anomaly>
+</anomalies:Anomalies>

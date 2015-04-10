@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<anomalies:Anomalies xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:anomalies="http://atlanmod.sec.anomalies.org">
+  <anomaly xsi:type="anomalies:ResourceReachability" description="resource *.jsp is not reachable">
+    <trace href="rsspocket.psm.xmi#//@constraint.0/@webResourceCollection.0/@urlPattern.0"/>
+  </anomaly>
+  <anomaly xsi:type="anomalies:ResourceReachability" description="resource /slim3/* is not reachable">
+    <trace href="rsspocket.psm.xmi#//@constraint.1/@webResourceCollection.0/@urlPattern.0"/>
+  </anomaly>
+  <anomaly xsi:type="anomalies:ResourceReachability" description="resource /slim3/gtx is not reachable">
+    <trace href="rsspocket.psm.xmi#//@constraint.2/@webResourceCollection.0/@urlPattern.0"/>
+  </anomaly>
+  <anomaly xsi:type="anomalies:ResourceReachability" description="resource /ktrwjr/* is not reachable">
+    <trace href="rsspocket.psm.xmi#//@constraint.3/@webResourceCollection.0/@urlPattern.0"/>
+  </anomaly>
+  <anomaly xsi:type="anomalies:ResourceReachability" description="resource /cron/* is not reachable">
+    <trace href="rsspocket.psm.xmi#//@constraint.4/@webResourceCollection.0/@urlPattern.0"/>
+  </anomaly>
+</anomalies:Anomalies>
