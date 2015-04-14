@@ -40,5 +40,10 @@
 	<classpathentry kind="lib" path="selenium/libs/xalan-2.7.1.jar"/>
 	<classpathentry kind="lib" path="selenium/libs/xercesImpl-2.11.0.jar"/>
 	<classpathentry kind="lib" path="selenium/libs/xml-apis-1.4.01.jar"/>
+	<classpathentry kind="lib" path="selenium/org.eclipse.core.resources_3.8.101.v20130717-0806.jar"/>
+	<classpathentry kind="lib" path="selenium/org.eclipse.core.runtime_3.9.100.v20131218-1515.jar"/>
+	<classpathentry kind="lib" path="selenium/org.eclipse.osgi_3.9.1.v20140110-1610.jar"/>
+	<classpathentry kind="lib" path="selenium/org.eclipse.equinox.common_3.6.200.v20130402-1505.jar"/>
+	<classpathentry kind="lib" path="selenium/org.eclipse.ui.ide_3.9.2.v20131004-0923.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

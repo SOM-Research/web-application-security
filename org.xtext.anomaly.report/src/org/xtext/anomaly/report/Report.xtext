@@ -1,0 +1,9 @@
+grammar org.xtext.anomaly.report.Report with org.eclipse.xtext.common.Terminals
+
+generate report "http://www.xtext.org/anomaly/report/Report"
+
+Model:
+	anomalies+=Anomaly*;
+	
+Anomaly:
+	'Property' name=STRING 'Description' descr=STRING;

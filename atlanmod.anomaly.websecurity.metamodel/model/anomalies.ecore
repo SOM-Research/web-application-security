@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="anomalies" nsURI="http://atlanmod.sec.anomalies.org" nsPrefix="anomalies">
+  <eClassifiers xsi:type="ecore:EClass" name="Anomaly" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="trace" upperBound="-1"
+        eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="UnprotectedMethod" eSuperTypes="#//Anomaly"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ConstraintRedundancy" eSuperTypes="#//Anomaly"/>
+  <eClassifiers xsi:type="ecore:EClass" name="UndeclaredRole" eSuperTypes="#//Anomaly"/>
+  <eClassifiers xsi:type="ecore:EClass" name="RuleShadowing" eSuperTypes="#//Anomaly"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ResourceReachability" eSuperTypes="#//Anomaly"/>
+</ecore:EPackage>

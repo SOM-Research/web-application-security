@@ -11,3 +11,7 @@
 /checkingReachability.asm
 /checkingShadowing.asm
 /MergingAnomalies.asm
+/checkingShadowingRule.asm
+/checkingShadowingRole.asm
+/checkingUndeclared.asm
+/mergeCheckingAnomalies.asm

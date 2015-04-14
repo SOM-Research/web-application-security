@@ -75,7 +75,7 @@ public class GitHubSampleCreator {
 		fileSize.sendKeys(file_size);
 		
 		//look for button search
-		List<WebElement> buttonsSearch = driver.findElements(By.xpath("//*[@class='button']"));
+		List<WebElement> buttonsSearch = driver.findElements(By.xpath("//*[@class='btn']"));
 		WebElement lastButtonSearch = buttonsSearch.get(buttonsSearch.size()-1);
 		//search
 		lastButtonSearch.click();
@@ -234,7 +234,8 @@ public class GitHubSampleCreator {
 	public static void main(String[] args) {
 		GitHubSampleCreator x = new GitHubSampleCreator();
 		//deactivate the filter using "" in the filter parameter
-		x.createSample("<web-resource-collection>", "xml", ">1000", 100, "WEB-INF");
+		//x.createSample("<web-resource-collection>", "xml", ">5000", 100, "WEB-INF");
+		x.createSample("import javax.servlet.annotation.ServletSecurity", "java", ">50", 200, "");
 		x.save("./servlet_file_links.txt", "./servlet_sample_links.txt");
 		
 //		GitHubSampleCreator y = new GitHubSampleCreator();

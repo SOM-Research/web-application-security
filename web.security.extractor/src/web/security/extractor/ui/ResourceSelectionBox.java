@@ -41,7 +41,6 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
 
-
 /**
  * Provide dialogs to get EMF metamodels URIs or path. This class originally came from plugin
  * <code>org.eclipse.emf.ecore.editor</code>.
