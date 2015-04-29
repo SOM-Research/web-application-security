@@ -14,7 +14,11 @@ helper context PSM!SecurityConstraint def : containsUndeclaredRole : Boolean =
 	if self.authConstraint.oclIsUndefined() then
 		false
 	else
-		self.authConstraint.roleName->size() <> self.authConstraint.roleNameTxt->size()
+		if self.authConstraint.roleNameTxt->exists(rnt | rnt = '*') then
+			false
+		else
+			self.authConstraint.roleName->size() <> self.authConstraint.roleNameTxt->size()
+		endif
 	endif;
 
 helper context PSM!SecurityConstraint def : getUndeclaredRole : String =
@@ -25,7 +29,11 @@ helper context PSM!SecurityConstraint def : getUndeclaredRole : String =
 			if self.authConstraint.roleName->exists(ref | ref.name = name) then
 				output
 			else
-				output->concat(name + ', ')
+				if name <> '*' then
+					output->concat(name + ', ')
+				else
+					output
+				endif
 			endif
 		)
 	endif.regexReplaceAll(', $', '');

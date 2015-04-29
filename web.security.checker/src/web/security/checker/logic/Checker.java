@@ -287,7 +287,7 @@ public class Checker {
 		
 		this.deleteFile(this.javaXMIProjectPath);
 		this.deleteFile(this.servletXMIDescriptorPath);
-		this.deleteFile(this.servletSecurityPSMPath);
+		//this.deleteFile(this.servletSecurityPSMPath);
 		this.deleteFile(this.outputCompletenessPath);
 		this.deleteFile(this.outputReachabilityPath);
 		this.deleteFile(this.outputRedundancyPath);

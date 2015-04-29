@@ -21,14 +21,27 @@ helper context OclAny def : getSecurityConstraint : PSM!SecurityConstraint =
 helper context PSM!UrlPattern def : isReachable : Boolean =
 	let securityConstraint : PSM!SecurityConstraint = self.getSecurityConstraint in
 	if securityConstraint.authConstraint.oclIsUndefined() then
-		false
+		true
 	else
 		thisModule.ALL_URL_PATTERNS->select(up | up.value = self.value)
 									->collect(up | up.getSecurityConstraint)->asSet()->asSequence()
 										->collect(sc | sc.authConstraint)
 											->reject(ac | ac.oclIsUndefined())
-												->collect(ac | ac.roleName)->flatten()->notEmpty()
+												->collect(ac | ac.roleNameTxt)->reject(rnt | rnt = '*')->flatten()->notEmpty()
 	endif;
+
+helper context PSM!Security def : containsSecurityRoles : Boolean =
+	not self.role->isEmpty();
+
+
+rule Security2Reachability {
+	from
+		s: PSM!Security (not s.containsSecurityRoles)
+	to
+		t: ANO!ResourceReachability (
+			description <- 'Uses * without declaring roles'
+		)
+}
 
 rule UrlPattern2Reachability {
 	from
