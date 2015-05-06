@@ -1,0 +1,58 @@
+-- @path ANO=/webApplicationSecurity/metamodels/anomalies.ecore
+-- @path PSM=/webApplicationSecurity/metamodels/ServletSecurity.ecore
+
+module checkingShadowing;
+create OUT : ANO from IN : PSM;
+
+helper def : ALL_SECURITY_CONSTRAINTS : Sequence(PSM!SecurityConstraint) =
+	PSM!SecurityConstraint.allInstances();
+
+helper def : ALL_URL_PATTERNS : Sequence(PSM!UrlPattern) =
+	PSM!UrlPattern.allInstances();
+
+helper context OclAny def : getSecurityConstraint : PSM!SecurityConstraint =
+	if self.oclIsTypeOf(PSM!SecurityConstraint) then
+		self
+	else
+		if self.oclIsTypeOf(PSM!Security) then
+			OclUndefined
+		else
+			self.refImmediateComposite().getSecurityConstraint
+		endif
+	endif;
+
+helper def : treat(path : String) : String =
+	if path.startsWith('*') then
+		path
+	else
+		path->concat('/')
+	endif;
+
+helper context PSM!UrlPattern def : getPath : String =
+	self.value.regexReplaceAll('\\*$', '');
+
+helper context PSM!SecurityConstraint def : getShadowingConstraints : Sequence(PSM!SecurityConstraint) =
+	let roles : Sequence(String) =  if self.authConstraint.oclIsUndefined() then Sequence{} else self.authConstraint.roleNameTxt endif in
+	let urlPatterns : Sequence(PSM!UrlPattern) = self.webResourceCollection->collect(wrc | wrc.urlPattern)->flatten() in
+	thisModule.ALL_URL_PATTERNS->reject(up | up.value = '*')->reject(up | urlPatterns->exists(sup | sup = up))
+		->select(up | urlPatterns->exists(sup | thisModule.treat(sup.getPath).startsWith(thisModule.treat(up.getPath))))
+			->collect(up | up.getSecurityConstraint)->asSet()->asSequence()->reject(sc | sc.authConstraint.oclIsUndefined())
+				->select(sc | sc.authConstraint.roleNameTxt->exists(rnt | rnt = '*'));
+
+helper context PSM!SecurityConstraint def : isShadowed : Boolean =
+	self.getShadowingConstraints->notEmpty();
+
+rule SecurityConstraint2RuleShadowing {
+	from
+		s: PSM!SecurityConstraint (s.isShadowed)
+	to
+		t: ANO!RuleShadowing (
+			description <- 'Security constraint ' + thisModule.ALL_SECURITY_CONSTRAINTS->indexOf(s).toString() + ' shadowed by security constraint(s) '	+ 
+							s.getShadowingConstraints->collect(sc | thisModule.ALL_SECURITY_CONSTRAINTS->indexOf(sc).toString() )
+														->iterate(pos ; output : String = '' | output->concat(pos + ', ')).regexReplaceAll(', $', '')
+		)
+	do {
+		t.trace <- Sequence{s, s.getShadowingConstraints}->flatten(); 	
+	}
+}
+

@@ -1,0 +1,57 @@
+-- @path ANO=/webApplicationSecurity/metamodels/anomalies.ecore
+-- @path PSM=/webApplicationSecurity/metamodels/ServletSecurity.ecore
+
+module checkingReachability;
+create OUT : ANO from IN : PSM;
+
+helper def : ALL_URL_PATTERNS : Sequence(PSM!UrlPattern) = 
+	PSM!UrlPattern.allInstances();
+
+helper context OclAny def : getSecurityConstraint : PSM!SecurityConstraint =
+	if self.oclIsTypeOf(PSM!SecurityConstraint) then
+		self
+	else
+		if self.oclIsTypeOf(PSM!Security) then
+			OclUndefined
+		else
+			self.refImmediateComposite().getSecurityConstraint
+		endif
+	endif;
+
+helper context PSM!UrlPattern def : isReachable : Boolean =
+	let securityConstraint : PSM!SecurityConstraint = self.getSecurityConstraint in
+	if securityConstraint.authConstraint.oclIsUndefined() then
+		true
+	else
+		thisModule.ALL_URL_PATTERNS->select(up | up.value = self.value)
+									->collect(up | up.getSecurityConstraint)->asSet()->asSequence()
+										->collect(sc | sc.authConstraint)
+											->reject(ac | ac.oclIsUndefined())
+												->collect(ac | ac.roleNameTxt)->reject(rnt | rnt = '*')->flatten()->notEmpty()
+	endif;
+
+helper context PSM!Security def : containsSecurityRoles : Boolean =
+	not self.role->isEmpty();
+
+
+rule Security2Reachability {
+	from
+		s: PSM!Security (not s.containsSecurityRoles)
+	to
+		t: ANO!ResourceReachability (
+			description <- 'Uses * without declaring roles'
+		)
+}
+
+rule UrlPattern2Reachability {
+	from
+		s: PSM!UrlPattern (not s.isReachable)
+	to
+		t: ANO!ResourceReachability (
+			description <- 'Resource ' + s.value + ' is not reachable'		
+		)
+	do {
+		t.trace <- Sequence{s};	
+	}
+}
+
