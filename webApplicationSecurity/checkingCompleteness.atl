@@ -44,7 +44,7 @@ helper context PSM!HttpMethod def : getUncompleteMethods : Sequence(String) =
 		else
 			output->including('methods' + httpMethodsToCheck->reject(m | declaredHttpMethods->exists(dhm | dhm.name = m)) + ' not defined for ' + sup.value)
 		endif
-	);
+	)->asSet()->asSequence();
 	
 
 rule HttpMethod2Completeness {

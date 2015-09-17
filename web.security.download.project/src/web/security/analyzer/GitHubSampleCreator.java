@@ -2,9 +2,11 @@ package web.security.analyzer;
 
 import java.io.PrintWriter;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -27,11 +29,13 @@ import org.openqa.selenium.chrome.ChromeDriver;
 public class GitHubSampleCreator {
 	
 	private List<String> links;
+	private Set<String> users;
 	private final int HITS_PER_PAGE = 10;
 	private final int TIME_BETWEEN_REQUESTS = 10000; //10 secs
 	
 	public GitHubSampleCreator() {
 		this.links = new LinkedList<String>();
+		this.users = new HashSet<String>();
 	}
 	
 	private void sleep(int time) {
@@ -54,8 +58,21 @@ public class GitHubSampleCreator {
 		if (!filter.equals(""))
 			this.filter(filter);
 		
+		extractGitHubUsers();
+		
 		//close browser
 		driver.quit();
+		
+	}
+	
+	public void extractGitHubUsers() {
+		for (String link : this.links) {
+			String repoInfo = link.replaceAll("https://github.com/", "");
+			String user = repoInfo.split("/")[0];
+			
+			this.users.add("https://github.com/" + user);
+		}
+		
 		
 	}
 	
@@ -136,10 +153,12 @@ public class GitHubSampleCreator {
 		return repoLinks;
 	}
 	
-	public void save(String sample_links_path, String sample_repos_path) {
+	public void save(String sample_links_path, String sample_repos_path, String sample_users_path) {
 		try {
 			PrintWriter writer_links = new PrintWriter(sample_links_path, "UTF-8");
 			PrintWriter writer_repos = new PrintWriter(sample_repos_path, "UTF-8");
+			PrintWriter writer_users = new PrintWriter(sample_users_path, "UTF-8");
+			
 			for (String link : this.links) {
 				//write file link
 				writer_links.println(link);
@@ -148,8 +167,13 @@ public class GitHubSampleCreator {
 				//retrieve project zip and write it
 				writer_repos.println(link);
 			}
+			for (String user : this.users) {
+				writer_users.println(user);
+			}
+			
 			writer_links.close();
 			writer_repos.close();
+			writer_users.close();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -235,8 +259,8 @@ public class GitHubSampleCreator {
 		GitHubSampleCreator x = new GitHubSampleCreator();
 		//deactivate the filter using "" in the filter parameter
 		//x.createSample("<web-resource-collection>", "xml", ">5000", 100, "WEB-INF");
-		x.createSample("import javax.servlet.annotation.ServletSecurity", "java", ">50", 200, "");
-		x.save("./servlet_file_links.txt", "./servlet_sample_links.txt");
+		x.createSample("servlet-name", "xml", ">1000", 750, "WEB-INF");
+		x.save("./servlet_file_links.txt", "./servlet_sample_links.txt", "./users.txt");
 		
 //		GitHubSampleCreator y = new GitHubSampleCreator();
 //		y.createSample("<security-identity>", "xml", ">1000", 100, "");

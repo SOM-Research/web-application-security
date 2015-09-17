@@ -142,7 +142,7 @@ public class GitHubProjectDownloader {
 	
 	public static void main(String[] args) {
 		//init the downloader with the path of the file containing the GitHub projects to download and the target workspace
-		GitHubProjectDownloader x = new GitHubProjectDownloader("./servlet_sample_links.txt", "C:\\Users\\atlanmod\\Desktop\\runtime-EclipseXtext\\");
+		GitHubProjectDownloader x = new GitHubProjectDownloader("./servlet_sample_links.txt", "C:\\Users\\atlanmod\\Desktop\\runtime-EclipseXtext-SANER\\");
 		x.importSampleToWorkspace();
 		
 //		GitHubProjectDownloader y = new GitHubProjectDownloader("./ejb_sample_projects.txt", "C:\\Users\\atlanmod\\Desktop\\runtime-EclipseXtext\\");

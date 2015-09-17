@@ -101,13 +101,26 @@ public class Checker {
 		this.deleteFile(this.outputAnomalyReportPath);
 		this.refreshProjet();
 		
+		long startTotal = System.currentTimeMillis();
+		
 		//create model representations of the Java code and XML descriptors
 		this.generateModels();
+		
+		long modelGeneration = (System.currentTimeMillis() - startTotal);
+		System.out.println("model generation: " + modelGeneration + "mill");
+		
+		long startProps = System.currentTimeMillis();
 		
 		//populate the PSM Servlet model
 		this.extractSecurityFromServlet();
 		if (!this.properties.isEmpty())
 			this.checkProperties();
+		
+		long endProps = (System.currentTimeMillis() - startProps);
+		long endTotal = (System.currentTimeMillis() - startTotal);
+		
+		System.out.println("checking properties: " + endProps + "mill");
+		System.out.println("elapsed time: " + endTotal + "mill");
 		
 		this.cleanProject();
 		
