@@ -1,6 +1,7 @@
 package web.security.checker.logic;
 
 import java.io.ByteArrayInputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Collections;
@@ -40,7 +41,7 @@ import web.security.checker.transformations.ExtractingServletSecurity;
 public class Checker {
 	
 	private IProject javaProject;
-	private IFile servletXMLDescriptor;
+	private File servletXMLDescriptor;
 	
 	private String javaProjectPath;
 	private String servletXMLDescriptorPath;
@@ -74,7 +75,7 @@ public class Checker {
 		if (web != null) {		
 			this.servletXMLDescriptorPath = this.getFullPath(web);
 			this.servletXMIDescriptorPath = this.servletXMLDescriptorPath + ".xmi";
-			this.servletXMLDescriptor = ResourcesPlugin.getWorkspace().getRoot().getFileForLocation(new Path(this.servletXMLDescriptorPath));	
+			this.servletXMLDescriptor = new File(this.servletXMLDescriptorPath);	
 		}
 		
 		this.properties = properties;
@@ -109,10 +110,14 @@ public class Checker {
 		long modelGeneration = (System.currentTimeMillis() - startTotal);
 		System.out.println("model generation: " + modelGeneration + "mill");
 		
-		long startProps = System.currentTimeMillis();
 		
+		long startExtractor = System.currentTimeMillis();
 		//populate the PSM Servlet model
 		this.extractSecurityFromServlet();
+		long extractionSecurity = (System.currentTimeMillis() - startExtractor);
+		System.out.println("extraction security: " + extractionSecurity + "mill");
+		
+		long startProps = System.currentTimeMillis();
 		if (!this.properties.isEmpty())
 			this.checkProperties();
 		
@@ -360,7 +365,7 @@ public class Checker {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public void generateModelXML(IFile source) {
+	public void generateModelXML(File source) {
 
 		XMLModelDiscoverer discoverer = new XMLModelDiscoverer(); 
 		Map xmlDiscoveryParameters = new HashMap();

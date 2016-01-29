@@ -258,8 +258,8 @@ public class GitHubSampleCreator {
 	public static void main(String[] args) {
 		GitHubSampleCreator x = new GitHubSampleCreator();
 		//deactivate the filter using "" in the filter parameter
-		//x.createSample("<web-resource-collection>", "xml", ">5000", 100, "WEB-INF");
-		x.createSample("servlet-name", "xml", ">1000", 750, "WEB-INF");
+		x.createSample("<web-resource-collection>", "xml", ">5000", 750, "WEB-INF");
+		//x.createSample("web-app xmlns=\"http://java.sun.com/xml/ns/javaee\"", "xml", ">1000", 750, "WEB-INF");
 		x.save("./servlet_file_links.txt", "./servlet_sample_links.txt", "./users.txt");
 		
 //		GitHubSampleCreator y = new GitHubSampleCreator();

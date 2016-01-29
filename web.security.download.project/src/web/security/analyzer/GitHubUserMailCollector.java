@@ -56,16 +56,11 @@ public class GitHubUserMailCollector {
 					this.contacts.add(url);
 				
 			}
+			
+			br.close();
 
 		} catch (IOException e) {
 			e.printStackTrace();
-		} finally {
-			try {
-				if (br != null)
-					br.close();
-			} catch (IOException ex) {
-				ex.printStackTrace();
-			}
 		}
 	}
 	

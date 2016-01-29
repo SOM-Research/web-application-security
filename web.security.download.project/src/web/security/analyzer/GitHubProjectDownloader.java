@@ -125,6 +125,12 @@ public class GitHubProjectDownloader {
 			int counter = 0;
 			String currentLine;
 			String currentRepo;
+			
+			while (counter <= 90) {
+				br.readLine();
+				counter++;
+			}
+			
 			while ((currentLine = br.readLine()) != null) {
 				currentRepo = String.valueOf(counter) + "_repo.zip";
 				this.downloadRepoZip(currentLine, "./tmp/" + currentRepo);
