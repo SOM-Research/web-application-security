@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="report" nsURI="http://atlanmod.sec.report.org" nsPrefix="report">
+  <eClassifiers xsi:type="ecore:EClass" name="Report">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="anomalies" upperBound="-1"
+        eType="#//Anomaly" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Anomaly" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Shadowing" eSuperTypes="#//Anomaly">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="shadowing" lowerBound="1"
+        eType="#//SecurityConstraint"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="shadowed" lowerBound="1"
+        eType="#//SecurityConstraint"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Completeness" eSuperTypes="#//Anomaly">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="missedMethod" lowerBound="1"
+        eType="#//HttpMethod"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Redundancy" eSuperTypes="#//Anomaly">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="containing" lowerBound="1"
+        eType="#//SecurityConstraint"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="contained" lowerBound="1"
+        eType="#//SecurityConstraint"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Syntactical" eSuperTypes="#//Anomaly">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="missedRoles" lowerBound="1"
+        eType="#//SecurityRole"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Reacheability" eSuperTypes="#//Anomaly">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="unreachebleResources" lowerBound="1"
+        eType="#//WebResourceCollection"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SecurityConstraint"/>
+  <eClassifiers xsi:type="ecore:EClass" name="HttpMethod"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SecurityRole">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="roleName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral=""/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="WebResourceCollection"/>
+</ecore:EPackage>

@@ -26,6 +26,7 @@ Require-Bundle: org.eclipse.ui,
  atlanmod.anomaly.websecurity.metamodel;bundle-version="1.0.0",
  org.xtext.anomaly.report;bundle-version="1.0.0",
  org.xtext.anomaly.report.tests;bundle-version="1.0.0",
- org.xtext.anomaly.report.ui;bundle-version="1.0.0"
+ org.xtext.anomaly.report.ui;bundle-version="1.0.0",
+ org.eclipse.modisco.infra.discovery.core;bundle-version="0.12.1"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy

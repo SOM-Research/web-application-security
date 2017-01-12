@@ -1,5 +1,7 @@
 package web.security.analyzer;
 
+import java.io.File;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Collections;
 import java.util.HashSet;
@@ -31,7 +33,7 @@ public class GitHubSampleCreator {
 	private List<String> links;
 	private Set<String> users;
 	private final int HITS_PER_PAGE = 10;
-	private final int TIME_BETWEEN_REQUESTS = 10000; //10 secs
+	private final int TIME_BETWEEN_REQUESTS = 12000; //12 secs
 	
 	public GitHubSampleCreator() {
 		this.links = new LinkedList<String>();
@@ -46,13 +48,36 @@ public class GitHubSampleCreator {
 		}
 	}
 	
-	public void createSample(String search_text, String file_ext, String file_size, int sample_size, String filter) {
+	public void setMatchStrategy(WebDriver driver, String strategy) {
+		if (!strategy.equals("best match")) {
+			List<WebElement> buttons = driver.findElements(By.tagName("button"));
+			
+			for (WebElement we : buttons) {
+				if (we != null) {
+					if (we.getText().startsWith("Sort:")) {
+						we.click();
+						this.sleep(3000);
+						WebElement found = driver.findElement(By.xpath("//*[contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '" + strategy + "')]"));
+						
+						if (found != null) {
+							found.click();
+							break;
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	public void createSample(String search_text, String file_ext, String file_size, int sample_size, String filter, String strategy) {
 		//start browser
 		System.setProperty("webdriver.chrome.driver", "C:/chromedriver_win32/chromedriver.exe");
 		WebDriver driver = new ChromeDriver();
 		driver.get("https://github.com/search/advanced?q=test&type=Repositories&utf8=%E2%9C%93");
 		
 		prepareSearch(driver, search_text, file_ext, file_size);
+		setMatchStrategy(driver, strategy);
+		this.sleep(5000);
 		collectProjects(driver, sample_size);
 		
 		if (!filter.equals(""))
@@ -153,8 +178,22 @@ public class GitHubSampleCreator {
 		return repoLinks;
 	}
 	
+	public void createFile(String path) throws IOException {
+		File file = new File(path);
+		if(!file.exists()){ 
+			file.getParentFile().mkdirs();
+			file.createNewFile();
+		}
+		
+	}
+	
 	public void save(String sample_links_path, String sample_repos_path, String sample_users_path) {
+		
 		try {
+			this.createFile(sample_links_path);
+			this.createFile(sample_repos_path);
+			this.createFile(sample_users_path);
+			
 			PrintWriter writer_links = new PrintWriter(sample_links_path, "UTF-8");
 			PrintWriter writer_repos = new PrintWriter(sample_repos_path, "UTF-8");
 			PrintWriter writer_users = new PrintWriter(sample_users_path, "UTF-8");
@@ -179,6 +218,7 @@ public class GitHubSampleCreator {
 			e.printStackTrace();
 		}
 	}
+	
 	
 	private void lookForProjects(WebDriver driver, List<Integer> inSample) {
 		int currentPage = 0;
@@ -229,16 +269,24 @@ public class GitHubSampleCreator {
 	
 	private List<Integer> getRandomSample(int sample_size, int population) {
 		List<Integer> inSample = new LinkedList<Integer>();
-		Random rand = new Random();
 		
-		int n;
-		while (inSample.size() < sample_size) {
-			n = rand.nextInt(population) + 1;
-			if (!this.inSample(inSample, n))
-				inSample.add(n);
+		if (sample_size > population) {
+			for (int i=1; i<population; i++)
+				inSample.add(i);
+		}
+		else {
+			Random rand = new Random();
+			
+			int n;
+			while (inSample.size() < sample_size) {
+				n = rand.nextInt(population) + 1;
+				if (!this.inSample(inSample, n))
+					inSample.add(n);
+			}
+			
+			Collections.sort(inSample);
 		}
 		
-		Collections.sort(inSample);
 		return inSample;
 	}
 	
@@ -258,9 +306,49 @@ public class GitHubSampleCreator {
 	public static void main(String[] args) {
 		GitHubSampleCreator x = new GitHubSampleCreator();
 		//deactivate the filter using "" in the filter parameter
-		x.createSample("<web-resource-collection>", "xml", ">5000", 750, "WEB-INF");
-		//x.createSample("web-app xmlns=\"http://java.sun.com/xml/ns/javaee\"", "xml", ">1000", 750, "WEB-INF");
-		x.save("./servlet_file_links.txt", "./servlet_sample_links.txt", "./users.txt");
+		
+		/*
+		x = new GitHubSampleCreator();
+		x.createSample("import javax.servlet.http.HttpServletRequest", "java", ">5000", 1000, "", "recently indexed");
+		x.save("./JSSsampleInfo/prg_file_links_A.txt", "./JSSsampleInfo/prg_repo_links_A.txt", "./JSSsampleInfo/usersA.txt");
+		
+		x = new GitHubSampleCreator();
+		x.createSample("import javax.servlet.http.HttpServletRequest", "java", ">5000", 1000, "", "best match");
+		x.save("./JSSsampleInfo/prg_file_links_B.txt", "./JSSsampleInfo/prg_repo_links_B.txt", "./JSSsampleInfo/usersB.txt");
+		
+		x = new GitHubSampleCreator();
+		x.createSample("import javax.servlet.http.HttpServletRequest", "java", ">5000", 1000, "", "least recently indexed");
+		x.save("./JSSsampleInfo/prg_file_links_C.txt", "./JSSsampleInfo/prg_repo_links_C.txt", "./JSSsampleInfo/usersC.txt");
+		*/
+		
+		x.createSample("<web-resource-collection>", "xml", ">1000", 1000, "", "recently indexed");
+		x.save("./JSSsampleInfo/xml_file_links_0.txt", "./JSSsampleInfo/xml_repo_links_0.txt", "./JSSsampleInfo/users0.txt");
+		
+		x = new GitHubSampleCreator();
+		x.createSample("<web-resource-collection>", "xml", ">1000", 1000, "", "best match");
+		x.save("./JSSsampleInfo/xml_file_links_1.txt", "./JSSsampleInfo/xml_repo_links_1.txt", "./JSSsampleInfo/users1.txt");
+		
+		x = new GitHubSampleCreator();
+		x.createSample("<web-resource-collection>", "xml", ">1000", 1000, "", "least recently indexed");
+		x.save("./JSSsampleInfo/xml_file_links_2.txt", "./JSSsampleInfo/xml_repo_links_2.txt", "./JSSsampleInfo/users2.txt");
+		
+		x = new GitHubSampleCreator();
+		x.createSample("import javax.servlet.annotation.ServletSecurity", "java", ">10000", 1000, "", "best match");
+		x.save("./JSSsampleInfo/annotation_file_links_3.txt", "./JSSsampleInfo/annotation_repo_links_3.txt", "./JSSsampleInfo/users3.txt");
+		
+		/*
+		x = new GitHubSampleCreator();
+		x.createSample("import javax.servlet.http.HttpServletRequest request.isUserInRole", "java", ">5000", 1000, "", "recently indexed");
+		x.save("./JSSsampleInfo/prg_file_links_4.txt", "./JSSsampleInfo/prg_repo_links_4.txt", "./JSSsampleInfo/users4.txt");
+		
+		x = new GitHubSampleCreator();
+		x.createSample("import javax.servlet.http.HttpServletRequest request.isUserInRole", "java", ">5000", 1000, "", "best match");
+		x.save("./JSSsampleInfo/prg_file_links_5.txt", "./JSSsampleInfo/prg_repo_links_5.txt", "./JSSsampleInfo/users5.txt");
+		
+		x = new GitHubSampleCreator();
+		x.createSample("import javax.servlet.http.HttpServletRequest request.isUserInRole", "java", ">5000", 1000, "", "least recently indexed");
+		x.save("./JSSsampleInfo/prg_file_links_6.txt", "./JSSsampleInfo/prg_repo_links_6.txt", "./JSSsampleInfo/users6.txt");
+		*/
 		
 //		GitHubSampleCreator y = new GitHubSampleCreator();
 //		y.createSample("<security-identity>", "xml", ">1000", 100, "");

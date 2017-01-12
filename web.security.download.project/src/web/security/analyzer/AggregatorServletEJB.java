@@ -26,12 +26,12 @@ import java.util.List;
  * 
  */
 
-public class Aggregator {
+public class AggregatorServletEJB {
 	
 	private List<String> aggregator_list;
 	private List<String> to_aggregate;
 	
-	public Aggregator() {
+	public AggregatorServletEJB() {
 		this.aggregator_list = new LinkedList<String>();
 		this.to_aggregate = new LinkedList<String>();
 	}
@@ -84,7 +84,7 @@ public class Aggregator {
 	}
 	
 	public static void main(String[] args) {
-		Aggregator x = new Aggregator();
+		AggregatorServletEJB x = new AggregatorServletEJB();
 		x.aggregate("./aggr_servlet_ejb_links", "./servlet_ejb_links.txt");
 	}
 

@@ -1,4 +1,4 @@
--- @path ANO=/webApplicationSecurity/metamodels/anomalies.ecore
+-- @path ANO=/webApplicationSecurity/metamodels/report.ecore
 -- @path PSM=/webApplicationSecurity/metamodels/ServletSecurity.ecore
 
 module checkingUndeclaredRole;
@@ -38,23 +38,41 @@ helper context PSM!SecurityConstraint def : getUndeclaredRole : String =
 		)
 	endif.regexReplaceAll(', $', '');
 
-rule Security2UndeclaredRole {
+
+rule Security2Anomaly {
 	from
-		s: PSM!Security (not s.containsSecurityRoles)
+		s: PSM!Security
 	to
-		t: ANO!UndeclaredRole (
+		t: ANO!Report (
+			anomalies <- 
+							if not s.containsSecurityRoles then
+								thisModule.createNoRolesAnomaly(s)
+							else
+								thisModule.ALL_SECURITY_CONSTRAINTS->select(sc | sc.containsUndeclaredRole)
+																	->collect(sc | sc.getUndeclaredRole->collect(ur | Sequence{sc, ur}))
+																		->collect(pair | thisModule.CreateAnomaly(pair->flatten()))
+							endif
+		)
+}
+
+lazy rule createNoRolesAnomaly {
+	from
+		x : OclAny
+	to
+		t: ANO!Syntactical (
 			description <- 'No security roles declared'
 		)
 }
 
-rule SecurityConstraint2UndeclaredRole {
+lazy rule CreateAnomaly {
 	from
-		s: PSM!SecurityConstraint (s.containsUndeclaredRole)
+		pair: OclAny
 	to
-		t: ANO!UndeclaredRole (
-			description <- 'Missing role(s): ' + s.getUndeclaredRole + ' in security constraint ' + thisModule.ALL_SECURITY_CONSTRAINTS->indexOf(s).toString()
+		t: ANO!Redundancy (
+	 		description <- 'Missing role: ' + pair->last() + ' in security constraint ' + thisModule.ALL_SECURITY_CONSTRAINTS->indexOf(pair->first()).toString(),
+			missedRoles <- secRole
+	 	),
+		secRole : ANO!SecurityRole (
+			roleName <- pair->last()	
 		)
-	do {
-		t.trace <- Sequence{s};	
-	}
 }

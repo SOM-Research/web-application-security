@@ -1,4 +1,4 @@
--- @path ANO=/webApplicationSecurity/metamodels/anomalies.ecore
+-- @path ANO=/webApplicationSecurity/metamodels/report.ecore
 -- @path PSM=/webApplicationSecurity/metamodels/ServletSecurity.ecore
 
 module checkingShadowing;
@@ -42,17 +42,28 @@ helper context PSM!SecurityConstraint def : getShadowingConstraints : Sequence(P
 helper context PSM!SecurityConstraint def : isShadowed : Boolean =
 	self.getShadowingConstraints->notEmpty();
 
-rule SecurityConstraint2RuleShadowing {
+helper def : getShadowedPairs : Sequence(OclAny) =
+	thisModule.ALL_SECURITY_CONSTRAINTS->select(sc | sc.isShadowed)->collect(sc | sc.getShadowingConstraints->collect(ssc | Sequence{sc, ssc}));
+
+rule Security2Anomaly {
 	from
-		s: PSM!SecurityConstraint (s.isShadowed)
+		s: PSM!Security
 	to
-		t: ANO!RuleShadowing (
-			description <- 'Security constraint ' + thisModule.ALL_SECURITY_CONSTRAINTS->indexOf(s).toString() + ' shadowed by security constraint(s) '	+ 
-							s.getShadowingConstraints->collect(sc | thisModule.ALL_SECURITY_CONSTRAINTS->indexOf(sc).toString() )
-														->iterate(pos ; output : String = '' | output->concat(pos + ', ')).regexReplaceAll(', $', '')
+		t: ANO!Report (
+			anomalies <- thisModule.getShadowedPairs->collect(sp | thisModule.CreateAnomaly(sp))
 		)
-	do {
-		t.trace <- Sequence{s, s.getShadowingConstraints}->flatten(); 	
-	}
+}
+
+lazy rule CreateAnomaly {
+	from
+		pair: OclAny
+	to
+		t: ANO!Shadowing (
+	 		description <- 'Security constraint ' + thisModule.ALL_SECURITY_CONSTRAINTS->indexOf(pair->first()).toString() + ' shadowed by security constraint(s) '	+ 
+							thisModule.ALL_SECURITY_CONSTRAINTS->indexOf(pair->last()).toString(),
+			shadowing <- pair->first(),
+			shadowed <- pair->last()
+		
+	 	) 
 }
 

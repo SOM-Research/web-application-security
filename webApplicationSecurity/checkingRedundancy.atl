@@ -1,4 +1,4 @@
--- @path ANO=/webApplicationSecurity/metamodels/anomalies.ecore
+-- @path ANO=/webApplicationSecurity/metamodels/report.ecore
 -- @path PSM=/webApplicationSecurity/metamodels/ServletSecurity.ecore
 
 module checkingRedundancy;
@@ -107,15 +107,23 @@ helper context PSM!SecurityConstraint def : getRedundantConstraints : Sequence(P
 helper context PSM!SecurityConstraint def : isRedundant : Boolean =
 	not self.getRedundantConstraints->isEmpty();
 
-rule SecurityConstraint2ConstraintRedundancy {
+rule Security2Anomaly {
 	from
-		s: PSM!SecurityConstraint (s.isRedundant)
+		s: PSM!Security
 	to
-		t: ANO!ConstraintRedundancy (
-			description <- 'Redundancy between security constraints ' + s.getSecurityConstraintPos.toString() + 
-							' and ' + s.getRedundantConstraints->collect(rc | rc.getSecurityConstraintPos)->iterate(rc ; output : String = '' | output->concat(rc.toString() + ', ')).regexReplaceAll(', $', '') 
+		t: ANO!Report (
+			anomalies <- thisModule.ALL_SECURITY_CONSTRAINTS->select(sc | sc.isRedundant)
+																->collect(sc | sc.getRedundantConstraints->collect(sr | Sequence{sc, sr}))
+																	->collect(pair | thisModule.CreateAnomaly(pair->flatten()))
 		)
-	do {
-		t.trace <- Sequence{s, s.getRedundantConstraints}->flatten();
-	}
+}
+
+lazy rule CreateAnomaly {
+	from
+		pair: OclAny
+	to
+		t: ANO!Redundancy (
+	 		description <- 'Redundancy between security constraints ' + pair->first().getSecurityConstraintPos.toString() + 
+							' and ' + pair->last().getSecurityConstraintPos.toString()
+	 	) 
 }

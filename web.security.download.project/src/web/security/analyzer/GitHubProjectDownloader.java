@@ -39,7 +39,6 @@ public class GitHubProjectDownloader {
 	public GitHubProjectDownloader(String sampleFilePath, String targetWorkspace) {
 		this.target_workspace = targetWorkspace;
 		this.sample_file_path = sampleFilePath;
-	
 	}
 	
 	public void downloadRepoZip(String repoUrl, String zipFilePath) {
@@ -73,7 +72,9 @@ public class GitHubProjectDownloader {
 	            String filePath = destDirectory + File.separator + entry.getName();
 	            if (!entry.isDirectory()) {
 	                // if the entry is a file, extracts it
-	                extractFile(zipIn, filePath);
+	            	if (entry.getName().contains(".java") || entry.getName().contains(".xml") || 
+	            			entry.getName().contains(".MF") || entry.getName().contains(".project"))
+	            		extractFile(zipIn, filePath);
 	            } else {
 	                // if the entry is a directory, make the directory
 	                File dir = new File(filePath);
@@ -117,7 +118,7 @@ public class GitHubProjectDownloader {
 			catch (Exception e) { System.out.println(file.getName() + " not deleted!"); }
 	}
 	
-	public void importSampleToWorkspace() {
+	public void importSampleToWorkspace(int fromLine) {
 		try {
 			FileReader reader = new FileReader(this.sample_file_path);
 			BufferedReader br = new BufferedReader(reader);
@@ -126,9 +127,11 @@ public class GitHubProjectDownloader {
 			String currentLine;
 			String currentRepo;
 			
-			while (counter <= 90) {
-				br.readLine();
-				counter++;
+			if (fromLine != 0) {
+				while (counter < fromLine) {
+					br.readLine();
+					counter++;
+				}
 			}
 			
 			while ((currentLine = br.readLine()) != null) {
@@ -148,8 +151,8 @@ public class GitHubProjectDownloader {
 	
 	public static void main(String[] args) {
 		//init the downloader with the path of the file containing the GitHub projects to download and the target workspace
-		GitHubProjectDownloader x = new GitHubProjectDownloader("./servlet_sample_links.txt", "C:\\Users\\atlanmod\\Desktop\\runtime-EclipseXtext-SANER\\");
-		x.importSampleToWorkspace();
+		GitHubProjectDownloader x = new GitHubProjectDownloader("./JSSsampleInfo/declarative_repo_links.txt", "C:\\Users\\atlanmod\\Desktop\\declarative-sample-JSS\\");
+		x.importSampleToWorkspace(0);
 		
 //		GitHubProjectDownloader y = new GitHubProjectDownloader("./ejb_sample_projects.txt", "C:\\Users\\atlanmod\\Desktop\\runtime-EclipseXtext\\");
 //		y.importSampleToWorkspace();

@@ -1,4 +1,4 @@
--- @path ANO=/webApplicationSecurity/metamodels/anomalies.ecore
+-- @path ANO=/webApplicationSecurity/metamodels/report.ecore
 -- @path PSM=/webApplicationSecurity/metamodels/ServletSecurity.ecore
 
 module checkingReachability;
@@ -34,24 +34,39 @@ helper context PSM!Security def : containsSecurityRoles : Boolean =
 	not self.role->isEmpty();
 
 
-rule Security2Reachability {
+rule Security2Anomaly {
 	from
-		s: PSM!Security (not s.containsSecurityRoles)
+		s: PSM!Security
 	to
-		t: ANO!ResourceReachability (
-			description <- 'Uses * without declaring roles'
+		t: ANO!Report (
+			anomalies <- 
+							if not s.containsSecurityRoles then
+								thisModule.CreateNoDeclaredRoles()
+							else
+								thisModule.ALL_URL_PATTERNS->select(up | not up.isReachable)
+																->collect(up | up.refImmediateComposite())
+																	->asSet()->asSequence()
+																		->collect(wrc | thisModule.CreateAnomaly(wrc))
+							endif
 		)
 }
 
-rule UrlPattern2Reachability {
+lazy rule CreateNoDeclaredRoles {
 	from
-		s: PSM!UrlPattern (not s.isReachable)
+		s: OclAny
 	to
-		t: ANO!ResourceReachability (
-			description <- 'Resource ' + s.value + ' is not reachable'		
+		t: ANO!Reacheability (
+			description <- 'Uses * without declaring roles'	
 		)
-	do {
-		t.trace <- Sequence{s};	
-	}
+}
+
+lazy rule CreateAnomaly {
+	from
+		s: PSM!WebResourceCollection
+	to
+		t: ANO!Reacheability (
+	 		description <- 'Resource ' + s.webResourceName + ' is not reachable',
+			unreachebleResources <- s
+	 	) 
 }
 
