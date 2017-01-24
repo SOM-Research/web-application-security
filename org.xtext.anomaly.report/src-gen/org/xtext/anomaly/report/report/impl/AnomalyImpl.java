@@ -19,8 +19,7 @@ import org.xtext.anomaly.report.report.ReportPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.xtext.anomaly.report.report.impl.AnomalyImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.xtext.anomaly.report.report.impl.AnomalyImpl#getDescr <em>Descr</em>}</li>
+ *   <li>{@link org.xtext.anomaly.report.report.impl.AnomalyImpl#getDescription <em>Description</em>}</li>
  * </ul>
  * </p>
  *
@@ -29,44 +28,24 @@ import org.xtext.anomaly.report.report.ReportPackage;
 public class AnomalyImpl extends MinimalEObjectImpl.Container implements Anomaly
 {
   /**
-   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+   * The default value of the '{@link #getDescription() <em>Description</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getName()
+   * @see #getDescription()
    * @generated
    * @ordered
    */
-  protected static final String NAME_EDEFAULT = null;
+  protected static final String DESCRIPTION_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+   * The cached value of the '{@link #getDescription() <em>Description</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getName()
+   * @see #getDescription()
    * @generated
    * @ordered
    */
-  protected String name = NAME_EDEFAULT;
-
-  /**
-   * The default value of the '{@link #getDescr() <em>Descr</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getDescr()
-   * @generated
-   * @ordered
-   */
-  protected static final String DESCR_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getDescr() <em>Descr</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getDescr()
-   * @generated
-   * @ordered
-   */
-  protected String descr = DESCR_EDEFAULT;
+  protected String description = DESCRIPTION_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -94,9 +73,9 @@ public class AnomalyImpl extends MinimalEObjectImpl.Container implements Anomaly
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getName()
+  public String getDescription()
   {
-    return name;
+    return description;
   }
 
   /**
@@ -104,35 +83,12 @@ public class AnomalyImpl extends MinimalEObjectImpl.Container implements Anomaly
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setName(String newName)
+  public void setDescription(String newDescription)
   {
-    String oldName = name;
-    name = newName;
+    String oldDescription = description;
+    description = newDescription;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ReportPackage.ANOMALY__NAME, oldName, name));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public String getDescr()
-  {
-    return descr;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setDescr(String newDescr)
-  {
-    String oldDescr = descr;
-    descr = newDescr;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ReportPackage.ANOMALY__DESCR, oldDescr, descr));
+      eNotify(new ENotificationImpl(this, Notification.SET, ReportPackage.ANOMALY__DESCRIPTION, oldDescription, description));
   }
 
   /**
@@ -145,10 +101,8 @@ public class AnomalyImpl extends MinimalEObjectImpl.Container implements Anomaly
   {
     switch (featureID)
     {
-      case ReportPackage.ANOMALY__NAME:
-        return getName();
-      case ReportPackage.ANOMALY__DESCR:
-        return getDescr();
+      case ReportPackage.ANOMALY__DESCRIPTION:
+        return getDescription();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -163,11 +117,8 @@ public class AnomalyImpl extends MinimalEObjectImpl.Container implements Anomaly
   {
     switch (featureID)
     {
-      case ReportPackage.ANOMALY__NAME:
-        setName((String)newValue);
-        return;
-      case ReportPackage.ANOMALY__DESCR:
-        setDescr((String)newValue);
+      case ReportPackage.ANOMALY__DESCRIPTION:
+        setDescription((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -183,11 +134,8 @@ public class AnomalyImpl extends MinimalEObjectImpl.Container implements Anomaly
   {
     switch (featureID)
     {
-      case ReportPackage.ANOMALY__NAME:
-        setName(NAME_EDEFAULT);
-        return;
-      case ReportPackage.ANOMALY__DESCR:
-        setDescr(DESCR_EDEFAULT);
+      case ReportPackage.ANOMALY__DESCRIPTION:
+        setDescription(DESCRIPTION_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -203,10 +151,8 @@ public class AnomalyImpl extends MinimalEObjectImpl.Container implements Anomaly
   {
     switch (featureID)
     {
-      case ReportPackage.ANOMALY__NAME:
-        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-      case ReportPackage.ANOMALY__DESCR:
-        return DESCR_EDEFAULT == null ? descr != null : !DESCR_EDEFAULT.equals(descr);
+      case ReportPackage.ANOMALY__DESCRIPTION:
+        return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
     }
     return super.eIsSet(featureID);
   }
@@ -222,10 +168,8 @@ public class AnomalyImpl extends MinimalEObjectImpl.Container implements Anomaly
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (name: ");
-    result.append(name);
-    result.append(", descr: ");
-    result.append(descr);
+    result.append(" (description: ");
+    result.append(description);
     result.append(')');
     return result.toString();
   }

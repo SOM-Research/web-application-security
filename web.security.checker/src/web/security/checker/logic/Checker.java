@@ -28,14 +28,15 @@ import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.m2m.atl.core.ATLCoreException;
 
-import anomalies.AnomaliesPackage;
-import anomalies.Anomaly;
+import report.Anomaly;
+import report.Report;
+import report.ReportPackage;
 import web.security.checker.Utility;
 import web.security.checker.transformations.CheckingCompleteness;
 import web.security.checker.transformations.CheckingReachability;
 import web.security.checker.transformations.CheckingRedundancy;
 import web.security.checker.transformations.CheckingShadowing;
-import web.security.checker.transformations.CheckingUndeclareRoles;
+import web.security.checker.transformations.CheckingSyntactical;
 import web.security.checker.transformations.ExtractingServletSecurity;
 
 public class Checker {
@@ -51,7 +52,7 @@ public class Checker {
 	
 	private String servletSecurityPSMPath;
 	
-	private String outputCompletenessPath, outputRedundancyPath, outputReachabilityPath, outputUndeclareRolesPath, outputShadowingPath, outputAnomalyCheckPath, outputAnomalyReportPath;
+	private String outputCompletenessPath, outputRedundancyPath, outputReachabilityPath, outputSyntacticalPath, outputShadowingPath, outputAnomalyCheckPath, outputAnomalyReportPath;
 	
 	private List<String> properties;
 	
@@ -66,7 +67,7 @@ public class Checker {
 		this.outputCompletenessPath = this.javaProjectPath + "\\" + this.javaProject.getName() + ".check.completeness.xmi";
 		this.outputRedundancyPath = this.javaProjectPath + "\\" + this.javaProject.getName() + ".check.redundancy.xmi";
 		this.outputReachabilityPath = this.javaProjectPath + "\\" + this.javaProject.getName() + ".check.reachability.xmi";
-		this.outputUndeclareRolesPath = this.javaProjectPath + "\\" + this.javaProject.getName() + ".check.undeclaredroles.xmi";
+		this.outputSyntacticalPath = this.javaProjectPath + "\\" + this.javaProject.getName() + ".check.syntactical.xmi";
 		this.outputShadowingPath = this.javaProjectPath + "\\" + this.javaProject.getName() + ".check.shadowing.xmi";
 		
 		this.outputAnomalyCheckPath = this.javaProjectPath + "\\" + this.javaProject.getName() + ".anomaly.check.xmi";
@@ -132,21 +133,21 @@ public class Checker {
 	}
 	
 	public String getSecurityReport() {
-		String message = "Property \"-\" Description \"Nothing to report!\"";
+		String message = "Shadowing \"Nothing to report!\"\n"
+				       + "Completeness \"Nothing to report!\"\n"
+				       + "Redundancy \"Nothing to report!\"\n"
+				       + "Syntactical \"Nothing to report!\"\n"
+				       + "Reachability \"Nothing to report!\"\n";
 		IFile anomalyModelFile = ResourcesPlugin.getWorkspace().getRoot().getFileForLocation(new Path(this.outputAnomalyCheckPath));
 		if (anomalyModelFile.exists()) {
 			Resource anomalyModel = this.loadAnomalyModel(this.outputAnomalyCheckPath);
 			if (!anomalyModel.getContents().isEmpty()) {
 				message = "";
-				for (EObject e : anomalyModel.getContents()) {
-					Anomaly ano = (Anomaly)e;
-					
-					String toAdd = "Property \"" + e.eClass().getName() + "\"  Description \"" + ano.getDescription() + "\"\n";
+				Report r = (Report) anomalyModel.getContents().get(0);
+				for (Anomaly ano : r.getAnomalies()) {
+					String toAdd = ano.eClass().getName() + " \"" + ano.getDescription() + "\"\n";
 					message = message + toAdd;
 				}
-			}
-			else {
-				message = "Property \"-\" Description \"Security properties passed with success, no warning to report!\"";
 			}
 		}
 		
@@ -174,7 +175,7 @@ public class Checker {
 	private Resource loadAnomalyModel(String path) {
 		//load resource
 		ResourceSet resSet = new ResourceSetImpl();
-		resSet.getPackageRegistry().put(AnomaliesPackage.eNS_URI, AnomaliesPackage.eINSTANCE);
+		resSet.getPackageRegistry().put(ReportPackage.eNS_URI, ReportPackage.eINSTANCE);
 		resSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi", new XMIResourceFactoryImpl());
 		Resource resLoad = resSet.getResource(URI.createFileURI(path),true);		               
 		
@@ -193,7 +194,15 @@ public class Checker {
 		Resource anomaliesModel = this.loadAnomalyModel(output);
 		
 		if (!anomalyModel.getContents().isEmpty()) {
-			anomaliesModel.getContents().addAll(anomalyModel.getContents());
+			Report report = (Report)anomalyModel.getContents().get(0);
+			
+			if (anomaliesModel.getContents().isEmpty()) {
+				anomaliesModel.getContents().addAll(anomalyModel.getContents());
+			}
+			else {
+				Report outputReport = (Report)anomaliesModel.getContents().get(0);
+				outputReport.getAnomalies().addAll(report.getAnomalies());
+			}
 			try {
 				anomaliesModel.save(Collections.EMPTY_MAP);
 			} catch (IOException e) {
@@ -235,9 +244,9 @@ public class Checker {
 		}
 	}	
 	
-	public void checkUndeclaredRoles() {
-		CheckingUndeclareRoles transformation;
-		transformation = new CheckingUndeclareRoles(this.servletSecurityPSMPath, this.outputUndeclareRolesPath);
+	public void checkSyntactical() {
+		CheckingSyntactical transformation;
+		transformation = new CheckingSyntactical(this.servletSecurityPSMPath, this.outputSyntacticalPath);
 		try {
 			transformation.run();
 		} catch (Exception e) {
@@ -260,7 +269,7 @@ public class Checker {
 	
 	private void createOutputAnomalyModel() {
 		ResourceSet resSet = new ResourceSetImpl();
-		resSet.getPackageRegistry().put(AnomaliesPackage.eNS_URI, AnomaliesPackage.eINSTANCE);
+		resSet.getPackageRegistry().put(ReportPackage.eNS_URI, ReportPackage.eINSTANCE);
 		resSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi", new XMIResourceFactoryImpl());
 		Resource res = resSet.createResource(URI.createFileURI(this.outputAnomalyCheckPath));
 		
@@ -286,9 +295,9 @@ public class Checker {
 				this.checkReachability();
 				this.updateOutputAnomalyCheck(this.outputReachabilityPath, this.outputAnomalyCheckPath);
 			}
-			else if (prop.equals("undeclared")) {
-				this.checkUndeclaredRoles();
-				this.updateOutputAnomalyCheck(this.outputUndeclareRolesPath, this.outputAnomalyCheckPath);
+			else if (prop.equals("syntactical")) {
+				this.checkSyntactical();
+				this.updateOutputAnomalyCheck(this.outputSyntacticalPath, this.outputAnomalyCheckPath);
 			}
 			else if (prop.equals("shadowing")) {
 				this.checkShadowing();
@@ -309,7 +318,7 @@ public class Checker {
 		this.deleteFile(this.outputCompletenessPath);
 		this.deleteFile(this.outputReachabilityPath);
 		this.deleteFile(this.outputRedundancyPath);
-		this.deleteFile(this.outputUndeclareRolesPath);
+		this.deleteFile(this.outputSyntacticalPath);
 		this.deleteFile(this.outputShadowingPath);
 		
 		this.refreshProjet();

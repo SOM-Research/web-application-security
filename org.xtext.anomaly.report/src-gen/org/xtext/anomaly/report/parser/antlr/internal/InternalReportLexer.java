@@ -17,10 +17,13 @@ public class InternalReportLexer extends Lexer {
     public static final int RULE_STRING=4;
     public static final int RULE_ANY_OTHER=10;
     public static final int RULE_SL_COMMENT=8;
+    public static final int T__15=15;
     public static final int RULE_INT=6;
     public static final int T__11=11;
     public static final int RULE_ML_COMMENT=7;
     public static final int T__12=12;
+    public static final int T__13=13;
+    public static final int T__14=14;
     public static final int EOF=-1;
 
     // delegates
@@ -41,10 +44,10 @@ public class InternalReportLexer extends Lexer {
         try {
             int _type = T__11;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:11:7: ( 'Property' )
-            // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:11:9: 'Property'
+            // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:11:7: ( 'Shadowing' )
+            // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:11:9: 'Shadowing'
             {
-            match("Property"); 
+            match("Shadowing"); 
 
 
             }
@@ -62,10 +65,10 @@ public class InternalReportLexer extends Lexer {
         try {
             int _type = T__12;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:12:7: ( 'Description' )
-            // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:12:9: 'Description'
+            // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:12:7: ( 'Completeness' )
+            // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:12:9: 'Completeness'
             {
-            match("Description"); 
+            match("Completeness"); 
 
 
             }
@@ -78,15 +81,78 @@ public class InternalReportLexer extends Lexer {
     }
     // $ANTLR end "T__12"
 
+    // $ANTLR start "T__13"
+    public final void mT__13() throws RecognitionException {
+        try {
+            int _type = T__13;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:13:7: ( 'Redundancy' )
+            // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:13:9: 'Redundancy'
+            {
+            match("Redundancy"); 
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__13"
+
+    // $ANTLR start "T__14"
+    public final void mT__14() throws RecognitionException {
+        try {
+            int _type = T__14;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:14:7: ( 'Syntactical' )
+            // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:14:9: 'Syntactical'
+            {
+            match("Syntactical"); 
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__14"
+
+    // $ANTLR start "T__15"
+    public final void mT__15() throws RecognitionException {
+        try {
+            int _type = T__15;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:15:7: ( 'Reachability' )
+            // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:15:9: 'Reachability'
+            {
+            match("Reachability"); 
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__15"
+
     // $ANTLR start "RULE_ID"
     public final void mRULE_ID() throws RecognitionException {
         try {
             int _type = RULE_ID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:170:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
-            // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:170:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:546:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
+            // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:546:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             {
-            // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:170:11: ( '^' )?
+            // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:546:11: ( '^' )?
             int alt1=2;
             int LA1_0 = input.LA(1);
 
@@ -95,7 +161,7 @@ public class InternalReportLexer extends Lexer {
             }
             switch (alt1) {
                 case 1 :
-                    // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:170:11: '^'
+                    // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:546:11: '^'
                     {
                     match('^'); 
 
@@ -113,7 +179,7 @@ public class InternalReportLexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
-            // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:170:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:546:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             loop2:
             do {
                 int alt2=2;
@@ -162,10 +228,10 @@ public class InternalReportLexer extends Lexer {
         try {
             int _type = RULE_INT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:172:10: ( ( '0' .. '9' )+ )
-            // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:172:12: ( '0' .. '9' )+
+            // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:548:10: ( ( '0' .. '9' )+ )
+            // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:548:12: ( '0' .. '9' )+
             {
-            // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:172:12: ( '0' .. '9' )+
+            // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:548:12: ( '0' .. '9' )+
             int cnt3=0;
             loop3:
             do {
@@ -179,7 +245,7 @@ public class InternalReportLexer extends Lexer {
 
                 switch (alt3) {
             	case 1 :
-            	    // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:172:13: '0' .. '9'
+            	    // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:548:13: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -211,10 +277,10 @@ public class InternalReportLexer extends Lexer {
         try {
             int _type = RULE_STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:174:13: ( ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
-            // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:174:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:550:13: ( ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
+            // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:550:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             {
-            // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:174:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:550:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             int alt6=2;
             int LA6_0 = input.LA(1);
 
@@ -232,10 +298,10 @@ public class InternalReportLexer extends Lexer {
             }
             switch (alt6) {
                 case 1 :
-                    // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:174:16: '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
+                    // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:550:16: '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
                     {
                     match('\"'); 
-                    // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:174:20: ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )*
+                    // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:550:20: ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )*
                     loop4:
                     do {
                         int alt4=3;
@@ -251,7 +317,7 @@ public class InternalReportLexer extends Lexer {
 
                         switch (alt4) {
                     	case 1 :
-                    	    // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:174:21: '\\\\' .
+                    	    // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:550:21: '\\\\' .
                     	    {
                     	    match('\\'); 
                     	    matchAny(); 
@@ -259,7 +325,7 @@ public class InternalReportLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:174:28: ~ ( ( '\\\\' | '\"' ) )
+                    	    // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:550:28: ~ ( ( '\\\\' | '\"' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -284,10 +350,10 @@ public class InternalReportLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:174:48: '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
+                    // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:550:48: '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
                     {
                     match('\''); 
-                    // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:174:53: ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )*
+                    // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:550:53: ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )*
                     loop5:
                     do {
                         int alt5=3;
@@ -303,7 +369,7 @@ public class InternalReportLexer extends Lexer {
 
                         switch (alt5) {
                     	case 1 :
-                    	    // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:174:54: '\\\\' .
+                    	    // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:550:54: '\\\\' .
                     	    {
                     	    match('\\'); 
                     	    matchAny(); 
@@ -311,7 +377,7 @@ public class InternalReportLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:174:61: ~ ( ( '\\\\' | '\\'' ) )
+                    	    // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:550:61: ~ ( ( '\\\\' | '\\'' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -354,12 +420,12 @@ public class InternalReportLexer extends Lexer {
         try {
             int _type = RULE_ML_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:176:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
-            // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:176:19: '/*' ( options {greedy=false; } : . )* '*/'
+            // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:552:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
+            // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:552:19: '/*' ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
 
-            // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:176:24: ( options {greedy=false; } : . )*
+            // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:552:24: ( options {greedy=false; } : . )*
             loop7:
             do {
                 int alt7=2;
@@ -384,7 +450,7 @@ public class InternalReportLexer extends Lexer {
 
                 switch (alt7) {
             	case 1 :
-            	    // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:176:52: .
+            	    // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:552:52: .
             	    {
             	    matchAny(); 
 
@@ -414,12 +480,12 @@ public class InternalReportLexer extends Lexer {
         try {
             int _type = RULE_SL_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:178:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
-            // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:178:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
+            // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:554:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
+            // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:554:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
             {
             match("//"); 
 
-            // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:178:24: (~ ( ( '\\n' | '\\r' ) ) )*
+            // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:554:24: (~ ( ( '\\n' | '\\r' ) ) )*
             loop8:
             do {
                 int alt8=2;
@@ -432,7 +498,7 @@ public class InternalReportLexer extends Lexer {
 
                 switch (alt8) {
             	case 1 :
-            	    // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:178:24: ~ ( ( '\\n' | '\\r' ) )
+            	    // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:554:24: ~ ( ( '\\n' | '\\r' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -452,7 +518,7 @@ public class InternalReportLexer extends Lexer {
                 }
             } while (true);
 
-            // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:178:40: ( ( '\\r' )? '\\n' )?
+            // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:554:40: ( ( '\\r' )? '\\n' )?
             int alt10=2;
             int LA10_0 = input.LA(1);
 
@@ -461,9 +527,9 @@ public class InternalReportLexer extends Lexer {
             }
             switch (alt10) {
                 case 1 :
-                    // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:178:41: ( '\\r' )? '\\n'
+                    // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:554:41: ( '\\r' )? '\\n'
                     {
-                    // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:178:41: ( '\\r' )?
+                    // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:554:41: ( '\\r' )?
                     int alt9=2;
                     int LA9_0 = input.LA(1);
 
@@ -472,7 +538,7 @@ public class InternalReportLexer extends Lexer {
                     }
                     switch (alt9) {
                         case 1 :
-                            // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:178:41: '\\r'
+                            // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:554:41: '\\r'
                             {
                             match('\r'); 
 
@@ -504,10 +570,10 @@ public class InternalReportLexer extends Lexer {
         try {
             int _type = RULE_WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:180:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
-            // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:180:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:556:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
+            // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:556:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             {
-            // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:180:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:556:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             int cnt11=0;
             loop11:
             do {
@@ -561,8 +627,8 @@ public class InternalReportLexer extends Lexer {
         try {
             int _type = RULE_ANY_OTHER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:182:16: ( . )
-            // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:182:18: .
+            // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:558:16: ( . )
+            // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:558:18: .
             {
             matchAny(); 
 
@@ -577,8 +643,8 @@ public class InternalReportLexer extends Lexer {
     // $ANTLR end "RULE_ANY_OTHER"
 
     public void mTokens() throws RecognitionException {
-        // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:1:8: ( T__11 | T__12 | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER )
-        int alt12=9;
+        // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:1:8: ( T__11 | T__12 | T__13 | T__14 | T__15 | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER )
+        int alt12=12;
         alt12 = dfa12.predict(input);
         switch (alt12) {
             case 1 :
@@ -596,49 +662,70 @@ public class InternalReportLexer extends Lexer {
                 }
                 break;
             case 3 :
-                // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:1:22: RULE_ID
+                // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:1:22: T__13
+                {
+                mT__13(); 
+
+                }
+                break;
+            case 4 :
+                // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:1:28: T__14
+                {
+                mT__14(); 
+
+                }
+                break;
+            case 5 :
+                // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:1:34: T__15
+                {
+                mT__15(); 
+
+                }
+                break;
+            case 6 :
+                // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:1:40: RULE_ID
                 {
                 mRULE_ID(); 
 
                 }
                 break;
-            case 4 :
-                // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:1:30: RULE_INT
+            case 7 :
+                // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:1:48: RULE_INT
                 {
                 mRULE_INT(); 
 
                 }
                 break;
-            case 5 :
-                // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:1:39: RULE_STRING
+            case 8 :
+                // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:1:57: RULE_STRING
                 {
                 mRULE_STRING(); 
 
                 }
                 break;
-            case 6 :
-                // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:1:51: RULE_ML_COMMENT
+            case 9 :
+                // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:1:69: RULE_ML_COMMENT
                 {
                 mRULE_ML_COMMENT(); 
 
                 }
                 break;
-            case 7 :
-                // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:1:67: RULE_SL_COMMENT
+            case 10 :
+                // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:1:85: RULE_SL_COMMENT
                 {
                 mRULE_SL_COMMENT(); 
 
                 }
                 break;
-            case 8 :
-                // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:1:83: RULE_WS
+            case 11 :
+                // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:1:101: RULE_WS
                 {
                 mRULE_WS(); 
 
                 }
                 break;
-            case 9 :
-                // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:1:91: RULE_ANY_OTHER
+            case 12 :
+                // ../org.xtext.anomaly.report/src-gen/org/xtext/anomaly/report/parser/antlr/internal/InternalReport.g:1:109: RULE_ANY_OTHER
                 {
                 mRULE_ANY_OTHER(); 
 
@@ -652,61 +739,104 @@ public class InternalReportLexer extends Lexer {
 
     protected DFA12 dfa12 = new DFA12(this);
     static final String DFA12_eotS =
-        "\1\uffff\2\14\1\12\2\uffff\3\12\2\uffff\1\14\1\uffff\1\14\5\uffff"+
-        "\12\14\1\37\1\14\1\uffff\2\14\1\43\1\uffff";
+        "\1\uffff\3\16\1\13\2\uffff\3\13\2\uffff\2\16\1\uffff\2\16\5\uffff"+
+        "\36\16\1\71\4\16\1\uffff\2\16\1\100\1\16\1\102\1\16\1\uffff\1\16"+
+        "\1\uffff\1\105\1\106\2\uffff";
     static final String DFA12_eofS =
-        "\44\uffff";
+        "\107\uffff";
     static final String DFA12_minS =
-        "\1\0\1\162\1\145\1\101\2\uffff\2\0\1\52\2\uffff\1\157\1\uffff\1"+
-        "\163\5\uffff\1\160\1\143\1\145\2\162\1\151\1\164\1\160\1\171\1\164"+
-        "\1\60\1\151\1\uffff\1\157\1\156\1\60\1\uffff";
+        "\1\0\1\150\1\157\1\145\1\101\2\uffff\2\0\1\52\2\uffff\1\141\1\156"+
+        "\1\uffff\1\155\1\141\5\uffff\1\144\1\164\1\160\1\165\1\143\1\157"+
+        "\1\141\1\154\1\156\1\150\1\167\1\143\1\145\1\144\1\141\1\151\2\164"+
+        "\1\141\1\142\1\156\1\151\1\145\1\156\1\151\1\147\1\143\1\156\1\143"+
+        "\1\154\1\60\1\141\1\145\1\171\1\151\1\uffff\1\154\1\163\1\60\1\164"+
+        "\1\60\1\163\1\uffff\1\171\1\uffff\2\60\2\uffff";
     static final String DFA12_maxS =
-        "\1\uffff\1\162\1\145\1\172\2\uffff\2\uffff\1\57\2\uffff\1\157\1"+
-        "\uffff\1\163\5\uffff\1\160\1\143\1\145\2\162\1\151\1\164\1\160\1"+
-        "\171\1\164\1\172\1\151\1\uffff\1\157\1\156\1\172\1\uffff";
+        "\1\uffff\1\171\1\157\1\145\1\172\2\uffff\2\uffff\1\57\2\uffff\1"+
+        "\141\1\156\1\uffff\1\155\1\144\5\uffff\1\144\1\164\1\160\1\165\1"+
+        "\143\1\157\1\141\1\154\1\156\1\150\1\167\1\143\1\145\1\144\1\141"+
+        "\1\151\2\164\1\141\1\142\1\156\1\151\1\145\1\156\1\151\1\147\1\143"+
+        "\1\156\1\143\1\154\1\172\1\141\1\145\1\171\1\151\1\uffff\1\154\1"+
+        "\163\1\172\1\164\1\172\1\163\1\uffff\1\171\1\uffff\2\172\2\uffff";
     static final String DFA12_acceptS =
-        "\4\uffff\1\3\1\4\3\uffff\1\10\1\11\1\uffff\1\3\1\uffff\1\4\1\5"+
-        "\1\6\1\7\1\10\14\uffff\1\1\3\uffff\1\2";
+        "\5\uffff\1\6\1\7\3\uffff\1\13\1\14\2\uffff\1\6\2\uffff\1\7\1\10"+
+        "\1\11\1\12\1\13\43\uffff\1\1\6\uffff\1\3\1\uffff\1\4\2\uffff\1\2"+
+        "\1\5";
     static final String DFA12_specialS =
-        "\1\1\5\uffff\1\2\1\0\34\uffff}>";
+        "\1\0\6\uffff\1\2\1\1\76\uffff}>";
     static final String[] DFA12_transitionS = {
-            "\11\12\2\11\2\12\1\11\22\12\1\11\1\12\1\6\4\12\1\7\7\12\1\10"+
-            "\12\5\7\12\3\4\1\2\13\4\1\1\12\4\3\12\1\3\1\4\1\12\32\4\uff85"+
-            "\12",
-            "\1\13",
-            "\1\15",
-            "\32\14\4\uffff\1\14\1\uffff\32\14",
+            "\11\13\2\12\2\13\1\12\22\13\1\12\1\13\1\7\4\13\1\10\7\13\1"+
+            "\11\12\6\7\13\2\5\1\2\16\5\1\3\1\1\7\5\3\13\1\4\1\5\1\13\32"+
+            "\5\uff85\13",
+            "\1\14\20\uffff\1\15",
+            "\1\17",
+            "\1\20",
+            "\32\16\4\uffff\1\16\1\uffff\32\16",
             "",
             "",
-            "\0\17",
-            "\0\17",
-            "\1\20\4\uffff\1\21",
+            "\0\22",
+            "\0\22",
+            "\1\23\4\uffff\1\24",
             "",
             "",
-            "\1\23",
-            "",
-            "\1\24",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "\1\25",
             "\1\26",
             "\1\27",
+            "",
             "\1\30",
-            "\1\31",
-            "\1\32",
+            "\1\32\2\uffff\1\31",
+            "",
+            "",
+            "",
+            "",
+            "",
             "\1\33",
             "\1\34",
             "\1\35",
             "\1\36",
-            "\12\14\7\uffff\32\14\4\uffff\1\14\1\uffff\32\14",
+            "\1\37",
             "\1\40",
-            "",
             "\1\41",
             "\1\42",
-            "\12\14\7\uffff\32\14\4\uffff\1\14\1\uffff\32\14",
+            "\1\43",
+            "\1\44",
+            "\1\45",
+            "\1\46",
+            "\1\47",
+            "\1\50",
+            "\1\51",
+            "\1\52",
+            "\1\53",
+            "\1\54",
+            "\1\55",
+            "\1\56",
+            "\1\57",
+            "\1\60",
+            "\1\61",
+            "\1\62",
+            "\1\63",
+            "\1\64",
+            "\1\65",
+            "\1\66",
+            "\1\67",
+            "\1\70",
+            "\12\16\7\uffff\32\16\4\uffff\1\16\1\uffff\32\16",
+            "\1\72",
+            "\1\73",
+            "\1\74",
+            "\1\75",
+            "",
+            "\1\76",
+            "\1\77",
+            "\12\16\7\uffff\32\16\4\uffff\1\16\1\uffff\32\16",
+            "\1\101",
+            "\12\16\7\uffff\32\16\4\uffff\1\16\1\uffff\32\16",
+            "\1\103",
+            "",
+            "\1\104",
+            "",
+            "\12\16\7\uffff\32\16\4\uffff\1\16\1\uffff\32\16",
+            "\12\16\7\uffff\32\16\4\uffff\1\16\1\uffff\32\16",
+            "",
             ""
     };
 
@@ -740,55 +870,57 @@ public class InternalReportLexer extends Lexer {
             this.transition = DFA12_transition;
         }
         public String getDescription() {
-            return "1:1: Tokens : ( T__11 | T__12 | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER );";
+            return "1:1: Tokens : ( T__11 | T__12 | T__13 | T__14 | T__15 | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER );";
         }
         public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
             IntStream input = _input;
         	int _s = s;
             switch ( s ) {
                     case 0 : 
-                        int LA12_7 = input.LA(1);
+                        int LA12_0 = input.LA(1);
 
                         s = -1;
-                        if ( ((LA12_7>='\u0000' && LA12_7<='\uFFFF')) ) {s = 15;}
+                        if ( (LA12_0=='S') ) {s = 1;}
 
-                        else s = 10;
+                        else if ( (LA12_0=='C') ) {s = 2;}
+
+                        else if ( (LA12_0=='R') ) {s = 3;}
+
+                        else if ( (LA12_0=='^') ) {s = 4;}
+
+                        else if ( ((LA12_0>='A' && LA12_0<='B')||(LA12_0>='D' && LA12_0<='Q')||(LA12_0>='T' && LA12_0<='Z')||LA12_0=='_'||(LA12_0>='a' && LA12_0<='z')) ) {s = 5;}
+
+                        else if ( ((LA12_0>='0' && LA12_0<='9')) ) {s = 6;}
+
+                        else if ( (LA12_0=='\"') ) {s = 7;}
+
+                        else if ( (LA12_0=='\'') ) {s = 8;}
+
+                        else if ( (LA12_0=='/') ) {s = 9;}
+
+                        else if ( ((LA12_0>='\t' && LA12_0<='\n')||LA12_0=='\r'||LA12_0==' ') ) {s = 10;}
+
+                        else if ( ((LA12_0>='\u0000' && LA12_0<='\b')||(LA12_0>='\u000B' && LA12_0<='\f')||(LA12_0>='\u000E' && LA12_0<='\u001F')||LA12_0=='!'||(LA12_0>='#' && LA12_0<='&')||(LA12_0>='(' && LA12_0<='.')||(LA12_0>=':' && LA12_0<='@')||(LA12_0>='[' && LA12_0<=']')||LA12_0=='`'||(LA12_0>='{' && LA12_0<='\uFFFF')) ) {s = 11;}
 
                         if ( s>=0 ) return s;
                         break;
                     case 1 : 
-                        int LA12_0 = input.LA(1);
+                        int LA12_8 = input.LA(1);
 
                         s = -1;
-                        if ( (LA12_0=='P') ) {s = 1;}
+                        if ( ((LA12_8>='\u0000' && LA12_8<='\uFFFF')) ) {s = 18;}
 
-                        else if ( (LA12_0=='D') ) {s = 2;}
-
-                        else if ( (LA12_0=='^') ) {s = 3;}
-
-                        else if ( ((LA12_0>='A' && LA12_0<='C')||(LA12_0>='E' && LA12_0<='O')||(LA12_0>='Q' && LA12_0<='Z')||LA12_0=='_'||(LA12_0>='a' && LA12_0<='z')) ) {s = 4;}
-
-                        else if ( ((LA12_0>='0' && LA12_0<='9')) ) {s = 5;}
-
-                        else if ( (LA12_0=='\"') ) {s = 6;}
-
-                        else if ( (LA12_0=='\'') ) {s = 7;}
-
-                        else if ( (LA12_0=='/') ) {s = 8;}
-
-                        else if ( ((LA12_0>='\t' && LA12_0<='\n')||LA12_0=='\r'||LA12_0==' ') ) {s = 9;}
-
-                        else if ( ((LA12_0>='\u0000' && LA12_0<='\b')||(LA12_0>='\u000B' && LA12_0<='\f')||(LA12_0>='\u000E' && LA12_0<='\u001F')||LA12_0=='!'||(LA12_0>='#' && LA12_0<='&')||(LA12_0>='(' && LA12_0<='.')||(LA12_0>=':' && LA12_0<='@')||(LA12_0>='[' && LA12_0<=']')||LA12_0=='`'||(LA12_0>='{' && LA12_0<='\uFFFF')) ) {s = 10;}
+                        else s = 11;
 
                         if ( s>=0 ) return s;
                         break;
                     case 2 : 
-                        int LA12_6 = input.LA(1);
+                        int LA12_7 = input.LA(1);
 
                         s = -1;
-                        if ( ((LA12_6>='\u0000' && LA12_6<='\uFFFF')) ) {s = 15;}
+                        if ( ((LA12_7>='\u0000' && LA12_7<='\uFFFF')) ) {s = 18;}
 
-                        else s = 10;
+                        else s = 11;
 
                         if ( s>=0 ) return s;
                         break;

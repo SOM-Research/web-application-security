@@ -48,7 +48,7 @@ public class CheckerAction implements IWorkbenchWindowActionDelegate {
 		if (reachability)
 			properties.add("reachability");
 		if (undeclared)
-			properties.add("undeclared");
+			properties.add("syntactical");
 		if (shadowing)
 			properties.add("shadowing");
 		

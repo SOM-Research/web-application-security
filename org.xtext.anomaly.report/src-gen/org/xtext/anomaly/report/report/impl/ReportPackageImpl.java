@@ -10,9 +10,14 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.xtext.anomaly.report.report.Anomaly;
-import org.xtext.anomaly.report.report.Model;
+import org.xtext.anomaly.report.report.Completeness;
+import org.xtext.anomaly.report.report.Reachability;
+import org.xtext.anomaly.report.report.Redundancy;
+import org.xtext.anomaly.report.report.Report;
 import org.xtext.anomaly.report.report.ReportFactory;
 import org.xtext.anomaly.report.report.ReportPackage;
+import org.xtext.anomaly.report.report.Shadowing;
+import org.xtext.anomaly.report.report.Syntactical;
 
 /**
  * <!-- begin-user-doc -->
@@ -27,7 +32,7 @@ public class ReportPackageImpl extends EPackageImpl implements ReportPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass modelEClass = null;
+  private EClass reportEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -35,6 +40,41 @@ public class ReportPackageImpl extends EPackageImpl implements ReportPackage
    * @generated
    */
   private EClass anomalyEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass shadowingEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass completenessEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass redundancyEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass syntacticalEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass reachabilityEClass = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with
@@ -104,9 +144,9 @@ public class ReportPackageImpl extends EPackageImpl implements ReportPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getModel()
+  public EClass getReport()
   {
-    return modelEClass;
+    return reportEClass;
   }
 
   /**
@@ -114,9 +154,9 @@ public class ReportPackageImpl extends EPackageImpl implements ReportPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getModel_Anomalies()
+  public EReference getReport_Anomalies()
   {
-    return (EReference)modelEClass.getEStructuralFeatures().get(0);
+    return (EReference)reportEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -134,7 +174,7 @@ public class ReportPackageImpl extends EPackageImpl implements ReportPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getAnomaly_Name()
+  public EAttribute getAnomaly_Description()
   {
     return (EAttribute)anomalyEClass.getEStructuralFeatures().get(0);
   }
@@ -144,9 +184,129 @@ public class ReportPackageImpl extends EPackageImpl implements ReportPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getAnomaly_Descr()
+  public EClass getShadowing()
   {
-    return (EAttribute)anomalyEClass.getEStructuralFeatures().get(1);
+    return shadowingEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getShadowing_Shadowing()
+  {
+    return (EReference)shadowingEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getShadowing_Shadowed()
+  {
+    return (EReference)shadowingEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getCompleteness()
+  {
+    return completenessEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getCompleteness_MissedMethod()
+  {
+    return (EReference)completenessEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getCompleteness_SecurityConstraint()
+  {
+    return (EReference)completenessEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getRedundancy()
+  {
+    return redundancyEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getRedundancy_Containing()
+  {
+    return (EReference)redundancyEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getRedundancy_Contained()
+  {
+    return (EReference)redundancyEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getSyntactical()
+  {
+    return syntacticalEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getSyntactical_MissedRoles()
+  {
+    return (EReference)syntacticalEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getReachability()
+  {
+    return reachabilityEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getReachability_UnreachableResources()
+  {
+    return (EReference)reachabilityEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -179,12 +339,29 @@ public class ReportPackageImpl extends EPackageImpl implements ReportPackage
     isCreated = true;
 
     // Create classes and their features
-    modelEClass = createEClass(MODEL);
-    createEReference(modelEClass, MODEL__ANOMALIES);
+    reportEClass = createEClass(REPORT);
+    createEReference(reportEClass, REPORT__ANOMALIES);
 
     anomalyEClass = createEClass(ANOMALY);
-    createEAttribute(anomalyEClass, ANOMALY__NAME);
-    createEAttribute(anomalyEClass, ANOMALY__DESCR);
+    createEAttribute(anomalyEClass, ANOMALY__DESCRIPTION);
+
+    shadowingEClass = createEClass(SHADOWING);
+    createEReference(shadowingEClass, SHADOWING__SHADOWING);
+    createEReference(shadowingEClass, SHADOWING__SHADOWED);
+
+    completenessEClass = createEClass(COMPLETENESS);
+    createEReference(completenessEClass, COMPLETENESS__MISSED_METHOD);
+    createEReference(completenessEClass, COMPLETENESS__SECURITY_CONSTRAINT);
+
+    redundancyEClass = createEClass(REDUNDANCY);
+    createEReference(redundancyEClass, REDUNDANCY__CONTAINING);
+    createEReference(redundancyEClass, REDUNDANCY__CONTAINED);
+
+    syntacticalEClass = createEClass(SYNTACTICAL);
+    createEReference(syntacticalEClass, SYNTACTICAL__MISSED_ROLES);
+
+    reachabilityEClass = createEClass(REACHABILITY);
+    createEReference(reachabilityEClass, REACHABILITY__UNREACHABLE_RESOURCES);
   }
 
   /**
@@ -216,14 +393,36 @@ public class ReportPackageImpl extends EPackageImpl implements ReportPackage
     // Set bounds for type parameters
 
     // Add supertypes to classes
+    shadowingEClass.getESuperTypes().add(this.getAnomaly());
+    completenessEClass.getESuperTypes().add(this.getAnomaly());
+    redundancyEClass.getESuperTypes().add(this.getAnomaly());
+    syntacticalEClass.getESuperTypes().add(this.getAnomaly());
+    reachabilityEClass.getESuperTypes().add(this.getAnomaly());
 
     // Initialize classes and features; add operations and parameters
-    initEClass(modelEClass, Model.class, "Model", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getModel_Anomalies(), this.getAnomaly(), null, "anomalies", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(reportEClass, Report.class, "Report", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getReport_Anomalies(), this.getAnomaly(), null, "anomalies", null, 0, -1, Report.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(anomalyEClass, Anomaly.class, "Anomaly", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getAnomaly_Name(), ecorePackage.getEString(), "name", null, 0, 1, Anomaly.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getAnomaly_Descr(), ecorePackage.getEString(), "descr", null, 0, 1, Anomaly.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getAnomaly_Description(), ecorePackage.getEString(), "description", null, 0, 1, Anomaly.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(shadowingEClass, Shadowing.class, "Shadowing", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getShadowing_Shadowing(), ecorePackage.getEObject(), null, "shadowing", null, 0, 1, Shadowing.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getShadowing_Shadowed(), ecorePackage.getEObject(), null, "shadowed", null, 0, 1, Shadowing.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(completenessEClass, Completeness.class, "Completeness", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getCompleteness_MissedMethod(), ecorePackage.getEObject(), null, "missedMethod", null, 0, -1, Completeness.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getCompleteness_SecurityConstraint(), ecorePackage.getEObject(), null, "securityConstraint", null, 0, 1, Completeness.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(redundancyEClass, Redundancy.class, "Redundancy", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getRedundancy_Containing(), ecorePackage.getEObject(), null, "containing", null, 0, 1, Redundancy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getRedundancy_Contained(), ecorePackage.getEObject(), null, "contained", null, 0, 1, Redundancy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(syntacticalEClass, Syntactical.class, "Syntactical", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getSyntactical_MissedRoles(), ecorePackage.getEObject(), null, "missedRoles", null, 0, -1, Syntactical.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(reachabilityEClass, Reachability.class, "Reachability", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getReachability_UnreachableResources(), ecorePackage.getEObject(), null, "unreachableResources", null, 0, -1, Reachability.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Create resource
     createResource(eNS_URI);

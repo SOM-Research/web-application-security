@@ -64,8 +64,13 @@ public class ReportFactoryImpl extends EFactoryImpl implements ReportFactory
   {
     switch (eClass.getClassifierID())
     {
-      case ReportPackage.MODEL: return createModel();
+      case ReportPackage.REPORT: return createReport();
       case ReportPackage.ANOMALY: return createAnomaly();
+      case ReportPackage.SHADOWING: return createShadowing();
+      case ReportPackage.COMPLETENESS: return createCompleteness();
+      case ReportPackage.REDUNDANCY: return createRedundancy();
+      case ReportPackage.SYNTACTICAL: return createSyntactical();
+      case ReportPackage.REACHABILITY: return createReachability();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -76,10 +81,10 @@ public class ReportFactoryImpl extends EFactoryImpl implements ReportFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public Model createModel()
+  public Report createReport()
   {
-    ModelImpl model = new ModelImpl();
-    return model;
+    ReportImpl report = new ReportImpl();
+    return report;
   }
 
   /**
@@ -91,6 +96,61 @@ public class ReportFactoryImpl extends EFactoryImpl implements ReportFactory
   {
     AnomalyImpl anomaly = new AnomalyImpl();
     return anomaly;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Shadowing createShadowing()
+  {
+    ShadowingImpl shadowing = new ShadowingImpl();
+    return shadowing;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Completeness createCompleteness()
+  {
+    CompletenessImpl completeness = new CompletenessImpl();
+    return completeness;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Redundancy createRedundancy()
+  {
+    RedundancyImpl redundancy = new RedundancyImpl();
+    return redundancy;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Syntactical createSyntactical()
+  {
+    SyntacticalImpl syntactical = new SyntacticalImpl();
+    return syntactical;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Reachability createReachability()
+  {
+    ReachabilityImpl reachability = new ReachabilityImpl();
+    return reachability;
   }
 
   /**

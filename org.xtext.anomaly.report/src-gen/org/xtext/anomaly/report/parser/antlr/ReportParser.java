@@ -25,7 +25,7 @@ public class ReportParser extends org.eclipse.xtext.parser.antlr.AbstractAntlrPa
 	
 	@Override 
 	protected String getDefaultRuleName() {
-		return "Model";
+		return "Report";
 	}
 	
 	public ReportGrammarAccess getGrammarAccess() {

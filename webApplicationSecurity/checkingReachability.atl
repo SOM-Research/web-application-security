@@ -43,10 +43,13 @@ rule Security2Anomaly {
 							if not s.containsSecurityRoles then
 								thisModule.CreateNoDeclaredRoles()
 							else
-								thisModule.ALL_URL_PATTERNS->select(up | not up.isReachable)
-																->collect(up | up.refImmediateComposite())
-																	->asSet()->asSequence()
-																		->collect(wrc | thisModule.CreateAnomaly(wrc))
+								if thisModule.ALL_URL_PATTERNS->select(up | not up.isReachable)->notEmpty() then
+									thisModule.CreateAnomaly(thisModule.ALL_URL_PATTERNS->select(up | not up.isReachable)
+																	->collect(up | up.refImmediateComposite())
+																		->asSet()->asSequence())
+								else
+									Sequence{}
+								endif
 							endif
 		)
 }
@@ -55,18 +58,18 @@ lazy rule CreateNoDeclaredRoles {
 	from
 		s: OclAny
 	to
-		t: ANO!Reacheability (
+		t: ANO!Reachability (
 			description <- 'Uses * without declaring roles'	
 		)
 }
 
 lazy rule CreateAnomaly {
 	from
-		s: PSM!WebResourceCollection
+		s: OclAny
 	to
-		t: ANO!Reacheability (
-	 		description <- 'Resource ' + s.webResourceName + ' is not reachable',
-			unreachebleResources <- s
+		t: ANO!Reachability (
+	 		description <- 'Resource(s) ' + s->iterate(e ; output : String = '' | output->concat(e.webResourceName + ',')) + ' not reachable',
+			unreachableResources <- s
 	 	) 
 }
 

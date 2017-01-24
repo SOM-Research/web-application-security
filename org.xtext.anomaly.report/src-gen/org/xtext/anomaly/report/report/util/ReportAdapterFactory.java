@@ -75,14 +75,39 @@ public class ReportAdapterFactory extends AdapterFactoryImpl
     new ReportSwitch<Adapter>()
     {
       @Override
-      public Adapter caseModel(Model object)
+      public Adapter caseReport(Report object)
       {
-        return createModelAdapter();
+        return createReportAdapter();
       }
       @Override
       public Adapter caseAnomaly(Anomaly object)
       {
         return createAnomalyAdapter();
+      }
+      @Override
+      public Adapter caseShadowing(Shadowing object)
+      {
+        return createShadowingAdapter();
+      }
+      @Override
+      public Adapter caseCompleteness(Completeness object)
+      {
+        return createCompletenessAdapter();
+      }
+      @Override
+      public Adapter caseRedundancy(Redundancy object)
+      {
+        return createRedundancyAdapter();
+      }
+      @Override
+      public Adapter caseSyntactical(Syntactical object)
+      {
+        return createSyntacticalAdapter();
+      }
+      @Override
+      public Adapter caseReachability(Reachability object)
+      {
+        return createReachabilityAdapter();
       }
       @Override
       public Adapter defaultCase(EObject object)
@@ -107,16 +132,16 @@ public class ReportAdapterFactory extends AdapterFactoryImpl
 
 
   /**
-   * Creates a new adapter for an object of class '{@link org.xtext.anomaly.report.report.Model <em>Model</em>}'.
+   * Creates a new adapter for an object of class '{@link org.xtext.anomaly.report.report.Report <em>Report</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.xtext.anomaly.report.report.Model
+   * @see org.xtext.anomaly.report.report.Report
    * @generated
    */
-  public Adapter createModelAdapter()
+  public Adapter createReportAdapter()
   {
     return null;
   }
@@ -132,6 +157,81 @@ public class ReportAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createAnomalyAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.anomaly.report.report.Shadowing <em>Shadowing</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.anomaly.report.report.Shadowing
+   * @generated
+   */
+  public Adapter createShadowingAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.anomaly.report.report.Completeness <em>Completeness</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.anomaly.report.report.Completeness
+   * @generated
+   */
+  public Adapter createCompletenessAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.anomaly.report.report.Redundancy <em>Redundancy</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.anomaly.report.report.Redundancy
+   * @generated
+   */
+  public Adapter createRedundancyAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.anomaly.report.report.Syntactical <em>Syntactical</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.anomaly.report.report.Syntactical
+   * @generated
+   */
+  public Adapter createSyntacticalAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.anomaly.report.report.Reachability <em>Reachability</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.anomaly.report.report.Reachability
+   * @generated
+   */
+  public Adapter createReachabilityAdapter()
   {
     return null;
   }

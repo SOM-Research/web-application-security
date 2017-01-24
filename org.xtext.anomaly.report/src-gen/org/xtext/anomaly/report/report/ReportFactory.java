@@ -23,13 +23,13 @@ public interface ReportFactory extends EFactory
   ReportFactory eINSTANCE = org.xtext.anomaly.report.report.impl.ReportFactoryImpl.init();
 
   /**
-   * Returns a new object of class '<em>Model</em>'.
+   * Returns a new object of class '<em>Report</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Model</em>'.
+   * @return a new object of class '<em>Report</em>'.
    * @generated
    */
-  Model createModel();
+  Report createReport();
 
   /**
    * Returns a new object of class '<em>Anomaly</em>'.
@@ -39,6 +39,51 @@ public interface ReportFactory extends EFactory
    * @generated
    */
   Anomaly createAnomaly();
+
+  /**
+   * Returns a new object of class '<em>Shadowing</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Shadowing</em>'.
+   * @generated
+   */
+  Shadowing createShadowing();
+
+  /**
+   * Returns a new object of class '<em>Completeness</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Completeness</em>'.
+   * @generated
+   */
+  Completeness createCompleteness();
+
+  /**
+   * Returns a new object of class '<em>Redundancy</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Redundancy</em>'.
+   * @generated
+   */
+  Redundancy createRedundancy();
+
+  /**
+   * Returns a new object of class '<em>Syntactical</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Syntactical</em>'.
+   * @generated
+   */
+  Syntactical createSyntactical();
+
+  /**
+   * Returns a new object of class '<em>Reachability</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Reachability</em>'.
+   * @generated
+   */
+  Reachability createReachability();
 
   /**
    * Returns the package supported by this factory.

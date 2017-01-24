@@ -113,8 +113,7 @@ rule Security2Anomaly {
 	to
 		t: ANO!Report (
 			anomalies <- thisModule.ALL_SECURITY_CONSTRAINTS->select(sc | sc.isRedundant)
-																->collect(sc | sc.getRedundantConstraints->collect(sr | Sequence{sc, sr}))
-																	->collect(pair | thisModule.CreateAnomaly(pair->flatten()))
+																->collect(sc | sc.getRedundantConstraints->collect(sr | thisModule.CreateAnomaly(Sequence{sc, sr})))
 		)
 }
 
@@ -124,6 +123,8 @@ lazy rule CreateAnomaly {
 	to
 		t: ANO!Redundancy (
 	 		description <- 'Redundancy between security constraints ' + pair->first().getSecurityConstraintPos.toString() + 
-							' and ' + pair->last().getSecurityConstraintPos.toString()
+							' and ' + pair->last().getSecurityConstraintPos.toString(),
+			containing <- pair->first(),
+			contained <- pair->last()
 	 	) 
 }

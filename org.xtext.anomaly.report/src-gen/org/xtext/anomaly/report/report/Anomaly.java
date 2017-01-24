@@ -12,8 +12,7 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.xtext.anomaly.report.report.Anomaly#getName <em>Name</em>}</li>
- *   <li>{@link org.xtext.anomaly.report.report.Anomaly#getDescr <em>Descr</em>}</li>
+ *   <li>{@link org.xtext.anomaly.report.report.Anomaly#getDescription <em>Description</em>}</li>
  * </ul>
  * </p>
  *
@@ -24,55 +23,29 @@ import org.eclipse.emf.ecore.EObject;
 public interface Anomaly extends EObject
 {
   /**
-   * Returns the value of the '<em><b>Name</b></em>' attribute.
+   * Returns the value of the '<em><b>Description</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Name</em>' attribute isn't clear,
+   * If the meaning of the '<em>Description</em>' attribute isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Name</em>' attribute.
-   * @see #setName(String)
-   * @see org.xtext.anomaly.report.report.ReportPackage#getAnomaly_Name()
+   * @return the value of the '<em>Description</em>' attribute.
+   * @see #setDescription(String)
+   * @see org.xtext.anomaly.report.report.ReportPackage#getAnomaly_Description()
    * @model
    * @generated
    */
-  String getName();
+  String getDescription();
 
   /**
-   * Sets the value of the '{@link org.xtext.anomaly.report.report.Anomaly#getName <em>Name</em>}' attribute.
+   * Sets the value of the '{@link org.xtext.anomaly.report.report.Anomaly#getDescription <em>Description</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Name</em>' attribute.
-   * @see #getName()
+   * @param value the new value of the '<em>Description</em>' attribute.
+   * @see #getDescription()
    * @generated
    */
-  void setName(String value);
-
-  /**
-   * Returns the value of the '<em><b>Descr</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Descr</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Descr</em>' attribute.
-   * @see #setDescr(String)
-   * @see org.xtext.anomaly.report.report.ReportPackage#getAnomaly_Descr()
-   * @model
-   * @generated
-   */
-  String getDescr();
-
-  /**
-   * Sets the value of the '{@link org.xtext.anomaly.report.report.Anomaly#getDescr <em>Descr</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Descr</em>' attribute.
-   * @see #getDescr()
-   * @generated
-   */
-  void setDescr(String value);
+  void setDescription(String value);
 
 } // Anomaly

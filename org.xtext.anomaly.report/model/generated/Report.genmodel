@@ -7,12 +7,29 @@
     editorPluginID="org.xtext.anomaly.report.editor" runtimeVersion="2.10">
   <genPackages prefix="Report" basePackage="org.xtext.anomaly.report" disposableProviderFactory="true"
       fileExtensions="report" ecorePackage="Report.ecore#/">
-    <genClasses ecoreClass="Report.ecore#//Model">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Report.ecore#//Model/anomalies"/>
+    <genClasses ecoreClass="Report.ecore#//Report">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Report.ecore#//Report/anomalies"/>
     </genClasses>
     <genClasses ecoreClass="Report.ecore#//Anomaly">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Report.ecore#//Anomaly/name"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Report.ecore#//Anomaly/descr"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Report.ecore#//Anomaly/description"/>
+    </genClasses>
+    <genClasses ecoreClass="Report.ecore#//Shadowing">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Report.ecore#//Shadowing/shadowing"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Report.ecore#//Shadowing/shadowed"/>
+    </genClasses>
+    <genClasses ecoreClass="Report.ecore#//Completeness">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Report.ecore#//Completeness/missedMethod"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Report.ecore#//Completeness/securityConstraint"/>
+    </genClasses>
+    <genClasses ecoreClass="Report.ecore#//Redundancy">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Report.ecore#//Redundancy/containing"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Report.ecore#//Redundancy/contained"/>
+    </genClasses>
+    <genClasses ecoreClass="Report.ecore#//Syntactical">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Report.ecore#//Syntactical/missedRoles"/>
+    </genClasses>
+    <genClasses ecoreClass="Report.ecore#//Reachability">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Report.ecore#//Reachability/unreachableResources"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

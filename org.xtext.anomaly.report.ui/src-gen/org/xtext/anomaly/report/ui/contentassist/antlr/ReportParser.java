@@ -37,10 +37,27 @@ public class ReportParser extends AbstractContentAssistParser {
 			nameMappings = new HashMap<AbstractElement, String>() {
 				private static final long serialVersionUID = 1L;
 				{
-					put(grammarAccess.getAnomalyAccess().getGroup(), "rule__Anomaly__Group__0");
-					put(grammarAccess.getModelAccess().getAnomaliesAssignment(), "rule__Model__AnomaliesAssignment");
-					put(grammarAccess.getAnomalyAccess().getNameAssignment_1(), "rule__Anomaly__NameAssignment_1");
-					put(grammarAccess.getAnomalyAccess().getDescrAssignment_3(), "rule__Anomaly__DescrAssignment_3");
+					put(grammarAccess.getEStringAccess().getAlternatives(), "rule__EString__Alternatives");
+					put(grammarAccess.getAnomalyAccess().getAlternatives(), "rule__Anomaly__Alternatives");
+					put(grammarAccess.getShadowingAccess().getGroup(), "rule__Shadowing__Group__0");
+					put(grammarAccess.getCompletenessAccess().getGroup(), "rule__Completeness__Group__0");
+					put(grammarAccess.getRedundancyAccess().getGroup(), "rule__Redundancy__Group__0");
+					put(grammarAccess.getSyntacticalAccess().getGroup(), "rule__Syntactical__Group__0");
+					put(grammarAccess.getReachabilityAccess().getGroup(), "rule__Reachability__Group__0");
+					put(grammarAccess.getReportAccess().getAnomaliesAssignment(), "rule__Report__AnomaliesAssignment");
+					put(grammarAccess.getShadowingAccess().getDescriptionAssignment_1(), "rule__Shadowing__DescriptionAssignment_1");
+					put(grammarAccess.getShadowingAccess().getShadowingAssignment_2(), "rule__Shadowing__ShadowingAssignment_2");
+					put(grammarAccess.getShadowingAccess().getShadowedAssignment_3(), "rule__Shadowing__ShadowedAssignment_3");
+					put(grammarAccess.getCompletenessAccess().getDescriptionAssignment_1(), "rule__Completeness__DescriptionAssignment_1");
+					put(grammarAccess.getCompletenessAccess().getMissedMethodAssignment_2(), "rule__Completeness__MissedMethodAssignment_2");
+					put(grammarAccess.getCompletenessAccess().getSecurityConstraintAssignment_3(), "rule__Completeness__SecurityConstraintAssignment_3");
+					put(grammarAccess.getRedundancyAccess().getDescriptionAssignment_1(), "rule__Redundancy__DescriptionAssignment_1");
+					put(grammarAccess.getRedundancyAccess().getContainingAssignment_2(), "rule__Redundancy__ContainingAssignment_2");
+					put(grammarAccess.getRedundancyAccess().getContainedAssignment_3(), "rule__Redundancy__ContainedAssignment_3");
+					put(grammarAccess.getSyntacticalAccess().getDescriptionAssignment_1(), "rule__Syntactical__DescriptionAssignment_1");
+					put(grammarAccess.getSyntacticalAccess().getMissedRolesAssignment_2(), "rule__Syntactical__MissedRolesAssignment_2");
+					put(grammarAccess.getReachabilityAccess().getDescriptionAssignment_1(), "rule__Reachability__DescriptionAssignment_1");
+					put(grammarAccess.getReachabilityAccess().getUnreachableResourcesAssignment_2(), "rule__Reachability__UnreachableResourcesAssignment_2");
 				}
 			};
 		}
@@ -51,7 +68,7 @@ public class ReportParser extends AbstractContentAssistParser {
 	protected Collection<FollowElement> getFollowElements(AbstractInternalContentAssistParser parser) {
 		try {
 			org.xtext.anomaly.report.ui.contentassist.antlr.internal.InternalReportParser typedParser = (org.xtext.anomaly.report.ui.contentassist.antlr.internal.InternalReportParser) parser;
-			typedParser.entryRuleModel();
+			typedParser.entryRuleReport();
 			return typedParser.getFollowElements();
 		} catch(RecognitionException ex) {
 			throw new RuntimeException(ex);

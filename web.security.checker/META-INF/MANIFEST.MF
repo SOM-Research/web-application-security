@@ -23,10 +23,10 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.m2m.atl.core;bundle-version="3.4.0",
  org.eclipse.m2m.atl.engine.emfvm;bundle-version="3.4.0",
  org.eclipse.emf.edit.ui;bundle-version="2.10.2",
- atlanmod.anomaly.websecurity.metamodel;bundle-version="1.0.0",
  org.xtext.anomaly.report;bundle-version="1.0.0",
  org.xtext.anomaly.report.tests;bundle-version="1.0.0",
  org.xtext.anomaly.report.ui;bundle-version="1.0.0",
- org.eclipse.modisco.infra.discovery.core;bundle-version="0.12.1"
+ org.eclipse.modisco.infra.discovery.core;bundle-version="0.12.1",
+ som.research.report.websecurity.metamodel;bundle-version="1.0.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy

@@ -72,10 +72,10 @@ public class ReportSwitch<T> extends Switch<T>
   {
     switch (classifierID)
     {
-      case ReportPackage.MODEL:
+      case ReportPackage.REPORT:
       {
-        Model model = (Model)theEObject;
-        T result = caseModel(model);
+        Report report = (Report)theEObject;
+        T result = caseReport(report);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -86,22 +86,62 @@ public class ReportSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case ReportPackage.SHADOWING:
+      {
+        Shadowing shadowing = (Shadowing)theEObject;
+        T result = caseShadowing(shadowing);
+        if (result == null) result = caseAnomaly(shadowing);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ReportPackage.COMPLETENESS:
+      {
+        Completeness completeness = (Completeness)theEObject;
+        T result = caseCompleteness(completeness);
+        if (result == null) result = caseAnomaly(completeness);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ReportPackage.REDUNDANCY:
+      {
+        Redundancy redundancy = (Redundancy)theEObject;
+        T result = caseRedundancy(redundancy);
+        if (result == null) result = caseAnomaly(redundancy);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ReportPackage.SYNTACTICAL:
+      {
+        Syntactical syntactical = (Syntactical)theEObject;
+        T result = caseSyntactical(syntactical);
+        if (result == null) result = caseAnomaly(syntactical);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ReportPackage.REACHABILITY:
+      {
+        Reachability reachability = (Reachability)theEObject;
+        T result = caseReachability(reachability);
+        if (result == null) result = caseAnomaly(reachability);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       default: return defaultCase(theEObject);
     }
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Model</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Report</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Model</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Report</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseModel(Model object)
+  public T caseReport(Report object)
   {
     return null;
   }
@@ -118,6 +158,86 @@ public class ReportSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseAnomaly(Anomaly object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Shadowing</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Shadowing</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseShadowing(Shadowing object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Completeness</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Completeness</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseCompleteness(Completeness object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Redundancy</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Redundancy</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseRedundancy(Redundancy object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Syntactical</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Syntactical</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseSyntactical(Syntactical object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Reachability</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Reachability</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseReachability(Reachability object)
   {
     return null;
   }

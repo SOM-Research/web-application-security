@@ -28,6 +28,17 @@ helper context PSM!HttpMethod def : isComplete : Boolean =
 		endif
 	);
 			
+helper context OclAny def : getSecurityConstraint : PSM!SecurityConstraint = 
+	if self.oclIsTypeOf(PSM!SecurityConstraint) then
+		self
+	else
+		if self.oclIsTypeOf(PSM!Security) then
+			OclUndefined
+		else
+			self.refImmediateComposite().getSecurityConstraint
+		endif
+	endif;
+			
 helper context PSM!HttpMethod def : getUncompleteMethods : Sequence(String) =
 	let httpMethodsToCheck : Sequence(String) =
 		if self.omission then
@@ -53,18 +64,19 @@ rule Security2Anomaly {
 	to
 		t: ANO!Report (
 			anomalies <- thisModule.ALL_HTTP_METHODS->select(hm | not hm.isComplete)
-													->collect(hm | thisModule.CreateAnomaly(hm))
+														->collect(hm | hm.getSecurityConstraint)->asSet()->asSequence()
+															->collect(sc | thisModule.CreateAnomaly(sc))
 		)
 }
 
 lazy rule CreateAnomaly {
 	from
-		s: PSM!HttpMethod
+		s: PSM!SecurityConstraint
 	to
 		t: ANO!Completeness (
-	 		description <- s.name,
-			missedMethod <- s
+	 		description <- thisModule.ALL_HTTP_METHODS->select(hm | not hm.isComplete)->select(hm | hm.getSecurityConstraint = s)->collect(hm | hm.getUncompleteMethods->iterate(uc ; output : String = '' | output->concat(uc + '\n')))
+															->iterate(text ; output : String = '' | output->concat(text + ';')),
+			securityConstraint <- s,
+			missedMethod <- thisModule.ALL_HTTP_METHODS->select(hm | not hm.isComplete)->select(hm | hm.getSecurityConstraint = s)
 	 	) 
 }
-
-
